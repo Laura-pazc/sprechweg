@@ -22,16 +22,20 @@ export function confidencePercent({
 }: ProgressInput): number {
   const base = level === null ? 0 : 12;
 
+  const confidenceMissionTarget = 3;
+  const confidenceWordTarget = 24;
   const studiedWords = Object.values(studied).reduce((total, ids) => total + ids.length, 0);
-  const totalWords = MISSIONS.reduce((total, mission) => total + mission.vocab.length, 0);
-  const vocabPart = totalWords === 0 ? 0 : (studiedWords / totalWords) * 18;
+  const vocabPart = (Math.min(studiedWords, confidenceWordTarget) / confidenceWordTarget) * 18;
 
-  const practicePart = (Object.values(practiceDone).filter(Boolean).length / MISSIONS.length) * 15;
+  const practiceCount = Object.values(practiceDone).filter(Boolean).length;
+  const practicePart =
+    (Math.min(practiceCount, confidenceMissionTarget) / confidenceMissionTarget) * 15;
 
   const doneCount = MISSIONS.filter((mission) => statuses[mission.id] === 'done').length;
-  const missionPart = (doneCount / MISSIONS.length) * 40;
+  const missionPart = (Math.min(doneCount, confidenceMissionTarget) / confidenceMissionTarget) * 40;
 
-  const journalPart = Math.min(journalCount, MISSIONS.length) * (15 / MISSIONS.length);
+  const journalPart =
+    (Math.min(journalCount, confidenceMissionTarget) / confidenceMissionTarget) * 15;
 
   return Math.min(100, Math.round(base + vocabPart + practicePart + missionPart + journalPart));
 }

@@ -1,9 +1,9 @@
+import { SCENARIO_MISSIONS } from '@/lib/scenarioMissions';
 import type { Mission } from '@/lib/types';
 
 /**
- * Fixed content. The three missions, their vocab, their conversation
- * simulations and their practice questions are authored, not generated —
- * see app/how-it-works.tsx for the plain-language breakdown.
+ * Authored mission content. The original three missions retain their stable IDs
+ * for saved progress and onboarding; the scenario catalog follows them.
  */
 export const MISSIONS: Mission[] = [
   {
@@ -512,6 +512,7 @@ export const MISSIONS: Mission[] = [
       description: 'Started a conversation with someone new and suggested a plan.',
     },
   },
+  ...SCENARIO_MISSIONS,
 ];
 
 export function getMission(id: string | undefined): Mission | undefined {

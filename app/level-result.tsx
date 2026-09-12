@@ -82,7 +82,7 @@ export default function LevelResultScreen() {
               onPress={() => router.replace(routes.missionPrep(firstMission.id))}
             />
             <ChunkyButton
-              label="Browse all three missions"
+              label="Browse all missions"
               variant="paper"
               fullWidth
               onPress={() => router.replace(routes.missions)}

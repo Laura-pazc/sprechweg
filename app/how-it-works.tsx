@@ -33,9 +33,9 @@ const PER_LEARNER = [
 
 const FIXED = [
   {
-    title: 'The three missions',
+    title: 'The mission library',
     detail:
-      'Find your way, Make life happen, Meet your people. Authored once, same for everyone, including their source vocab and conversation text.',
+      'Every mission has authored vocabulary, conversation text, practice, and a real-world action. The same source content is available to everyone.',
   },
   {
     title: 'Streak math',
@@ -44,7 +44,7 @@ const FIXED = [
   },
   {
     title: 'Badges',
-    detail: 'One badge per mission completed. Three missions, three badges, no hidden criteria.',
+    detail: 'One badge per mission completed, with no hidden criteria.',
   },
   {
     title: 'The confidence number',

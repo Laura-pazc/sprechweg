@@ -157,7 +157,7 @@ export default function TodayScreen() {
                 actionLabel="See all"
                 onActionPress={() => router.push(routes.missions)}
               />
-              {otherMissions.map((mission) => (
+              {otherMissions.slice(0, 3).map((mission) => (
                 <MissionCard
                   key={mission.id}
                   mission={mission}

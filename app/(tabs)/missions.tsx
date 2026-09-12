@@ -39,8 +39,8 @@ export default function MissionsScreen() {
               title="Real-life missions"
               subtitle={
                 level === null
-                  ? 'Three things to go and do in Hamburg this week.'
-                  : `Three things to go and do in Hamburg. Your ${LEVEL_LABEL[level].toLowerCase()} tier decides how much help you get, not what you can open.`
+                  ? 'Choose a real-life German mission in Hamburg.'
+                  : `Choose a real-life Hamburg mission. Your ${LEVEL_LABEL[level].toLowerCase()} tier decides how much help you get, not what you can open.`
               }
             />
           </View>
@@ -51,9 +51,8 @@ export default function MissionsScreen() {
               FIXED CONTENT
             </Text>
             <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-              These three missions are authored, not generated. What changes per learner is the prep
-              inside them: which phrases lead, how much English shows, and the questions you get
-              afterwards.
+              Every mission is authored, not generated. What changes per learner is the prep inside
+              it: which phrases lead, how much English shows, and the questions you get afterwards.
             </Text>
           </ChunkyCard>
         }

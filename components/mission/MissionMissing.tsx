@@ -20,8 +20,7 @@ export function MissionMissing() {
       <View className="px-5">
         <ChunkyCard tone="canvas" className="gap-3 px-4 py-4">
           <Text className="text-ink font-body text-[14px] leading-[20px]">
-            There are three missions in the Hamburg pilot. Pick one from the list and you are back
-            on track.
+            That mission is not available. Pick one from the full list and you are back on track.
           </Text>
           <ChunkyButton label="See all missions" onPress={() => router.replace(routes.missions)} />
         </ChunkyCard>
