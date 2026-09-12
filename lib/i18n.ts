@@ -131,6 +131,28 @@ const resources = {
         subtitleNoLevel: 'Choose a real-life German mission in Hamburg.',
         subtitle:
           'Choose a real-life Hamburg mission. Your {{tier}} tier decides how much help you get, not what you can open.',
+        searchPlaceholder: 'Search missions, vocab, or location…',
+        searchLabel: 'Search missions',
+        clearSearch: 'Clear search',
+        levelFilter: 'LEVEL',
+        categoryFilter: 'CATEGORY',
+        clearFilters: 'Clear filters',
+        allLevels: 'All levels',
+        allCategories: 'All categories',
+        levels: {
+          beginner: 'Beginner',
+          intermediate: 'Intermediate',
+          advanced: 'Advanced',
+        },
+        match: {
+          title: 'title match',
+          tagline: 'description match',
+          category: 'category match',
+          vocabulary: 'vocabulary match',
+          location: 'location match',
+        },
+        noResults: 'No missions found',
+        noResultsBody: 'No missions match your search. Try different keywords or clear filters.',
         fixed: 'FIXED CONTENT',
         fixedBody:
           'Every mission is authored, not generated. What changes per learner is the prep inside it: which phrases lead, how much English shows, and the questions you get afterwards.',
@@ -292,6 +314,29 @@ const resources = {
         subtitleNoLevel: 'Wähle eine echte Deutsch-Mission in Hamburg.',
         subtitle:
           'Wähle eine Mission in Hamburg. Deine Stufe {{tier}} bestimmt, wie viel Hilfe du bekommst – nicht, was du öffnen kannst.',
+        searchPlaceholder: 'Missionen, Vokabeln oder Orte suchen …',
+        searchLabel: 'Missionen suchen',
+        clearSearch: 'Suche löschen',
+        levelFilter: 'NIVEAU',
+        categoryFilter: 'KATEGORIE',
+        clearFilters: 'Filter löschen',
+        allLevels: 'Alle Niveaus',
+        allCategories: 'Alle Kategorien',
+        levels: {
+          beginner: 'Anfänger',
+          intermediate: 'Mittelstufe',
+          advanced: 'Fortgeschritten',
+        },
+        match: {
+          title: 'Treffer im Titel',
+          tagline: 'Treffer in der Beschreibung',
+          category: 'Treffer in der Kategorie',
+          vocabulary: 'Vokabeltreffer',
+          location: 'Ortstreffer',
+        },
+        noResults: 'Keine Missionen gefunden',
+        noResultsBody:
+          'Keine Mission passt zu deiner Suche. Probiere andere Wörter oder lösche die Filter.',
         fixed: 'FESTE INHALTE',
         fixedBody:
           'Jede Mission wurde redaktionell erstellt, nicht generiert. Je nach Person ändert sich die Vorbereitung: welche Sätze zuerst kommen, wie viel Englisch angezeigt wird und welche Fragen danach folgen.',
