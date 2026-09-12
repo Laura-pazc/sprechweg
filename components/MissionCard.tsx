@@ -47,7 +47,7 @@ export function MissionCard({
             {mission.title}
           </Text>
         </View>
-        <View className="h-9 w-9 items-center justify-center rounded-full bg-white/70 -mt-1.5 -mr-1.5">
+        <View className="h-9 w-9 items-center justify-center rounded-full bg-white/70">
           {seasonal ? (
             <Text accessibilityElementsHidden className="text-[19px]">
               🍂

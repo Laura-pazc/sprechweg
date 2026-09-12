@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { useTranslation } from 'react-i18next';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
 import type { ConversationLine } from '@/lib/types';
@@ -13,19 +12,18 @@ interface ConversationSimProps {
 }
 
 export function ConversationSim({ lines, initialShowEnglish }: ConversationSimProps) {
-  const { t } = useTranslation();
   const [showEnglish, setShowEnglish] = useState(initialShowEnglish);
 
   return (
     <View className="gap-2.5">
       <View className="flex-row items-center justify-between gap-3">
         <Text className="text-muted font-strong flex-1 text-[12px] leading-[17px]">
-          {t('prep.conversationHint')}
+          One likely version of the exchange. Read your lines out loud before you go.
         </Text>
         <Pressable
           accessibilityRole="switch"
           accessibilityState={{ checked: showEnglish }}
-          accessibilityLabel={t('prep.conversationShowEnglishLabel')}
+          accessibilityLabel="Show English glosses"
           onPress={() => setShowEnglish((value) => !value)}
           className={cn(
             'border-ink rounded-full border-2 px-2.5 py-1.5',
@@ -33,7 +31,7 @@ export function ConversationSim({ lines, initialShowEnglish }: ConversationSimPr
           )}
         >
           <Text className="text-ink font-display text-[10.5px] tracking-wide">
-            {showEnglish ? t('prep.conversationShowEnglish') : t('prep.conversationHideEnglish')}
+            {showEnglish ? 'ENGLISH ON' : 'ENGLISH OFF'}
           </Text>
         </Pressable>
       </View>
@@ -44,7 +42,7 @@ export function ConversationSim({ lines, initialShowEnglish }: ConversationSimPr
           return (
             <View key={line.id} className={cn('w-full', mine ? 'items-end' : 'items-start')}>
               <Text className="text-muted font-display mb-0.5 text-[9.5px] tracking-widest">
-                {mine ? t('prep.conversationYou') : t('prep.conversationThem')}
+                {mine ? 'YOU' : 'THEM'}
               </Text>
               <ChunkyCard
                 tone={mine ? 'lime' : 'paper'}
