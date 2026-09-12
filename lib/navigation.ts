@@ -15,6 +15,7 @@ export const routes = {
   onboarding: '/onboarding' as Href,
   levelResult: '/level-result' as Href,
   howItWorks: '/how-it-works' as Href,
+  settings: '/settings' as Href,
   missionPrep: (id: string): Href => ({ pathname: '/mission/[id]/prep', params: { id } }),
   missionDo: (id: string): Href => ({ pathname: '/mission/[id]/do', params: { id } }),
   missionJournal: (id: string): Href => ({ pathname: '/mission/[id]/journal', params: { id } }),
