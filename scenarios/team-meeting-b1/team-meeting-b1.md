@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| das Projekt / die Deadline | project / deadline |
-| der Fortschritt | progress |
-| das Hindernis / das Problem | obstacle / problem |
-| der Kollege / die Kollegin | colleague |
-| besprechen / diskutieren | to discuss / to debate |
-| die Entscheidung | decision |
-| "Können Sie das noch einmal erklären?" | "Can you explain that again?" |
+| German                                                  | English                              |
+| ------------------------------------------------------- | ------------------------------------ |
+| das Projekt / die Deadline                              | project / deadline                   |
+| der Fortschritt                                         | progress                             |
+| das Hindernis / das Problem                             | obstacle / problem                   |
+| der Kollege / die Kollegin                              | colleague                            |
+| besprechen / diskutieren                                | to discuss / to debate               |
+| die Entscheidung                                        | decision                             |
+| "Können Sie das noch einmal erklären?"                  | "Can you explain that again?"        |
 | "Ich bin mir nicht sicher, ob ich das verstanden habe." | "I'm not sure if I understood that." |
 
 ## Conversation simulation
 
-**Team Leader:** Guten Morgen, alle zusammen! Heute **besprechen** wir den Stand des Projekts. Thomas, **der Fortschritt** bitte? *(Good morning, everyone! Today we'll discuss the project status. Thomas, the progress, please?)*
+**Team Leader:** Guten Morgen, alle zusammen! Heute **besprechen** wir den Stand des Projekts. Thomas, **der Fortschritt** bitte? _(Good morning, everyone! Today we'll discuss the project status. Thomas, the progress, please?)_
 
-**Thomas:** Ja, die Website ist 70% fertig. Aber wir haben ein **Hindernis** — der Server antwortet langsam. *(Yes, the website is 70% done. But we have an obstacle — the server is responding slowly.)*
+**Thomas:** Ja, die Website ist 70% fertig. Aber wir haben ein **Hindernis** — der Server antwortet langsam. _(Yes, the website is 70% done. But we have an obstacle — the server is responding slowly.)_
 
-**Sie:** Entschuldigung, **können Sie das noch einmal erklären**? Ich verstehe nicht, was "Server antwortet langsam" bedeutet. *(Excuse me, can you explain that again? I don't understand what "server responds slowly" means.)*
+**Sie:** Entschuldigung, **können Sie das noch einmal erklären**? Ich verstehe nicht, was "Server antwortet langsam" bedeutet. _(Excuse me, can you explain that again? I don't understand what "server responds slowly" means.)_
 
-**Thomas:** Der Server ist zu langsam — der Code braucht länger, um die Daten zu laden. *(The server is too slow — the code takes longer to load the data.)*
+**Thomas:** Der Server ist zu langsam — der Code braucht länger, um die Daten zu laden. _(The server is too slow — the code takes longer to load the data.)_
 
-**Team Leader:** Das ist ein ernstes **Problem**. Wir haben noch zwei Wochen bis zur **Deadline**. Wie können wir das lösen? *(That's a serious problem. We have two more weeks until the deadline. How can we solve that?)*
+**Team Leader:** Das ist ein ernstes **Problem**. Wir haben noch zwei Wochen bis zur **Deadline**. Wie können wir das lösen? _(That's a serious problem. We have two more weeks until the deadline. How can we solve that?)_
 
-**Sie:** **Ich bin mir nicht sicher, ob ich das verstanden habe** — müssen wir den ganzen Code rewrite, oder nur einen Teil? *(I'm not sure if I understood that — do we need to rewrite the whole code or only a part?)*
+**Sie:** **Ich bin mir nicht sicher, ob ich das verstanden habe** — müssen wir den ganzen Code rewrite, oder nur einen Teil? _(I'm not sure if I understood that — do we need to rewrite the whole code or only a part?)_
 
-**Kollegin:** Nur einen Teil. Und ich kann dabei helfen. *(Just a part. And I can help with that.)*
+**Kollegin:** Nur einen Teil. Und ich kann dabei helfen. _(Just a part. And I can help with that.)_
 
-**Team Leader:** Gut. Das ist eine gute **Entscheidung**. Sam, du und die Kollegin arbeitet zusammen, ja? *(Good. That's a good decision. Sam, you and the colleague work together, yes?)*
+**Team Leader:** Gut. Das ist eine gute **Entscheidung**. Sam, du und die Kollegin arbeitet zusammen, ja? _(Good. That's a good decision. Sam, you and the colleague work together, yes?)_
 
-**Sie:** Ja, gerne. Wann können wir anfangen? *(Yes, of course. When can we start?)*
+**Sie:** Ja, gerne. Wann können wir anfangen? _(Yes, of course. When can we start?)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Wie lange haben sie bis zur **Deadline**? *(How long do they have until the deadline?)*
-   a) Eine Woche  b) Zwei Wochen  c) Ein Monat
+1. **Multiple choice** — Wie lange haben sie bis zur **Deadline**? _(How long do they have until the deadline?)_
+   a) Eine Woche b) Zwei Wochen c) Ein Monat
 
-2. **Fill in the blank** — Das Projekt ist ___ fertig. (70% / siebzig Prozent)
+2. **Fill in the blank** — Das Projekt ist \_\_\_ fertig. (70% / siebzig Prozent)
 
 3. **Match the word to its meaning** — Match `das Hindernis`, `der Fortschritt`, `die Entscheidung` to their English meanings above.
 

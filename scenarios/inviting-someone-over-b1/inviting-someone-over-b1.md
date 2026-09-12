@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| einladen / die Einladung | to invite / invitation |
-| das Essen / kochen | food / to cook |
-| die Allergie | allergy |
-| die Vorspeise / der Hauptgang | appetizer / main course |
-| gemütlich | cozy / comfortable |
-| um ... Uhr | at ... o'clock |
+| German                                          | English                                         |
+| ----------------------------------------------- | ----------------------------------------------- |
+| einladen / die Einladung                        | to invite / invitation                          |
+| das Essen / kochen                              | food / to cook                                  |
+| die Allergie                                    | allergy                                         |
+| die Vorspeise / der Hauptgang                   | appetizer / main course                         |
+| gemütlich                                       | cozy / comfortable                              |
+| um ... Uhr                                      | at ... o'clock                                  |
 | "Möchtest du Freitag zu mir nach Hause kommen?" | "Would you like to come to my place on Friday?" |
-| "Ich koche gerne für dich." | "I like to cook for you." |
+| "Ich koche gerne für dich."                     | "I like to cook for you."                       |
 
 ## Conversation simulation
 
-**Sie:** Hey! **Möchtest du Freitag zu mir nach Hause kommen**? Ich möchte dich meine neue Wohnung zeigen. *(Hey! Would you like to come to my place on Friday? I'd like to show you my new apartment.)*
+**Sie:** Hey! **Möchtest du Freitag zu mir nach Hause kommen**? Ich möchte dich meine neue Wohnung zeigen. _(Hey! Would you like to come to my place on Friday? I'd like to show you my new apartment.)_
 
-**Freund/in:** Das klingt wunderbar! Um wie viel Uhr? *(That sounds wonderful! What time?)*
+**Freund/in:** Das klingt wunderbar! Um wie viel Uhr? _(That sounds wonderful! What time?)_
 
-**Sie:** Um 19 Uhr? **Ich koche gerne für dich**. Ich mache Pasta — das ist mein Spezialgebiet! *(At 7 p.m.? I like to cook for you. I'm making pasta — that's my specialty!)*
+**Sie:** Um 19 Uhr? **Ich koche gerne für dich**. Ich mache Pasta — das ist mein Spezialgebiet! _(At 7 p.m.? I like to cook for you. I'm making pasta — that's my specialty!)_
 
-**Freund/in:** Perfekt! Ich bringe Wein mit. Aber eine Frage — hast du irgendwelche diätetischen Anforderungen? Ich habe eine **Allergie** gegen Nüsse. *(Perfect! I'll bring wine. But one question — do you have any dietary requirements? I have an allergy to nuts.)*
+**Freund/in:** Perfekt! Ich bringe Wein mit. Aber eine Frage — hast du irgendwelche diätetischen Anforderungen? Ich habe eine **Allergie** gegen Nüsse. _(Perfect! I'll bring wine. But one question — do you have any dietary requirements? I have an allergy to nuts.)_
 
-**Sie:** Oh, keine Sorge! Meine Pasta-Soße hat keine Nüsse. Ich verwende **Hauptgang** mit Gemüse und Olivenöl. *(Oh, no worries! My pasta sauce has no nuts. I'm using a main course with vegetables and olive oil.)*
+**Sie:** Oh, keine Sorge! Meine Pasta-Soße hat keine Nüsse. Ich verwende **Hauptgang** mit Gemüse und Olivenöl. _(Oh, no worries! My pasta sauce has no nuts. I'm using a main course with vegetables and olive oil.)_
 
-**Freund/in:** Das klingt **gemütlich** und köstlich! Kann ich noch etwas mitbringen? *(That sounds cozy and delicious! Can I bring anything else?)*
+**Freund/in:** Das klingt **gemütlich** und köstlich! Kann ich noch etwas mitbringen? _(That sounds cozy and delicious! Can I bring anything else?)_
 
-**Sie:** Nur dich selbst! Vielleicht bringst du gute Laune mit — das ist die beste **Vorspeise**! *(Just yourself! Maybe bring good mood — that's the best appetizer!)*
+**Sie:** Nur dich selbst! Vielleicht bringst du gute Laune mit — das ist die beste **Vorspeise**! _(Just yourself! Maybe bring good mood — that's the best appetizer!)_
 
-**Freund/in:** Haha! Ich freue mich schon! Bis Freitag! *(Haha! I'm looking forward to it! See you Friday!)*
+**Freund/in:** Haha! Ich freue mich schon! Bis Freitag! _(Haha! I'm looking forward to it! See you Friday!)_
 
-**Sie:** Bis dann! Es wird **gemütlich**! *(See you then! It will be cozy!)*
+**Sie:** Bis dann! Es wird **gemütlich**! _(See you then! It will be cozy!)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Was kocht die Person für den Gast? *(What does the person cook for the guest?)*
-   a) Fisch  b) Pasta  c) Fleisch
+1. **Multiple choice** — Was kocht die Person für den Gast? _(What does the person cook for the guest?)_
+   a) Fisch b) Pasta c) Fleisch
 
-2. **Fill in the blank** — Der Gast hat eine **Allergie** gegen ___. (Nüsse)
+2. **Fill in the blank** — Der Gast hat eine **Allergie** gegen \_\_\_. (Nüsse)
 
 3. **Match the word to its meaning** — Match `einladen`, `gemütlich`, `die Vorspeise` to their English meanings above.
 

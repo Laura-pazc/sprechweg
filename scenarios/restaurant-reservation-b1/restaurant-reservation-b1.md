@@ -4,38 +4,38 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| der Tisch | table |
-| die Reservierung / der Platz | reservation |
-| das Menü / die Speisekarte | menu |
-| die Spezialität | specialty (dish) |
-| die Zutat | ingredient |
-| vegetarisch / vegan | vegetarian / vegan |
+| German                                        | English                                  |
+| --------------------------------------------- | ---------------------------------------- |
+| der Tisch                                     | table                                    |
+| die Reservierung / der Platz                  | reservation                              |
+| das Menü / die Speisekarte                    | menu                                     |
+| die Spezialität                               | specialty (dish)                         |
+| die Zutat                                     | ingredient                               |
+| vegetarisch / vegan                           | vegetarian / vegan                       |
 | "Haben Sie noch einen Tisch für heute Abend?" | "Do you still have a table for tonight?" |
-| "Ich bin allergisch gegen..." | "I'm allergic to..." |
+| "Ich bin allergisch gegen..."                 | "I'm allergic to..."                     |
 
 ## Conversation simulation
 
-**Kellner:** Guten Abend! Willkommen. Haben Sie eine **Reservierung**? *(Good evening! Welcome. Do you have a reservation?)*
+**Kellner:** Guten Abend! Willkommen. Haben Sie eine **Reservierung**? _(Good evening! Welcome. Do you have a reservation?)_
 
-**Sie:** Ja, unter dem Namen Sam. Für zwei Personen um 19 Uhr. *(Yes, under the name Sam. For two people at 7 p.m.)*
+**Sie:** Ja, unter dem Namen Sam. Für zwei Personen um 19 Uhr. _(Yes, under the name Sam. For two people at 7 p.m.)_
 
-**Kellner:** Ah ja, hier ist es. Folgen Sie mir, bitte. Hier ist Ihr **Tisch**. *(Ah yes, here it is. Follow me, please. Here is your table.)*
+**Kellner:** Ah ja, hier ist es. Folgen Sie mir, bitte. Hier ist Ihr **Tisch**. _(Ah yes, here it is. Follow me, please. Here is your table.)_
 
-**Sie:** Danke! Können Sie uns die **Speisekarte** bringen? *(Thank you! Can you bring us the menu?)*
+**Sie:** Danke! Können Sie uns die **Speisekarte** bringen? _(Thank you! Can you bring us the menu?)_
 
-**Kellner:** Selbstverständlich. Was möchten Sie trinken? *(Of course. What would you like to drink?)*
+**Kellner:** Selbstverständlich. Was möchten Sie trinken? _(Of course. What would you like to drink?)_
 
-**Sie:** Ein Glas Weißwein, bitte. Und was ist die **Spezialität** des Hauses? *(A glass of white wine, please. And what is the house specialty?)*
+**Sie:** Ein Glas Weißwein, bitte. Und was ist die **Spezialität** des Hauses? _(A glass of white wine, please. And what is the house specialty?)_
 
-**Kellner:** Unsere **Spezialität** ist der Fisch — er kommt täglich aus der Nordsee. Die **Zutat** ist sehr frisch. *(Our specialty is fish — it comes fresh from the North Sea daily. The ingredient is very fresh.)*
+**Kellner:** Unsere **Spezialität** ist der Fisch — er kommt täglich aus der Nordsee. Die **Zutat** ist sehr frisch. _(Our specialty is fish — it comes fresh from the North Sea daily. The ingredient is very fresh.)_
 
-**Sie:** Das klingt ausgezeichnet! Haben Sie auch **vegetarische** Optionen? Meine Freundin ist **vegetarisch**. *(That sounds excellent! Do you also have vegetarian options? My friend is vegetarian.)*
+**Sie:** Das klingt ausgezeichnet! Haben Sie auch **vegetarische** Optionen? Meine Freundin ist **vegetarisch**. _(That sounds excellent! Do you also have vegetarian options? My friend is vegetarian.)_
 
-**Kellner:** Ja, wir haben mehrere **vegetarische** Gerichte. Ich bin allergisch gegen Gluten — haben Sie **glutenfreie** Optionen? *(Yes, we have several vegetarian dishes. I'm allergic to gluten — do you have gluten-free options?)*
+**Kellner:** Ja, wir haben mehrere **vegetarische** Gerichte. Ich bin allergisch gegen Gluten — haben Sie **glutenfreie** Optionen? _(Yes, we have several vegetarian dishes. I'm allergic to gluten — do you have gluten-free options?)_
 
-**Sie:** Ja, natürlich. Ich zeige Ihnen die Menüseite. *(Yes, of course. Let me show you the menu page.)*
+**Sie:** Ja, natürlich. Ich zeige Ihnen die Menüseite. _(Yes, of course. Let me show you the menu page.)_
 
 ## Go deeper (real resources)
 
@@ -45,8 +45,8 @@
 
 ## Practice
 
-1. **Multiple choice** — Welche ist die **Spezialität** des Restaurants? *(What is the restaurant's specialty?)*
-   a) Der Fisch  b) Das Fleisch  c) Die Pasta
+1. **Multiple choice** — Welche ist die **Spezialität** des Restaurants? _(What is the restaurant's specialty?)_
+   a) Der Fisch b) Das Fleisch c) Die Pasta
 
 2. **Fill in the blank** — Ich möchte einen Platz für zwei Personen um 19 Uhr **reservieren**. (reservieren)
 

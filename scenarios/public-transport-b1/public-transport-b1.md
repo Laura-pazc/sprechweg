@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| die Fahrkarte / das Ticket | ticket |
-| die Haltestelle | stop / station |
-| der Fahrkartenautomat | ticket machine |
-| die Linie | line / route |
-| das Umsteigen | transfer / changing trains |
-| der Fahrplan | timetable / schedule |
+| German                        | English                           |
+| ----------------------------- | --------------------------------- |
+| die Fahrkarte / das Ticket    | ticket                            |
+| die Haltestelle               | stop / station                    |
+| der Fahrkartenautomat         | ticket machine                    |
+| die Linie                     | line / route                      |
+| das Umsteigen                 | transfer / changing trains        |
+| der Fahrplan                  | timetable / schedule              |
 | "Wie lange dauert die Fahrt?" | "How long does the journey take?" |
-| "Wo muss ich aussteigen?" | "Where do I need to get off?" |
+| "Wo muss ich aussteigen?"     | "Where do I need to get off?"     |
 
 ## Conversation simulation
 
-**Fahrkartenautomat-Person:** Guten Tag! Womit kann ich Ihnen helfen? *(Hello! How can I help you?)*
+**Fahrkartenautomat-Person:** Guten Tag! Womit kann ich Ihnen helfen? _(Hello! How can I help you?)_
 
-**Sie:** Ich möchte ein **Ticket** für die U3 nach Eidelstedt kaufen. Was kostet eine Fahrkarte? *(I want to buy a ticket for the U3 to Eidelstedt. How much does a ticket cost?)*
+**Sie:** Ich möchte ein **Ticket** für die U3 nach Eidelstedt kaufen. Was kostet eine Fahrkarte? _(I want to buy a ticket for the U3 to Eidelstedt. How much does a ticket cost?)_
 
-**Fahrkartenautomat-Person:** Das ist eine Fahrt in Preisstufe 3. Das Einzelticket kostet 3,10 Euro. Möchten Sie auch ein Wochenticket? Das ist günstiger. *(That's a trip in fare zone 3. A single ticket costs 3.10 euros. Would you also like a weekly ticket? That's cheaper.)*
+**Fahrkartenautomat-Person:** Das ist eine Fahrt in Preisstufe 3. Das Einzelticket kostet 3,10 Euro. Möchten Sie auch ein Wochenticket? Das ist günstiger. _(That's a trip in fare zone 3. A single ticket costs 3.10 euros. Would you also like a weekly ticket? That's cheaper.)_
 
-**Sie:** Wie lange ist die Fahrt? *(How long is the journey?)*
+**Sie:** Wie lange ist die Fahrt? _(How long is the journey?)_
 
-**Fahrkartenautomat-Person:** Mit der U3 dauert es etwa 25 Minuten. Sie müssen nicht umsteigen. *(The U3 takes about 25 minutes. You don't need to transfer.)*
+**Fahrkartenautomat-Person:** Mit der U3 dauert es etwa 25 Minuten. Sie müssen nicht umsteigen. _(The U3 takes about 25 minutes. You don't need to transfer.)_
 
-**Sie:** Gut, ich nehme das Einzelticket. **Wo muss ich aussteigen**? *(Okay, I'll take the single ticket. Where do I need to get off?)*
+**Sie:** Gut, ich nehme das Einzelticket. **Wo muss ich aussteigen**? _(Okay, I'll take the single ticket. Where do I need to get off?)_
 
-**Fahrkartenautomat-Person:** Sie fahren bis zur **Haltestelle** Eidelstedt. Der **Fahrplan** hängt hier. Sie können auch die App „HVV" nutzen. *(You take it to the Eidelstedt stop. The schedule is here. You can also use the "HVV" app.)*
+**Fahrkartenautomat-Person:** Sie fahren bis zur **Haltestelle** Eidelstedt. Der **Fahrplan** hängt hier. Sie können auch die App „HVV" nutzen. _(You take it to the Eidelstedt stop. The schedule is here. You can also use the "HVV" app.)_
 
-**Sie:** Danke für die Informationen! *(Thank you for the information!)*
+**Sie:** Danke für die Informationen! _(Thank you for the information!)_
 
-**Fahrkartenautomat-Person:** Gerne! Gute Fahrt! *(You're welcome! Have a good journey!)*
+**Fahrkartenautomat-Person:** Gerne! Gute Fahrt! _(You're welcome! Have a good journey!)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Wie lange dauert die Fahrt mit der U3 nach Eidelstedt? *(How long does the U3 journey to Eidelstedt take?)*
-   a) 15 Minuten  b) 25 Minuten  c) 35 Minuten
+1. **Multiple choice** — Wie lange dauert die Fahrt mit der U3 nach Eidelstedt? _(How long does the U3 journey to Eidelstedt take?)_
+   a) 15 Minuten b) 25 Minuten c) 35 Minuten
 
-2. **Fill in the blank** — Das Einzelticket kostet ___ Euro. (3,10)
+2. **Fill in the blank** — Das Einzelticket kostet \_\_\_ Euro. (3,10)
 
 3. **Match the word to its meaning** — Match `die Haltestelle`, `der Fahrkartenautomat`, `das Umsteigen` to their English meanings above.
 

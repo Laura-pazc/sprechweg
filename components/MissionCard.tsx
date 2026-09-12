@@ -47,7 +47,7 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
           <Text
             className={
               featured
-                ? 'text-ink font-display text-[22px] leading-[25px]'
+                ? 'text-ink font-display text-[20px] leading-[24px]'
                 : 'text-ink font-display text-[19px] leading-[23px]'
             }
           >

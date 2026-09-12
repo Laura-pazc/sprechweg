@@ -38,7 +38,7 @@ export default function LevelResultScreen() {
         <View className="gap-5 px-5">
           <ChunkyCard tone="lime" className="gap-3 px-4 py-5">
             <ChunkyChip label={`${summary.title} tier`} tone="paper" />
-            <Text className="text-ink font-display text-[26px] leading-[30px]">
+            <Text className="text-ink font-display text-[22px] leading-[27px]">
               {summary.headline}
             </Text>
             <Text className="text-ink font-body text-[15px] leading-[22px]">{summary.blurb}</Text>

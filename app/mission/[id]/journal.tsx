@@ -66,7 +66,10 @@ function MissionJournal({ mission }: { mission: Mission }) {
 
   return (
     <Screen>
-      <KeyboardAvoidingView className="flex-1" behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
         <ScrollView
           contentContainerClassName="gap-5 px-5 pb-safe-offset-8"
           keyboardShouldPersistTaps="handled"
@@ -83,7 +86,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
           {saved ? (
             <View className="gap-5">
               <ChunkyCard tone="lime" className="gap-2 px-4 py-5">
-                <Text className="text-ink font-display text-[26px] leading-[30px]">
+                <Text className="text-ink font-display text-[22px] leading-[27px]">
                   {streakCount} {streakCount === 1 ? 'day' : 'days'} in a row
                 </Text>
                 <Text className="text-ink font-body text-[14px] leading-[21px]">
@@ -97,7 +100,9 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   <Text className="text-[24px]">{mission.badge.emoji}</Text>
                 </View>
                 <View className="flex-1 gap-0.5">
-                  <Text className="text-muted font-display text-[11px] tracking-widest">BADGE EARNED</Text>
+                  <Text className="text-muted font-display text-[11px] tracking-widest">
+                    BADGE EARNED
+                  </Text>
                   <Text className="text-ink font-display text-[17px]">{mission.badge.title}</Text>
                   <Text className="text-ink font-body text-[13px] leading-[19px]">
                     {mission.badge.description}
@@ -106,7 +111,11 @@ function MissionJournal({ mission }: { mission: Mission }) {
               </ChunkyCard>
 
               <View className="gap-2">
-                <ChunkyButton label="Back to today" fullWidth onPress={() => router.replace(routes.today)} />
+                <ChunkyButton
+                  label="Back to today"
+                  fullWidth
+                  onPress={() => router.replace(routes.today)}
+                />
                 <ChunkyButton
                   label="See my progress"
                   variant="paper"
@@ -128,7 +137,9 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   value={currentAnswer}
                   onChangeText={(text) =>
                     setAnswers((current) =>
-                      current.map((value, position) => (position === reflectionIndex ? text : value)),
+                      current.map((value, position) =>
+                        position === reflectionIndex ? text : value,
+                      ),
                     )
                   }
                   placeholder={reflectionIndex === 0 ? 'A sentence is enough' : 'Optional'}
@@ -143,7 +154,12 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   onPress={continueReflection}
                 />
                 {reflectionIndex > 0 && currentAnswer.trim().length === 0 ? (
-                  <ChunkyButton label="Skip this one" variant="quiet" fullWidth onPress={continueReflection} />
+                  <ChunkyButton
+                    label="Skip this one"
+                    variant="quiet"
+                    fullWidth
+                    onPress={continueReflection}
+                  />
                 ) : null}
               </View>
             </View>

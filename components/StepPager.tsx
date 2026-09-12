@@ -30,7 +30,11 @@ export function StepPager<T extends string>({ items, value, onChange }: StepPage
   return (
     <View className="gap-2">
       <View className="flex-row items-center gap-2">
-        <ChunkyIconButton accessibilityLabel="Previous prep step" onPress={() => step(-1)} size={30}>
+        <ChunkyIconButton
+          accessibilityLabel="Previous prep step"
+          onPress={() => step(-1)}
+          size={30}
+        >
           <ChevronLeft color={palette.ink} size={15} strokeWidth={3} />
         </ChunkyIconButton>
         <Text className="text-ink font-strong flex-1 text-center text-[13px] leading-[18px]">
@@ -40,11 +44,17 @@ export function StepPager<T extends string>({ items, value, onChange }: StepPage
           <ChevronRight color={palette.ink} size={15} strokeWidth={3} />
         </ChunkyIconButton>
       </View>
-      <View className="flex-row justify-center gap-2" accessibilityLabel={`Step ${index + 1} of ${items.length}`}>
+      <View
+        className="flex-row justify-center gap-2"
+        accessibilityLabel={`Step ${index + 1} of ${items.length}`}
+      >
         {items.map((item, itemIndex) => (
           <View
             key={item.id}
-            className={cn('h-2 rounded-full', itemIndex === index ? 'bg-royal w-6' : 'bg-muted/30 w-2')}
+            className={cn(
+              'h-2 rounded-full',
+              itemIndex === index ? 'bg-royal w-6' : 'bg-muted/30 w-2',
+            )}
           />
         ))}
       </View>

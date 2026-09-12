@@ -4,29 +4,29 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| der Termin | appointment |
-| die Versicherungskarte | insurance card |
-| die Beschwerden | symptoms |
-| die Anmeldung | reception desk |
-| der Wartebereich | waiting room |
-| das Rezept | prescription |
-| "Wo tut es weh?" | "Where does it hurt?" |
-| "Ich habe Kopfschmerzen." | "I have a headache." |
+| German                    | English               |
+| ------------------------- | --------------------- |
+| der Termin                | appointment           |
+| die Versicherungskarte    | insurance card        |
+| die Beschwerden           | symptoms              |
+| die Anmeldung             | reception desk        |
+| der Wartebereich          | waiting room          |
+| das Rezept                | prescription          |
+| "Wo tut es weh?"          | "Where does it hurt?" |
+| "Ich habe Kopfschmerzen." | "I have a headache."  |
 
 ## Conversation simulation
 
-**Empfangsdame:** Guten Tag! Haben Sie einen **Termin**? *(Hello! Do you have an **appointment**?)*
-**Sie:** Ja, um zehn Uhr. Hier ist meine **Versicherungskarte**. *(Yes, at ten o'clock. Here is my **insurance card**.)*
-**Empfangsdame:** Danke. Bitte setzen Sie sich in den **Wartebereich**. *(Thank you. Please sit in the **waiting room**.)*
-**Sie:** In Ordnung, danke. *(Okay, thank you.)*
-**Arzt:** Guten Tag. **Wo tut es weh?** *(Hello. **Where does it hurt?**)*
-**Sie:** **Ich habe Kopfschmerzen** seit zwei Tagen. *(**I have a headache** since two days ago.)*
-**Arzt:** Haben Sie noch andere **Beschwerden**? *(Do you have any other **symptoms**?)*
-**Sie:** Nein, nur die Kopfschmerzen. *(No, just the headache.)*
-**Arzt:** Gut, ich gebe Ihnen ein **Rezept**. *(Good, I'll give you a **prescription**.)*
-**Sie:** Vielen Dank! *(Thank you very much!)*
+**Empfangsdame:** Guten Tag! Haben Sie einen **Termin**? _(Hello! Do you have an **appointment**?)_
+**Sie:** Ja, um zehn Uhr. Hier ist meine **Versicherungskarte**. _(Yes, at ten o'clock. Here is my **insurance card**.)_
+**Empfangsdame:** Danke. Bitte setzen Sie sich in den **Wartebereich**. _(Thank you. Please sit in the **waiting room**.)_
+**Sie:** In Ordnung, danke. _(Okay, thank you.)_
+**Arzt:** Guten Tag. **Wo tut es weh?** _(Hello. **Where does it hurt?**)_
+**Sie:** **Ich habe Kopfschmerzen** seit zwei Tagen. _(**I have a headache** since two days ago.)_
+**Arzt:** Haben Sie noch andere **Beschwerden**? _(Do you have any other **symptoms**?)_
+**Sie:** Nein, nur die Kopfschmerzen. _(No, just the headache.)_
+**Arzt:** Gut, ich gebe Ihnen ein **Rezept**. _(Good, I'll give you a **prescription**.)_
+**Sie:** Vielen Dank! _(Thank you very much!)_
 
 ## Go deeper (real resources)
 
@@ -35,9 +35,9 @@
 
 ## Practice
 
-1. **Multiple choice** — Was fragt der Arzt zuerst? *(What does the doctor ask first?)*
+1. **Multiple choice** — Was fragt der Arzt zuerst? _(What does the doctor ask first?)_
    a) Wo tut es weh? b) Wie heißen Sie? c) Wo wohnen Sie?
-2. **Fill in the blank** — Ich habe ___ seit zwei Tagen. (Kopfschmerzen)
+2. **Fill in the blank** — Ich habe \_\_\_ seit zwei Tagen. (Kopfschmerzen)
 3. **Match the word to its meaning** — match `das Rezept`, `der Wartebereich`, `die Beschwerden` to their English meanings above.
 4. **Write a sentence** — using "der Termin," write one sentence about your own appointment.
 5. **Vocab review** — say all 8 key words/phrases out loud from memory before your mission, in German.

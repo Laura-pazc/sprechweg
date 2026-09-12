@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| das Netzwerk / die Gruppe | network / group |
-| der Austausch | exchange / conversation |
-| auswandern / die Ausländerin | to emigrate / foreigner (female) |
-| der Grund | reason / purpose |
-| der Beruf / arbeiten | profession / to work |
-| die Erfahrung | experience |
-| "Was brachte dich nach Hamburg?" | "What brought you to Hamburg?" |
-| "Wie lange bist du schon hier?" | "How long have you been here?" |
+| German                           | English                          |
+| -------------------------------- | -------------------------------- |
+| das Netzwerk / die Gruppe        | network / group                  |
+| der Austausch                    | exchange / conversation          |
+| auswandern / die Ausländerin     | to emigrate / foreigner (female) |
+| der Grund                        | reason / purpose                 |
+| der Beruf / arbeiten             | profession / to work             |
+| die Erfahrung                    | experience                       |
+| "Was brachte dich nach Hamburg?" | "What brought you to Hamburg?"   |
+| "Wie lange bist du schon hier?"  | "How long have you been here?"   |
 
 ## Conversation simulation
 
-**Person 1:** Hallo! Ich sehe, dass du neu hier bist. Ich bin Julia. Willkommen zum Austausch! *(Hello! I see you're new here. I'm Julia. Welcome to the meetup!)*
+**Person 1:** Hallo! Ich sehe, dass du neu hier bist. Ich bin Julia. Willkommen zum Austausch! _(Hello! I see you're new here. I'm Julia. Welcome to the meetup!)_
 
-**Sie:** Danke! Ich bin Sam. Das ist mein erstes Mal hier. Ich bin sehr nervös! *(Thanks! I'm Sam. It's my first time here. I'm very nervous!)*
+**Sie:** Danke! Ich bin Sam. Das ist mein erstes Mal hier. Ich bin sehr nervös! _(Thanks! I'm Sam. It's my first time here. I'm very nervous!)_
 
-**Person 1:** Das ist normal! Wir sind alle **Ausländer** hier. **Was brachte dich nach Hamburg**? *(That's normal! We're all foreigners here. What brought you to Hamburg?)*
+**Person 1:** Das ist normal! Wir sind alle **Ausländer** hier. **Was brachte dich nach Hamburg**? _(That's normal! We're all foreigners here. What brought you to Hamburg?)_
 
-**Sie:** Ich bin für die Arbeit hierher gekommen. Mein **Beruf** ist IT-Entwicklung. *(I came here for work. My profession is IT development.)*
+**Sie:** Ich bin für die Arbeit hierher gekommen. Mein **Beruf** ist IT-Entwicklung. _(I came here for work. My profession is IT development.)_
 
-**Person 2:** Oh, IT! Das ist interessant. Wie ist deine **Erfahrung** mit dem deutschen Arbeitsmarkt? *(Oh, IT! That's interesting. What's your experience with the German job market?)*
+**Person 2:** Oh, IT! Das ist interessant. Wie ist deine **Erfahrung** mit dem deutschen Arbeitsmarkt? _(Oh, IT! That's interesting. What's your experience with the German job market?)_
 
-**Sie:** Es ist anders als in England. Die Menschen sind direkt, aber auf eine positive Weise. **Wie lange bist du schon hier**? *(It's different than in England. People are direct, but in a positive way. How long have you been here?)*
+**Sie:** Es ist anders als in England. Die Menschen sind direkt, aber auf eine positive Weise. **Wie lange bist du schon hier**? _(It's different than in England. People are direct, but in a positive way. How long have you been here?)_
 
-**Person 2:** Zwei Jahre. Am Anfang war es schwierig, aber jetzt habe ich viele Freunde. Der **Austausch** ist wichtig — du bist nicht allein! *(Two years. In the beginning it was difficult, but now I have many friends. The networking is important — you're not alone!)*
+**Person 2:** Zwei Jahre. Am Anfang war es schwierig, aber jetzt habe ich viele Freunde. Der **Austausch** ist wichtig — du bist nicht allein! _(Two years. In the beginning it was difficult, but now I have many friends. The networking is important — you're not alone!)_
 
-**Sie:** Das freut mich zu hören! Habt ihr noch andere Tipps? *(I'm glad to hear that! Do you have any other tips?)*
+**Sie:** Das freut mich zu hören! Habt ihr noch andere Tipps? _(I'm glad to hear that! Do you have any other tips?)_
 
-**Person 1:** Ja! Deutsch lernen ist wichtig, aber sei nicht perfekt. Menschen sind nett zu Ausländern, die versuchen. *(Yes! Learning German is important, but don't be perfect. People are kind to foreigners who try.)*
+**Person 1:** Ja! Deutsch lernen ist wichtig, aber sei nicht perfekt. Menschen sind nett zu Ausländern, die versuchen. _(Yes! Learning German is important, but don't be perfect. People are kind to foreigners who try.)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Was ist der **Beruf** von Sam? *(What is Sam's profession?)*
-   a) Arzt  b) IT-Entwicklung  c) Lehrer
+1. **Multiple choice** — Was ist der **Beruf** von Sam? _(What is Sam's profession?)_
+   a) Arzt b) IT-Entwicklung c) Lehrer
 
-2. **Fill in the blank** — Der **Austausch** ist ___ — du bist nicht allein! (wichtig)
+2. **Fill in the blank** — Der **Austausch** ist \_\_\_ — du bist nicht allein! (wichtig)
 
 3. **Match the word to its meaning** — Match `auswandern`, `die Erfahrung`, `das Netzwerk` to their English meanings above.
 

@@ -18,7 +18,7 @@ export function StreakCard({ streakCount, entryCount, journaledToday }: StreakCa
           <Flame color={palette.ink} size={22} strokeWidth={2.25} />
         </View>
         <View className="flex-1">
-          <Text className="text-ink font-display text-[26px] leading-[28px]">
+          <Text className="text-ink font-display text-[22px] leading-[26px]">
             {streakCount} {streakCount === 1 ? 'day' : 'days'}
           </Text>
           <Text className="text-ink font-strong text-[13px]">

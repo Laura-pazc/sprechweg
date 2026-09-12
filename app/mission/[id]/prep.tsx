@@ -53,7 +53,9 @@ function MissionPrep({ mission }: { mission: Mission }) {
       <View className="gap-3 px-5 pb-3">
         <View className="flex-row items-start gap-1.5">
           <MapPin color={palette.ink} size={13} strokeWidth={2.5} style={{ marginTop: 2 }} />
-          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">{mission.where}</Text>
+          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">
+            {mission.where}
+          </Text>
         </View>
         <StepPager items={TABS} value={tab} onChange={setTab} />
       </View>

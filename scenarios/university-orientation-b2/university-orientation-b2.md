@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| die Universität / die Hochschule | university |
-| die Immatrikulation | enrollment / registration |
-| das Seminar | seminar |
-| die Vorlesung | lecture |
-| das Studium | studies / degree program |
-| der Leistungsnachweis / der ECTS | credit points |
-| "Wie funktioniert das Anmeldeverfahren?" | "How does the registration process work?" |
+| German                                                 | English                                               |
+| ------------------------------------------------------ | ----------------------------------------------------- |
+| die Universität / die Hochschule                       | university                                            |
+| die Immatrikulation                                    | enrollment / registration                             |
+| das Seminar                                            | seminar                                               |
+| die Vorlesung                                          | lecture                                               |
+| das Studium                                            | studies / degree program                              |
+| der Leistungsnachweis / der ECTS                       | credit points                                         |
+| "Wie funktioniert das Anmeldeverfahren?"               | "How does the registration process work?"             |
 | "Was sind die Voraussetzungen für diesen Studiengang?" | "What are the prerequisites for this degree program?" |
 
 ## Conversation simulation
 
-**Studienberater:** Guten Tag! Willkommen an der Universität Hamburg. Wie kann ich Ihnen helfen? *(Hello! Welcome to Hamburg University. How can I help you?)*
+**Studienberater:** Guten Tag! Willkommen an der Universität Hamburg. Wie kann ich Ihnen helfen? _(Hello! Welcome to Hamburg University. How can I help you?)_
 
-**Sie:** Ich möchte mich für einen Master-Studiengang in Informatik **immatrikulieren**. Können Sie mir das **Anmeldeverfahren** erklären? *(I want to enroll in a Master's program in Computer Science. Can you explain the registration process to me?)*
+**Sie:** Ich möchte mich für einen Master-Studiengang in Informatik **immatrikulieren**. Können Sie mir das **Anmeldeverfahren** erklären? _(I want to enroll in a Master's program in Computer Science. Can you explain the registration process to me?)_
 
-**Studienberater:** Selbstverständlich. Zuerst müssen Sie alle erforderlichen Unterlagen einreichen — Bachelor-Diplom, Sprachnachweise, Motivationsschreiben. Danach folgt eine Aufnahmeprüfung. *(Of course. First, you must submit all required documents — Bachelor's diploma, language certificates, motivation letter. Then there's an entrance exam.)*
+**Studienberater:** Selbstverständlich. Zuerst müssen Sie alle erforderlichen Unterlagen einreichen — Bachelor-Diplom, Sprachnachweise, Motivationsschreiben. Danach folgt eine Aufnahmeprüfung. _(Of course. First, you must submit all required documents — Bachelor's diploma, language certificates, motivation letter. Then there's an entrance exam.)_
 
-**Sie:** Was sind die **Voraussetzungen** für diesen **Studiengang**? Welche Noten sind notwendig? *(What are the prerequisites for this degree program? What grades are necessary?)*
+**Sie:** Was sind die **Voraussetzungen** für diesen **Studiengang**? Welche Noten sind notwendig? _(What are the prerequisites for this degree program? What grades are necessary?)_
 
-**Studienberater:** Der NC — der Numerus Clausus — ist normalerweise 2,0. Außerdem müssen Sie ein Deutschtest-Zertifikat haben, mindestens C1. *(The NC — the numerus clausus — is usually 2.0. Additionally, you must have a German test certificate, at least C1.)*
+**Studienberater:** Der NC — der Numerus Clausus — ist normalerweise 2,0. Außerdem müssen Sie ein Deutschtest-Zertifikat haben, mindestens C1. _(The NC — the numerus clausus — is usually 2.0. Additionally, you must have a German test certificate, at least C1.)_
 
-**Sie:** Verstanden. Wenn ich akzeptiert werde, wie läuft das **Studium** ab? Gibt es **Vorlesungen** und **Seminare**? *(I understand. If I'm accepted, how does the program work? Are there lectures and seminars?)*
+**Sie:** Verstanden. Wenn ich akzeptiert werde, wie läuft das **Studium** ab? Gibt es **Vorlesungen** und **Seminare**? _(I understand. If I'm accepted, how does the program work? Are there lectures and seminars?)_
 
-**Studienberater:** Ja, das Master-Programm ist eine Mischung aus **Vorlesungen** und **Seminaren**. Sie müssen eine bestimmte Anzahl von **ECTS-Leistungsnachweisen** sammeln — etwa 120 ECTS für zwei Jahre. *(Yes, the Master's program is a mix of lectures and seminars. You must earn a certain number of ECTS credits — about 120 ECTS over two years.)*
+**Studienberater:** Ja, das Master-Programm ist eine Mischung aus **Vorlesungen** und **Seminaren**. Sie müssen eine bestimmte Anzahl von **ECTS-Leistungsnachweisen** sammeln — etwa 120 ECTS für zwei Jahre. _(Yes, the Master's program is a mix of lectures and seminars. You must earn a certain number of ECTS credits — about 120 ECTS over two years.)_
 
-**Sie:** Gibt es auch Unterstützung für internationale Studenten? *(Is there also support for international students?)*
+**Sie:** Gibt es auch Unterstützung für internationale Studenten? _(Is there also support for international students?)_
 
-**Studienberater:** Ja, wir haben ein International Office, das Ihnen bei Fragen zu Visum, Wohnung und Integration helfen kann. *(Yes, we have an International Office that can help you with visa, housing, and integration questions.)*
+**Studienberater:** Ja, wir haben ein International Office, das Ihnen bei Fragen zu Visum, Wohnung und Integration helfen kann. _(Yes, we have an International Office that can help you with visa, housing, and integration questions.)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Was ist der NC für den Master-Studiengang in Informatik? *(What is the NC for the Master's program in Computer Science?)*
-   a) 1,5  b) 2,0  c) 2,5
+1. **Multiple choice** — Was ist der NC für den Master-Studiengang in Informatik? _(What is the NC for the Master's program in Computer Science?)_
+   a) 1,5 b) 2,0 c) 2,5
 
-2. **Fill in the blank** — Das Master-Programm ist eine Mischung aus **Vorlesungen** und ___. (Seminaren)
+2. **Fill in the blank** — Das Master-Programm ist eine Mischung aus **Vorlesungen** und \_\_\_. (Seminaren)
 
 3. **Match the word to its meaning** — Match `die Immatrikulation`, `der ECTS`, `das Seminar` to their English meanings above.
 

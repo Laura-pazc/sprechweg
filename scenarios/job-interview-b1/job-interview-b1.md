@@ -4,38 +4,38 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| die Stelle / der Job | job / position |
-| die Qualifikation | qualification |
-| die Erfahrung | experience |
-| der Lebenslauf | resume / CV |
-| das Anschreiben | cover letter |
-| sich vorstellen | to introduce oneself |
-| "Weshalb möchten Sie bei uns arbeiten?" | "Why do you want to work for us?" |
+| German                                            | English                                      |
+| ------------------------------------------------- | -------------------------------------------- |
+| die Stelle / der Job                              | job / position                               |
+| die Qualifikation                                 | qualification                                |
+| die Erfahrung                                     | experience                                   |
+| der Lebenslauf                                    | resume / CV                                  |
+| das Anschreiben                                   | cover letter                                 |
+| sich vorstellen                                   | to introduce oneself                         |
+| "Weshalb möchten Sie bei uns arbeiten?"           | "Why do you want to work for us?"            |
 | "Wie würden Sie eine schwierige Situation lösen?" | "How would you solve a difficult situation?" |
 
 ## Conversation simulation
 
-**Personaler:** Guten Tag! Willkommen. Bitte, **setzen Sie sich**. Ich bin Thomas Mueller. *(Hello! Welcome. Please, sit down. I'm Thomas Mueller.)*
+**Personaler:** Guten Tag! Willkommen. Bitte, **setzen Sie sich**. Ich bin Thomas Mueller. _(Hello! Welcome. Please, sit down. I'm Thomas Mueller.)_
 
-**Sie:** Guten Tag, Herr Mueller. Vielen Dank für den Termin. Ich freue mich, mich mit Ihnen zu unterhalten. *(Hello, Mr. Mueller. Thank you for the appointment. I'm looking forward to speaking with you.)*
+**Sie:** Guten Tag, Herr Mueller. Vielen Dank für den Termin. Ich freue mich, mich mit Ihnen zu unterhalten. _(Hello, Mr. Mueller. Thank you for the appointment. I'm looking forward to speaking with you.)_
 
-**Personaler:** Schön. Können Sie sich kurz **vorstellen** und mir etwas über Ihre **Erfahrung** erzählen? *(Good. Can you briefly introduce yourself and tell me something about your experience?)*
+**Personaler:** Schön. Können Sie sich kurz **vorstellen** und mir etwas über Ihre **Erfahrung** erzählen? _(Good. Can you briefly introduce yourself and tell me something about your experience?)_
 
-**Sie:** Ja, gerne. Ich bin Sam, und ich komme aus England. Ich habe fünf Jahre **Erfahrung** in IT-Support. Meine **Qualifikation** ist ein Bachelor in Informatik. *(Yes, of course. I'm Sam, and I'm from England. I have five years of experience in IT support. My qualification is a Bachelor's in Computer Science.)*
+**Sie:** Ja, gerne. Ich bin Sam, und ich komme aus England. Ich habe fünf Jahre **Erfahrung** in IT-Support. Meine **Qualifikation** ist ein Bachelor in Informatik. _(Yes, of course. I'm Sam, and I'm from England. I have five years of experience in IT support. My qualification is a Bachelor's in Computer Science.)_
 
-**Personaler:** Interessant. **Weshalb möchten Sie bei uns arbeiten**? *(Interesting. Why do you want to work for us?)*
+**Personaler:** Interessant. **Weshalb möchten Sie bei uns arbeiten**? _(Interesting. Why do you want to work for us?)_
 
-**Sie:** Ihre Firma hat einen guten Ruf, und die **Stelle** passt perfekt zu meinen Fähigkeiten und Zielen. *(Your company has a good reputation, and the position fits perfectly with my skills and goals.)*
+**Sie:** Ihre Firma hat einen guten Ruf, und die **Stelle** passt perfekt zu meinen Fähigkeiten und Zielen. _(Your company has a good reputation, and the position fits perfectly with my skills and goals.)_
 
-**Personaler:** Gut. **Wie würden Sie eine schwierige Situation mit einem Kunden lösen**? *(Good. How would you solve a difficult situation with a customer?)*
+**Personaler:** Gut. **Wie würden Sie eine schwierige Situation mit einem Kunden lösen**? _(Good. How would you solve a difficult situation with a customer?)_
 
-**Sie:** Ich würde zuhören, Verständnis zeigen und dann eine Lösung finden. Kommunikation ist für mich sehr wichtig. *(I would listen, show understanding, and then find a solution. Communication is very important to me.)*
+**Sie:** Ich würde zuhören, Verständnis zeigen und dann eine Lösung finden. Kommunikation ist für mich sehr wichtig. _(I would listen, show understanding, and then find a solution. Communication is very important to me.)_
 
-**Personaler:** Ausgezeichnet. Haben Sie noch Fragen? *(Excellent. Do you have any more questions?)*
+**Personaler:** Ausgezeichnet. Haben Sie noch Fragen? _(Excellent. Do you have any more questions?)_
 
-**Sie:** Ja, könnten Sie mir etwas über das Team und die Unternehmenskultur erzählen? *(Yes, could you tell me something about the team and company culture?)*
+**Sie:** Ja, könnten Sie mir etwas über das Team und die Unternehmenskultur erzählen? _(Yes, could you tell me something about the team and company culture?)_
 
 ## Go deeper (real resources)
 
@@ -45,10 +45,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Weshalb möchte der Kandidat bei dieser Firma arbeiten? *(Why does the candidate want to work for this company?)*
-   a) Der Ruf der Firma ist gut  b) Das Gehalt ist sehr hoch  c) Das Büro ist in der Nähe
+1. **Multiple choice** — Weshalb möchte der Kandidat bei dieser Firma arbeiten? _(Why does the candidate want to work for this company?)_
+   a) Der Ruf der Firma ist gut b) Das Gehalt ist sehr hoch c) Das Büro ist in der Nähe
 
-2. **Fill in the blank** — Ich habe fünf Jahre ___ in IT-Support. (Erfahrung)
+2. **Fill in the blank** — Ich habe fünf Jahre \_\_\_ in IT-Support. (Erfahrung)
 
 3. **Match the word to its meaning** — Match `die Qualifikation`, `der Lebenslauf`, `das Anschreiben` to their English meanings above.
 

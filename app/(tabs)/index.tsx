@@ -73,7 +73,7 @@ export default function TodayScreen() {
         </View>
 
         <View className="gap-1.5">
-          <Text className="text-ink font-display text-[27px] leading-[31px]">
+          <Text className="text-ink font-display text-[24px] leading-[29px]">
             Hallo, {name || 'friend'}. Ready for a small win?
           </Text>
           <Text className="text-muted font-strong text-[14px] leading-[20px]">
@@ -112,9 +112,12 @@ export default function TodayScreen() {
                 <CalendarDays color={palette.ink} size={20} strokeWidth={2.4} />
               </View>
               <View className="flex-1 gap-1">
-                <Text className="text-ink font-display text-[16px]">Find something happening today</Text>
+                <Text className="text-ink font-display text-[16px]">
+                  Find something happening today
+                </Text>
                 <Text className="text-muted font-body text-[13px] leading-[18px]">
-                  Live event cards need a secure feed connection. Until then, browse the official Hamburg calendar.
+                  Live event cards need a secure feed connection. Until then, browse the official
+                  Hamburg calendar.
                 </Text>
               </View>
             </View>
@@ -166,7 +169,9 @@ export default function TodayScreen() {
 
             <ChunkyCard tone="sunny" offset={3} className="gap-3 px-4 py-4">
               <Text className="text-ink font-display text-[17px]">Your people are trying too</Text>
-              <Text className="text-ink font-strong text-[14px] leading-[20px]">“{quote.text}”</Text>
+              <Text className="text-ink font-strong text-[14px] leading-[20px]">
+                “{quote.text}”
+              </Text>
               <View className="flex-row items-center justify-between gap-3">
                 <Text className="text-ink font-strong text-[12.5px]">
                   {quote.author} · {quote.city}

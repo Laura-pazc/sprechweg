@@ -4,27 +4,27 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| der Aufenthaltstitel | residence permit |
-| die Anmeldebescheinigung | registration certificate |
-| der Reisepass | passport |
-| das Formular | form |
-| die Wartenummer | queue/waiting number |
-| der Sachbearbeiter / die Sachbearbeiterin | case worker |
-| "Welche Unterlagen brauche ich?" | "Which documents do I need?" |
-| "Ich habe einen Termin um..." | "I have an appointment at..." |
+| German                                    | English                       |
+| ----------------------------------------- | ----------------------------- |
+| der Aufenthaltstitel                      | residence permit              |
+| die Anmeldebescheinigung                  | registration certificate      |
+| der Reisepass                             | passport                      |
+| das Formular                              | form                          |
+| die Wartenummer                           | queue/waiting number          |
+| der Sachbearbeiter / die Sachbearbeiterin | case worker                   |
+| "Welche Unterlagen brauche ich?"          | "Which documents do I need?"  |
+| "Ich habe einen Termin um..."             | "I have an appointment at..." |
 
 ## Conversation simulation
 
-**Sie:** Guten Tag, ich habe einen **Termin** um elf Uhr. *(Hello, I have an **appointment** at eleven o'clock.)*
-**Sachbearbeiterin:** Guten Tag. Ihre **Wartenummer**, bitte. *(Hello. Your **queue number**, please.)*
-**Sie:** Hier, bitte. Ich möchte meinen **Aufenthaltstitel** verlängern. *(Here you go. I'd like to extend my **residence permit**.)*
-**Sachbearbeiterin:** Haben Sie Ihren **Reisepass** und die **Anmeldebescheinigung** dabei? *(Do you have your **passport** and **registration certificate** with you?)*
-**Sie:** Ja, und ich habe auch das **Formular** schon ausgefüllt. *(Yes, and I've already filled out the **form**.)*
-**Sachbearbeiterin:** Sehr gut. **Welche Unterlagen** haben Sie noch mitgebracht? *(Very good. **Which documents** did you bring along?)*
-**Sie:** Meine Meldebescheinigung und einen Nachweis über meine Krankenversicherung. *(My registration confirmation and proof of health insurance.)*
-**Sachbearbeiterin:** Danke, das ist alles. Sie bekommen die Entscheidung per Post. *(Thank you, that's everything. You'll receive the decision by post.)*
+**Sie:** Guten Tag, ich habe einen **Termin** um elf Uhr. _(Hello, I have an **appointment** at eleven o'clock.)_
+**Sachbearbeiterin:** Guten Tag. Ihre **Wartenummer**, bitte. _(Hello. Your **queue number**, please.)_
+**Sie:** Hier, bitte. Ich möchte meinen **Aufenthaltstitel** verlängern. _(Here you go. I'd like to extend my **residence permit**.)_
+**Sachbearbeiterin:** Haben Sie Ihren **Reisepass** und die **Anmeldebescheinigung** dabei? _(Do you have your **passport** and **registration certificate** with you?)_
+**Sie:** Ja, und ich habe auch das **Formular** schon ausgefüllt. _(Yes, and I've already filled out the **form**.)_
+**Sachbearbeiterin:** Sehr gut. **Welche Unterlagen** haben Sie noch mitgebracht? _(Very good. **Which documents** did you bring along?)_
+**Sie:** Meine Meldebescheinigung und einen Nachweis über meine Krankenversicherung. _(My registration confirmation and proof of health insurance.)_
+**Sachbearbeiterin:** Danke, das ist alles. Sie bekommen die Entscheidung per Post. _(Thank you, that's everything. You'll receive the decision by post.)_
 
 ## Go deeper (real resources)
 
@@ -34,9 +34,9 @@
 
 ## Practice
 
-1. **Multiple choice** — Was fragt die Sachbearbeiterin zuerst? *(What does the case worker ask first?)*
+1. **Multiple choice** — Was fragt die Sachbearbeiterin zuerst? _(What does the case worker ask first?)_
    a) Ihre Wartenummer b) Ihren Namen c) Ihre Adresse
-2. **Fill in the blank** — Ich möchte meinen ___ verlängern. (Aufenthaltstitel)
+2. **Fill in the blank** — Ich möchte meinen \_\_\_ verlängern. (Aufenthaltstitel)
 3. **Match the word to its meaning** — match `das Formular`, `der Reisepass`, `die Anmeldebescheinigung` to their English meanings above.
 4. **Write a sentence** — using "der Termin," write one sentence about your own appointment.
 5. **Vocab review** — say all 8 key words/phrases out loud from memory before your mission, in German.

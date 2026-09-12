@@ -4,34 +4,34 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| das Möbel / der Schrank | furniture / cabinet |
-| der Platz / der Raum | space / room |
-| das Regal | shelf |
-| praktisch / schön | practical / beautiful |
-| passen / zusammenpassen | to fit / to match |
-| der Preis | price |
-| "Passt das in dein Zimmer?" | "Will that fit in your room?" |
+| German                                     | English                                 |
+| ------------------------------------------ | --------------------------------------- |
+| das Möbel / der Schrank                    | furniture / cabinet                     |
+| der Platz / der Raum                       | space / room                            |
+| das Regal                                  | shelf                                   |
+| praktisch / schön                          | practical / beautiful                   |
+| passen / zusammenpassen                    | to fit / to match                       |
+| der Preis                                  | price                                   |
+| "Passt das in dein Zimmer?"                | "Will that fit in your room?"           |
 | "Das passt perfekt zu deiner Einrichtung!" | "That matches your interior perfectly!" |
 
 ## Conversation simulation
 
-**Freundin:** Schau mal! Diese **Möbel** sind toll! Der **Schrank** ist sehr **praktisch**. *(Look! These furniture pieces are great! The cabinet is very practical.)*
+**Freundin:** Schau mal! Diese **Möbel** sind toll! Der **Schrank** ist sehr **praktisch**. _(Look! These furniture pieces are great! The cabinet is very practical.)_
 
-**Sie:** Ja, aber **passt das in mein Zimmer**? Mein Raum ist nicht sehr groß. *(Yes, but will that fit in my room? My space is not very large.)*
+**Sie:** Ja, aber **passt das in mein Zimmer**? Mein Raum ist nicht sehr groß. _(Yes, but will that fit in my room? My space is not very large.)_
 
-**Freundin:** Lass mich nachdenken. Dein Zimmer ist etwa 4x5 Meter, ja? Dieser **Schrank** ist 2 Meter breit. Das sollte passen! *(Let me think. Your room is about 4x5 meters, yes? This cabinet is 2 meters wide. That should fit!)*
+**Freundin:** Lass mich nachdenken. Dein Zimmer ist etwa 4x5 Meter, ja? Dieser **Schrank** ist 2 Meter breit. Das sollte passen! _(Let me think. Your room is about 4x5 meters, yes? This cabinet is 2 meters wide. That should fit!)_
 
-**Sie:** Und der Preis? **Wie viel kostet das**? *(And the price? How much does that cost?)*
+**Sie:** Und der Preis? **Wie viel kostet das**? _(And the price? How much does that cost?)_
 
-**Freundin:** 199 Euro. Das ist günstig für IKEA! Und schau — dieses **Regal** **passt perfekt zu deiner Einrichtung**! *(199 euros. That's cheap for IKEA! And look — this shelf matches your interior perfectly!)*
+**Freundin:** 199 Euro. Das ist günstig für IKEA! Und schau — dieses **Regal** **passt perfekt zu deiner Einrichtung**! _(199 euros. That's cheap for IKEA! And look — this shelf matches your interior perfectly!)_
 
-**Sie:** Du hast recht! Das Design ist modern, und die Farbe ist grau. Das gefällt mir. Sollen wir das alles zusammen kaufen? *(You're right! The design is modern, and the color is gray. I like that. Should we buy all this together?)*
+**Sie:** Du hast recht! Das Design ist modern, und die Farbe ist grau. Das gefällt mir. Sollen wir das alles zusammen kaufen? _(You're right! The design is modern, and the color is gray. I like that. Should we buy all this together?)_
 
-**Freundin:** Natürlich! Und am Wochenende können wir es zusammen aufbauen. Das macht Spaß! *(Of course! And this weekend we can assemble it together. That's fun!)*
+**Freundin:** Natürlich! Und am Wochenende können wir es zusammen aufbauen. Das macht Spaß! _(Of course! And this weekend we can assemble it together. That's fun!)_
 
-**Sie:** Perfekt! Mit deiner Hilfe wird meine Wohnung endlich **schön** und **praktisch**! *(Perfect! With your help, my apartment will finally be beautiful and practical!)*
+**Sie:** Perfekt! Mit deiner Hilfe wird meine Wohnung endlich **schön** und **praktisch**! _(Perfect! With your help, my apartment will finally be beautiful and practical!)_
 
 ## Go deeper (real resources)
 
@@ -41,10 +41,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Wie breit ist der **Schrank**? *(How wide is the cabinet?)*
-   a) 1 Meter  b) 1,5 Meter  c) 2 Meter
+1. **Multiple choice** — Wie breit ist der **Schrank**? _(How wide is the cabinet?)_
+   a) 1 Meter b) 1,5 Meter c) 2 Meter
 
-2. **Fill in the blank** — Der **Schrank** kostet ___ Euro. (199)
+2. **Fill in the blank** — Der **Schrank** kostet \_\_\_ Euro. (199)
 
 3. **Match the word to its meaning** — Match `das Möbel`, `praktisch`, `passen` to their English meanings above.
 

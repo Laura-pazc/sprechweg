@@ -35,7 +35,9 @@ export function RecallQuiz({
               <Text className="text-muted font-display text-[10px] tracking-widest">
                 WORD {questionIndex + 1} OF {questions.length}
               </Text>
-              <Text className="text-ink font-display text-[19px] leading-[24px]">{question.de}</Text>
+              <Text className="text-ink font-display text-[19px] leading-[24px]">
+                {question.de}
+              </Text>
             </View>
             <View className="gap-2">
               {question.options.map((option, optionIndex) => {
@@ -55,7 +57,9 @@ export function RecallQuiz({
                       revealed && isSelected && !isAnswer && 'bg-coral',
                     )}
                   >
-                    <Text className="text-ink font-strong text-[14px] leading-[19px]">{option}</Text>
+                    <Text className="text-ink font-strong text-[14px] leading-[19px]">
+                      {option}
+                    </Text>
                   </Pressable>
                 );
               })}

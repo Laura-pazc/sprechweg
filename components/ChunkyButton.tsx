@@ -25,7 +25,7 @@ const SIZE_BOX: Record<ButtonSize, string> = {
 const SIZE_TEXT: Record<ButtonSize, string> = {
   sm: 'text-[13px]',
   md: 'text-[15px]',
-  lg: 'text-[17px]',
+  lg: 'text-[16px]',
 };
 
 const SIZE_RADIUS: Record<ButtonSize, number> = { sm: 12, md: 14, lg: 16 };

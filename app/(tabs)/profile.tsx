@@ -22,7 +22,7 @@ import { dayKey } from '@/lib/utils';
 function StatTile({ value, label }: { value: string; label: string }) {
   return (
     <ChunkyCard tone="paper" offset={4} radius={18} className="flex-1 gap-0.5 px-3 py-3">
-      <Text className="text-ink font-display text-[22px] leading-[26px]">{value}</Text>
+      <Text className="text-ink font-display text-[20px] leading-[24px]">{value}</Text>
       <Text className="text-muted font-strong text-[12px] leading-[16px]">{label}</Text>
     </ChunkyCard>
   );

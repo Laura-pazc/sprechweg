@@ -74,7 +74,7 @@ export function ScreenHeader({
           <Text
             className={cn(
               'text-ink font-display',
-              compact ? 'text-[23px] leading-[27px]' : 'text-[27px] leading-[31px]',
+              compact ? 'text-[22px] leading-[26px]' : 'text-[24px] leading-[29px]',
             )}
           >
             {title}

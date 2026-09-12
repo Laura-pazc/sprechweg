@@ -85,7 +85,7 @@ export default function HowItWorksScreen() {
           </ChunkyCard>
 
           <View className="gap-3">
-            <Text className="text-ink font-display text-[21px]">Generated for you</Text>
+            <Text className="text-ink font-display text-[19px]">Generated for you</Text>
             {PER_LEARNER.map((item) => (
               <ChunkyCard key={item.title} tone="paper" offset={4} className="gap-1.5 px-4 py-3.5">
                 <Text className="text-ink font-display text-[16px]">{item.title}</Text>
@@ -105,7 +105,7 @@ export default function HowItWorksScreen() {
           </View>
 
           <View className="gap-3">
-            <Text className="text-ink font-display text-[21px]">Fixed for everyone</Text>
+            <Text className="text-ink font-display text-[19px]">Fixed for everyone</Text>
             {FIXED.map((item) => (
               <ChunkyCard key={item.title} tone="canvas" offset={4} className="gap-1.5 px-4 py-3.5">
                 <Text className="text-ink font-display text-[16px]">{item.title}</Text>

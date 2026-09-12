@@ -4,36 +4,36 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| das Café | café |
-| der Kaffee / der Tee | coffee / tea |
-| neu sein | to be new |
-| der Ort / die Stadt | place / city |
-| "Wo kommst du her?" | "Where are you from?" |
-| "Wie geht es dir?" | "How are you?" |
+| German                       | English                  |
+| ---------------------------- | ------------------------ |
+| das Café                     | café                     |
+| der Kaffee / der Tee         | coffee / tea             |
+| neu sein                     | to be new                |
+| der Ort / die Stadt          | place / city             |
+| "Wo kommst du her?"          | "Where are you from?"    |
+| "Wie geht es dir?"           | "How are you?"           |
 | "Das ist meine erste Woche." | "This is my first week." |
-| "Magst du Hamburg?" | "Do you like Hamburg?" |
+| "Magst du Hamburg?"          | "Do you like Hamburg?"   |
 
 ## Conversation simulation
 
-**Person im Café:** Hallo! Der Platz ist noch frei, ja? *(Hi! Is this seat still free, yes?)*
+**Person im Café:** Hallo! Der Platz ist noch frei, ja? _(Hi! Is this seat still free, yes?)_
 
-**Sie:** Ja, bitte! Setz dich hin. *(Yes, please! Sit down.)*
+**Sie:** Ja, bitte! Setz dich hin. _(Yes, please! Sit down.)_
 
-**Person im Café:** Danke. **Wie geht es dir**? Ich bin Max. *(Thank you. How are you? I'm Max.)*
+**Person im Café:** Danke. **Wie geht es dir**? Ich bin Max. _(Thank you. How are you? I'm Max.)_
 
-**Sie:** Mir geht's gut! Ich bin Sam. **Ich bin neu hier** in Hamburg. *(I'm good! I'm Sam. I'm new here in Hamburg.)*
+**Sie:** Mir geht's gut! Ich bin Sam. **Ich bin neu hier** in Hamburg. _(I'm good! I'm Sam. I'm new here in Hamburg.)_
 
-**Person im Café:** Ach, **neu hier**! **Wo kommst du her**? *(Oh, new here! Where are you from?)*
+**Person im Café:** Ach, **neu hier**! **Wo kommst du her**? _(Oh, new here! Where are you from?)_
 
-**Sie:** Ich komme aus England. Ich bin hier seit zwei Wochen. *(I come from England. I've been here for two weeks.)*
+**Sie:** Ich komme aus England. Ich bin hier seit zwei Wochen. _(I come from England. I've been here for two weeks.)_
 
-**Person im Café:** Willkommen! Hamburg ist schön. **Magst du Hamburg**? *(Welcome! Hamburg is beautiful. Do you like Hamburg?)*
+**Person im Café:** Willkommen! Hamburg ist schön. **Magst du Hamburg**? _(Welcome! Hamburg is beautiful. Do you like Hamburg?)_
 
-**Sie:** Ja, sehr! Die Menschen sind nett, und das Wetter ist... naja... *(Yes, very much! The people are nice, and the weather is... well...)*
+**Sie:** Ja, sehr! Die Menschen sind nett, und das Wetter ist... naja... _(Yes, very much! The people are nice, and the weather is... well...)_
 
-**Person im Café:** Haha! Ja, das ist typisch Hamburg! *(Haha! Yes, that's typical Hamburg!)*
+**Person im Café:** Haha! Ja, das ist typisch Hamburg! _(Haha! Yes, that's typical Hamburg!)_
 
 ## Go deeper (real resources)
 
@@ -43,10 +43,10 @@
 
 ## Practice
 
-1. **Multiple choice** — Wie lange ist Sam schon in Hamburg? *(How long has Sam been in Hamburg?)*
-   a) Eine Woche  b) Zwei Wochen  c) Einen Monat
+1. **Multiple choice** — Wie lange ist Sam schon in Hamburg? _(How long has Sam been in Hamburg?)_
+   a) Eine Woche b) Zwei Wochen c) Einen Monat
 
-2. **Fill in the blank** — **Wie geht es dir**? — Mir geht's ___. (gut)
+2. **Fill in the blank** — **Wie geht es dir**? — Mir geht's \_\_\_. (gut)
 
 3. **Match the word to its meaning** — Match `das Café`, `neu sein`, `der Ort` to their English meanings above.
 

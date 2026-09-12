@@ -62,8 +62,12 @@ export function VocabList({ mission, studiedIds, onToggle }: VocabListProps) {
                 <Text className="text-ink font-display text-[14px] leading-[19px]">{item.de}</Text>
                 {showHelp ? (
                   <>
-                    <Text className="text-ink font-strong text-[12.5px] leading-[17px]">{item.en}</Text>
-                    <Text className="text-muted font-body text-[11.5px] leading-[16px]">{item.note}</Text>
+                    <Text className="text-ink font-strong text-[12.5px] leading-[17px]">
+                      {item.en}
+                    </Text>
+                    <Text className="text-muted font-body text-[11.5px] leading-[16px]">
+                      {item.note}
+                    </Text>
                   </>
                 ) : null}
               </View>

@@ -4,27 +4,27 @@
 
 ## Key vocabulary
 
-| German | English |
-|---|---|
-| der Lauftreff | running club / running meetup |
-| die Strecke | route / distance |
-| das Tempo | pace |
-| sich aufwärmen | to warm up |
-| die Kondition | fitness / stamina |
-| neu hier sein | to be new here |
-| "Wie weit laufen wir?" | "How far are we running?" |
-| "Läufst du oft?" | "Do you run often?" |
+| German                 | English                       |
+| ---------------------- | ----------------------------- |
+| der Lauftreff          | running club / running meetup |
+| die Strecke            | route / distance              |
+| das Tempo              | pace                          |
+| sich aufwärmen         | to warm up                    |
+| die Kondition          | fitness / stamina             |
+| neu hier sein          | to be new here                |
+| "Wie weit laufen wir?" | "How far are we running?"     |
+| "Läufst du oft?"       | "Do you run often?"           |
 
 ## Conversation simulation
 
-**Läufer 1:** Hallo! Bist du neu hier beim **Lauftreff**? *(Hi! Are you new to the **running club**?)*
-**Sie:** Ja, ich bin **neu hier**. Ich heiße Sam. *(Yes, I'm **new here**. I'm Sam.)*
-**Läufer 1:** Schön! Ich bin Lena. Wir **wärmen uns** kurz **auf**, dann geht's los. *(Nice! I'm Lena. We **warm up** briefly, then we start.)*
-**Sie:** Super. **Wie weit laufen wir** heute? *(Great. **How far are we running** today?)*
-**Läufer 2:** Die **Strecke** ist heute fünf Kilometer, ganz lockeres **Tempo**. *(The **route** is five kilometers today, a nice easy **pace**.)*
-**Sie:** Perfekt, das passt zu meiner **Kondition**. *(Perfect, that matches my **fitness level**.)*
-**Läufer 1:** **Läufst du oft**? *(**Do you run often**?)*
-**Sie:** Ja, zwei- oder dreimal pro Woche. Ich freue mich schon! *(Yes, two or three times a week. I'm looking forward to it!)*
+**Läufer 1:** Hallo! Bist du neu hier beim **Lauftreff**? _(Hi! Are you new to the **running club**?)_
+**Sie:** Ja, ich bin **neu hier**. Ich heiße Sam. _(Yes, I'm **new here**. I'm Sam.)_
+**Läufer 1:** Schön! Ich bin Lena. Wir **wärmen uns** kurz **auf**, dann geht's los. _(Nice! I'm Lena. We **warm up** briefly, then we start.)_
+**Sie:** Super. **Wie weit laufen wir** heute? _(Great. **How far are we running** today?)_
+**Läufer 2:** Die **Strecke** ist heute fünf Kilometer, ganz lockeres **Tempo**. _(The **route** is five kilometers today, a nice easy **pace**.)_
+**Sie:** Perfekt, das passt zu meiner **Kondition**. _(Perfect, that matches my **fitness level**.)_
+**Läufer 1:** **Läufst du oft**? _(**Do you run often**?)_
+**Sie:** Ja, zwei- oder dreimal pro Woche. Ich freue mich schon! _(Yes, two or three times a week. I'm looking forward to it!)_
 
 ## Go deeper (real resources)
 
@@ -34,9 +34,9 @@
 
 ## Practice
 
-1. **Multiple choice** — Wie ist das Tempo heute? *(What's today's pace?)*
+1. **Multiple choice** — Wie ist das Tempo heute? _(What's today's pace?)_
    a) ganz lockeres Tempo b) sehr schnelles Tempo c) kein Tempo
-2. **Fill in the blank** — Ich bin ___ beim Lauftreff. (neu hier)
+2. **Fill in the blank** — Ich bin \_\_\_ beim Lauftreff. (neu hier)
 3. **Match the word to its meaning** — match `die Strecke`, `das Tempo`, `die Kondition` to their English meanings above.
 4. **Write a sentence** — using "der Lauftreff," write one sentence about joining a group activity.
 5. **Vocab review** — say all 8 key words/phrases out loud from memory before your mission, in German.
