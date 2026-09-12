@@ -3,7 +3,7 @@
   "singleQuote": true,
   "trailingComma": "all",
   "printWidth": 100,
-  "ignorePatterns": ["uniwind-types.d.ts"],
+  "ignorePatterns": ["uniwind-types.d.ts", "*.md", ".playwright-mcp/", "docs/", "memory/"],
   "sortTailwindcss": {
     "functions": ["clsx", "cn", "cva", "tw"]
   }
