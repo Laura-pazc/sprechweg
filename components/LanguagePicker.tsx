@@ -19,13 +19,14 @@ export function LanguagePicker({ visible, locale, onSelect, onClose }: LanguageP
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={t('common.close')}
-        className="bg-ink/45 flex-1 items-center justify-center px-5"
-        onPress={onClose}
-      >
-        <Pressable accessibilityRole="none" className="w-full max-w-[420px]" onPress={() => {}}>
+      <View className="flex-1 items-center justify-center px-5">
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t('common.close')}
+          className="bg-ink/45 absolute inset-0"
+          onPress={onClose}
+        />
+        <View className="w-full max-w-[420px]">
           <ChunkyCard tone="cream" offset={6} className="gap-4 px-5 py-5">
             <View className="flex-row items-start justify-between gap-3">
               <View className="flex-1 gap-1.5">
@@ -73,8 +74,8 @@ export function LanguagePicker({ visible, locale, onSelect, onClose }: LanguageP
               })}
             </View>
           </ChunkyCard>
-        </Pressable>
-      </Pressable>
+        </View>
+      </View>
     </Modal>
   );
 }
