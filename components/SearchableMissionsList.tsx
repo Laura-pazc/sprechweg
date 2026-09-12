@@ -1,9 +1,9 @@
-import { SlidersHorizontal, Search, X } from 'lucide-react-native';
+import { ChevronDown, SlidersHorizontal, Search, X } from 'lucide-react-native';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
-import { FlatList, Pressable, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { BottomSheet, Select } from 'heroui-native';
+import { BottomSheet } from 'heroui-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -19,9 +19,6 @@ import type { Level, Mission, MissionStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 const LEVELS: Array<Level | null> = [null, 'beginner', 'intermediate', 'advanced'];
-const ALL_CATEGORIES = '__all__';
-
-type SelectOption = { value: string; label: string };
 
 interface FilterChoiceProps {
   label: string;
@@ -87,16 +84,14 @@ function FiltersSheet({
   const { t } = useTranslation();
   const [draftLevel, setDraftLevel] = useState<Level | null>(selectedLevel);
   const [draftCategory, setDraftCategory] = useState<string | null>(selectedCategory);
-
-  const categoryValue: SelectOption = {
-    value: draftCategory ?? ALL_CATEGORIES,
-    label: draftCategory ?? t('missions.allCategories'),
-  };
+  const [categoryExpanded, setCategoryExpanded] = useState(false);
 
   const handleOpenChange = (nextOpen: boolean) => {
     if (nextOpen) {
       setDraftLevel(selectedLevel);
       setDraftCategory(selectedCategory);
+    } else {
+      setCategoryExpanded(false);
     }
     onOpenChange(nextOpen);
   };
@@ -138,28 +133,56 @@ function FiltersSheet({
               <Text className="text-muted font-display text-[11px] tracking-widest">
                 {t('missions.categoryFilter')}
               </Text>
-              <Select
-                value={categoryValue}
-                onValueChange={(option) =>
-                  setDraftCategory(
-                    option?.value === ALL_CATEGORIES ? null : (option?.value ?? null),
-                  )
-                }
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={t('missions.selectCategory')}
+                accessibilityState={{ expanded: categoryExpanded }}
+                onPress={() => setCategoryExpanded((expanded) => !expanded)}
+                className="border-ink min-h-12 flex-row items-center justify-between rounded-[14px] border-2 bg-white px-4"
               >
-                <Select.Trigger className="border-ink min-h-12 rounded-[14px] border-2 bg-white px-4">
-                  <Select.Value placeholder={t('missions.selectCategory')} />
-                  <Select.TriggerIndicator />
-                </Select.Trigger>
-                <Select.Portal>
-                  <Select.Overlay />
-                  <Select.Content presentation="popover" width="trigger">
-                    <Select.Item value={ALL_CATEGORIES} label={t('missions.allCategories')} />
-                    {categories.map((category) => (
-                      <Select.Item key={category} value={category} label={category} />
-                    ))}
-                  </Select.Content>
-                </Select.Portal>
-              </Select>
+                <Text className="text-ink font-strong flex-1 text-[14px]" numberOfLines={1}>
+                  {draftCategory ?? t('missions.allCategories')}
+                </Text>
+                <ChevronDown
+                  color={palette.ink}
+                  size={19}
+                  strokeWidth={2.5}
+                  style={{ transform: [{ rotate: categoryExpanded ? '180deg' : '0deg' }] }}
+                />
+              </Pressable>
+
+              {categoryExpanded ? (
+                <View className="border-ink overflow-hidden rounded-[14px] border-2 bg-white">
+                  <ScrollView
+                    style={{ maxHeight: 220 }}
+                    nestedScrollEnabled
+                    keyboardShouldPersistTaps="handled"
+                  >
+                    {[null, ...categories].map((category) => {
+                      const selected = draftCategory === category;
+                      const label = category ?? t('missions.allCategories');
+
+                      return (
+                        <Pressable
+                          key={category ?? 'all-categories'}
+                          accessibilityRole="radio"
+                          accessibilityState={{ selected }}
+                          onPress={() => {
+                            setDraftCategory(category);
+                            setCategoryExpanded(false);
+                          }}
+                          className={cn(
+                            'border-canvas min-h-11 justify-center border-b px-4 py-3',
+                            selected ? 'bg-sky' : 'bg-white',
+                          )}
+                        >
+                          <Text className="text-ink font-strong text-[13px]">{label}</Text>
+                        </Pressable>
+                      );
+                    })}
+                  </ScrollView>
+                </View>
+              ) : null}
             </View>
 
             <View className="flex-row gap-3 pt-1">
@@ -171,6 +194,7 @@ function FiltersSheet({
                 onPress={() => {
                   setDraftLevel(null);
                   setDraftCategory(null);
+                  setCategoryExpanded(false);
                   onClear();
                   onOpenChange(false);
                 }}
@@ -180,6 +204,7 @@ function FiltersSheet({
                 fullWidth
                 className="flex-1"
                 onPress={() => {
+                  setCategoryExpanded(false);
                   onApply(draftLevel, draftCategory);
                   onOpenChange(false);
                 }}
