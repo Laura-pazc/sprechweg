@@ -2,21 +2,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { data } from '@/lib/data';
 import type { AppLocale } from '@/lib/i18n';
-import { MISSIONS } from '@/lib/missions';
-import type { JournalEntry, Level, MissionStatus } from '@/lib/types';
+import type { JournalEntry, Level, Mission, MissionStatus } from '@/lib/types';
 import { dayKey, yesterdayKey } from '@/lib/utils';
 
 interface AppState {
+  /** True once persisted progress is read AND missions + journal are loaded. */
   hydrated: boolean;
+  /** Mission catalog, loaded through the data seam. Cache only, never persisted here. */
+  missions: Mission[];
   name: string;
   level: Level | null;
   /** Raw score from the onboarding chat, kept so the result screen can explain itself. */
   levelScore: number;
+  /** Missing key means 'not_started'; readers use `statuses[id] ?? 'not_started'`. */
   statuses: Record<string, MissionStatus>;
   /** Vocab ids the learner ticked off, per mission. Feeds the recall quiz. */
   studied: Record<string, string[]>;
   practiceDone: Record<string, boolean>;
+  /** Journal entries, newest first. Cache of the data seam, never persisted here. */
   entries: JournalEntry[];
   streakCount: number;
   lastJournalDay: string | null;
@@ -39,18 +44,15 @@ interface AppState {
   resetProgress: () => void;
 }
 
-const initialStatuses: Record<string, MissionStatus> = Object.fromEntries(
-  MISSIONS.map((mission) => [mission.id, 'not_started']),
-);
-
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       hydrated: false,
+      missions: [],
       name: '',
       level: null,
       levelScore: 0,
-      statuses: initialStatuses,
+      statuses: {},
       studied: {},
       practiceDone: {},
       entries: [],
@@ -101,12 +103,15 @@ export const useAppStore = create<AppState>()(
           quizTotal,
         };
 
+        // Update the cache first so the screen can show the saved state at once;
+        // the seam persists in the background.
         set((state) => ({
           entries: [entry, ...state.entries],
           streakCount: nextStreak,
           lastJournalDay: today,
           statuses: missionId ? { ...state.statuses, [missionId]: 'done' } : state.statuses,
         }));
+        void data.addJournalEntry(entry);
       },
 
       toggleCheer: (quoteId) =>
@@ -118,32 +123,48 @@ export const useAppStore = create<AppState>()(
 
       setLocale: (locale) => set({ locale }),
 
-      resetProgress: () =>
+      resetProgress: () => {
         set({
           name: '',
           level: null,
           levelScore: 0,
-          statuses: initialStatuses,
+          statuses: {},
           studied: {},
           practiceDone: {},
           entries: [],
           streakCount: 0,
           lastJournalDay: null,
           cheered: [],
-        }),
+        });
+        void data.clearJournal();
+      },
     }),
     {
       name: 'city-sidekick-v1',
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({ hydrated: _hydrated, ...rest }) => rest,
+      // Missions and journal entries come from the data seam, not from this blob.
+      partialize: ({ hydrated: _hydrated, missions: _missions, entries: _entries, ...rest }) =>
+        rest,
     },
   ),
 );
 
-// `hydrated` is excluded from persisted state, so flip it once AsyncStorage
-// has been read. Screens gate on it to avoid a flash of empty content.
-if (useAppStore.persist.hasHydrated()) {
-  useAppStore.setState({ hydrated: true });
-} else {
-  useAppStore.persist.onFinishHydration(() => useAppStore.setState({ hydrated: true }));
+/** Selects one mission from the loaded catalog; undefined while loading or for unknown ids. */
+export function useMission(id: string | undefined): Mission | undefined {
+  return useAppStore((state) =>
+    id ? state.missions.find((mission) => mission.id === id) : undefined,
+  );
 }
+
+const persistedStateReady = new Promise<void>((resolve) => {
+  if (useAppStore.persist.hasHydrated()) resolve();
+  else useAppStore.persist.onFinishHydration(() => resolve());
+});
+
+// `hydrated` flips only when the persisted progress, the mission catalog and
+// the journal are all in. Screens gate on it to avoid a flash of empty content.
+void Promise.all([persistedStateReady, data.listMissions(), data.listJournalEntries()]).then(
+  ([, missions, entries]) => {
+    useAppStore.setState({ missions, entries, hydrated: true });
+  },
+);

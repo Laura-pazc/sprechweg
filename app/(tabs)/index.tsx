@@ -22,7 +22,7 @@ import { LANGUAGE_OPTIONS } from '@/lib/i18n';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { SectionHeading } from '@/components/SectionHeading';
-import { COMMUNITY_QUOTES, MISSIONS } from '@/lib/missions';
+import { COMMUNITY_QUOTES } from '@/lib/content/communityQuotes';
 import { routes } from '@/lib/navigation';
 import { confidencePercent, nextMission } from '@/lib/progress';
 import { useAppStore } from '@/lib/store';
@@ -35,6 +35,7 @@ export default function TodayScreen() {
   const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
   const [languagePickerOpen, setLanguagePickerOpen] = useState(false);
+  const missions = useAppStore((state) => state.missions);
   const name = useAppStore((state) => state.name);
   const locale = useAppStore((state) => state.locale);
   const setLocale = useAppStore((state) => state.setLocale);
@@ -47,14 +48,15 @@ export default function TodayScreen() {
   const toggleCheer = useAppStore((state) => state.toggleCheer);
 
   const confidence = confidencePercent({
+    missions,
     level,
     statuses,
     practiceDone,
     studied,
     journalCount: entries.length,
   });
-  const upNext = nextMission(level, statuses);
-  const otherMissions = MISSIONS.filter((mission) => mission.id !== upNext.id);
+  const upNext = nextMission(missions, level, statuses);
+  const otherMissions = missions.filter((mission) => mission.id !== upNext.id);
   const completedCount = Object.values(statuses).filter((status) => status === 'done').length;
   const quote = COMMUNITY_QUOTES[hashString(dayKey()) % COMMUNITY_QUOTES.length];
   const hasCheered = cheered.includes(quote.id);

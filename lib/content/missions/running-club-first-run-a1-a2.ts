@@ -1,0 +1,70 @@
+import type { Mission } from '@/lib/types';
+import { createScenarioMission } from '../createScenarioMission';
+
+export const runningClubFirstRunA1A2: Mission = createScenarioMission({
+  id: 'running-club-first-run-a1-a2',
+  title: 'First group run',
+  tagline: 'Join a running group and ask about the route.',
+  category: 'Making friends',
+  icon: 'users',
+  level: 'beginner',
+  minutes: 20,
+  accent: 'coral',
+  where: 'A beginner-friendly Hamburg Lauftreff.',
+  reflectionFocus: 'join a group activity and ask about the plan',
+  realLifeSteps: [
+    'Find a beginner-friendly Lauftreff.',
+    'Introduce yourself as new.',
+    'Ask how far the group will run.',
+    'Check that the pace works for you.',
+    'Talk to one runner after the session.',
+  ],
+  vocab: [
+    ['der Lauftreff', 'running club / running meetup'],
+    ['die Strecke', 'route / distance'],
+    ['das Tempo', 'pace'],
+    ['sich aufwärmen', 'to warm up'],
+    ['die Kondition', 'fitness / stamina'],
+    ['neu hier sein', 'to be new here'],
+    ['Wie weit laufen wir?', 'How far are we running?'],
+    ['Läufst du oft?', 'Do you run often?'],
+  ],
+  dialogue: [
+    ['partner', 'Hallo! Bist du neu hier beim Lauftreff?', 'Hi! Are you new to the running club?'],
+    ['you', 'Ja, ich bin neu hier. Ich heiße Sam.', "Yes, I'm new here. I'm Sam."],
+    ['partner', 'Wir wärmen uns kurz auf, dann geht’s los.', 'We warm up briefly, then we start.'],
+    ['you', 'Wie weit laufen wir heute?', 'How far are we running today?'],
+    [
+      'partner',
+      'Die Strecke ist fünf Kilometer, ganz lockeres Tempo.',
+      'The route is five kilometres at an easy pace.',
+    ],
+    ['you', 'Perfekt, das passt zu meiner Kondition.', 'Perfect, that suits my fitness level.'],
+    ['partner', 'Läufst du oft?', 'Do you run often?'],
+    ['you', 'Ja, zwei- oder dreimal pro Woche.', 'Yes, two or three times a week.'],
+  ],
+  multipleChoice: {
+    prompt: 'Wie ist das Tempo heute?',
+    options: ['Ganz locker', 'Sehr schnell', 'Es gibt kein Tempo'],
+    answerIndex: 0,
+    explanation: 'The runner describes it as „ganz lockeres Tempo“.',
+  },
+  fillBlank: {
+    prompt: 'Introduce yourself at the club.',
+    sentence: 'Ich bin ___ beim Lauftreff.',
+    answer: 'neu hier',
+    alternatives: ['neu'],
+    explanation: '„Neu hier“ tells the group this is your first visit.',
+  },
+  writeSentence: {
+    prompt: 'Write one line about joining a group activity.',
+    mustInclude: ['Lauftreff'],
+    sample: 'Heute gehe ich zum ersten Mal zum Lauftreff.',
+    explanation: 'Name the activity and make the first visit clear.',
+  },
+  badge: {
+    title: 'Mitläufer',
+    emoji: '🏃',
+    description: 'Joined a group activity and spoke German.',
+  },
+});

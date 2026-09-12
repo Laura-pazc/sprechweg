@@ -1,59 +1,38 @@
 import { router } from 'expo-router';
-import { FlatList, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
-import { MissionCard } from '@/components/MissionCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { LEVEL_LABEL } from '@/lib/levelChat';
-import { MISSIONS } from '@/lib/missions';
+import { SearchableMissionsList } from '@/components/SearchableMissionsList';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
-import type { Mission } from '@/lib/types';
 
 export default function MissionsScreen() {
   const { t } = useTranslation();
+  const missions = useAppStore((state) => state.missions);
   const statuses = useAppStore((state) => state.statuses);
   const level = useAppStore((state) => state.level);
 
-  const orderedMissions = level
-    ? [...MISSIONS].sort(
-        (first, second) => Number(second.level === level) - Number(first.level === level),
-      )
-    : MISSIONS;
-
-  const renderItem = ({ item }: { item: Mission }) => (
-    <MissionCard
-      mission={item}
-      status={statuses[item.id] ?? 'not_started'}
-      onPress={() => router.push(routes.missionPrep(item.id))}
-    />
-  );
-
   return (
     <Screen>
-      <FlatList
-        data={orderedMissions}
-        keyExtractor={(mission) => mission.id}
-        renderItem={renderItem}
-        contentContainerClassName="gap-4 px-5 pb-8"
-        ListHeaderComponent={
-          <View className="gap-4">
-            <ScreenHeader
-              nested
-              showBack={false}
-              kicker={t('missions.kicker')}
-              title={t('missions.title')}
-              subtitle={
-                level === null
-                  ? t('missions.subtitleNoLevel')
-                  : t('missions.subtitle', { tier: LEVEL_LABEL[level] })
-              }
-            />
-          </View>
-        }
-        ListFooterComponent={
+      <View className="px-5 pb-2">
+        <ScreenHeader
+          nested
+          showBack={false}
+          kicker={t('missions.kicker')}
+          title={t('missions.title')}
+          subtitle={t('missions.subtitle')}
+        />
+      </View>
+
+      <SearchableMissionsList
+        missions={missions}
+        statuses={statuses}
+        userLevel={level}
+        onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
+        footer={
           <ChunkyCard tone="canvas" offset={4} className="mt-1 gap-1.5 px-4 py-3.5">
             <Text className="text-muted font-display text-[11px] tracking-widest">
               {t('missions.fixed')}

@@ -1,0 +1,171 @@
+import type { Mission } from '@/lib/types';
+
+export const findYourWay: Mission = {
+  id: 'find-your-way',
+  title: 'Find your way',
+  tagline: 'Ask for directions and make the next U-Bahn ride feel easy.',
+  category: 'Getting around',
+  icon: 'compass',
+  level: 'beginner',
+  minutes: 15,
+  accent: 'sky',
+  where: 'Any busy corner in Hamburg — Jungfernstieg, Sternschanze, your own street.',
+  reflectionFocus: 'ask a stranger for directions',
+  realLifeSteps: [
+    'Find a corner where people are walking, not rushing.',
+    'Open with „Entschuldigung“ and wait for eye contact.',
+    'Ask: „Wie komme ich zur nächsten U-Bahn-Haltestelle?“',
+    'Repeat back what you heard, even if it is only two words.',
+    'Say „Vielen Dank!“ and walk the way they showed you.',
+  ],
+  vocab: [
+    {
+      id: 'fyw-1',
+      de: 'Entschuldigung',
+      en: 'Excuse me',
+      note: 'Opens any question. Say it once, clearly, then pause.',
+    },
+    {
+      id: 'fyw-2',
+      de: 'Wie komme ich zu…?',
+      en: 'How do I get to…?',
+      note: 'zum Bahnhof (m/n), zur Haltestelle (f).',
+    },
+    {
+      id: 'fyw-3',
+      de: 'die Haltestelle',
+      en: 'the stop',
+      note: 'Bus or U-Bahn stop. Look for the blue U sign.',
+    },
+    {
+      id: 'fyw-4',
+      de: 'geradeaus',
+      en: 'straight ahead',
+      note: 'Often paired with immer: „immer geradeaus“.',
+    },
+    {
+      id: 'fyw-5',
+      de: 'links / rechts',
+      en: 'left / right',
+      note: '„Nach links“ = to the left.',
+    },
+    {
+      id: 'fyw-6',
+      de: 'Ist es weit?',
+      en: 'Is it far?',
+      note: 'Gets you a distance you can picture.',
+    },
+    {
+      id: 'fyw-7',
+      de: 'Können Sie das wiederholen?',
+      en: 'Could you repeat that?',
+      note: 'Your safety net. Nobody minds being asked.',
+    },
+    {
+      id: 'fyw-8',
+      de: 'Vielen Dank!',
+      en: 'Thanks a lot!',
+      note: 'Ends the exchange warmly, whatever happened.',
+    },
+  ],
+  conversationSimulation: [
+    {
+      id: 'fyw-c1',
+      speaker: 'you',
+      de: 'Entschuldigung, darf ich Sie kurz etwas fragen?',
+      en: 'Excuse me, may I ask you something quickly?',
+    },
+    {
+      id: 'fyw-c2',
+      speaker: 'partner',
+      de: 'Ja, klar. Was suchen Sie?',
+      en: 'Yes, of course. What are you looking for?',
+    },
+    {
+      id: 'fyw-c3',
+      speaker: 'you',
+      de: 'Wie komme ich zur nächsten U-Bahn-Haltestelle?',
+      en: 'How do I get to the nearest U-Bahn stop?',
+    },
+    {
+      id: 'fyw-c4',
+      speaker: 'partner',
+      de: 'Gehen Sie hier immer geradeaus, dann die zweite Straße rechts.',
+      en: 'Go straight ahead here, then take the second street on the right.',
+    },
+    {
+      id: 'fyw-c5',
+      speaker: 'you',
+      de: 'Also geradeaus und dann rechts. Ist es weit?',
+      en: 'So straight ahead and then right. Is it far?',
+    },
+    {
+      id: 'fyw-c6',
+      speaker: 'partner',
+      de: 'Nein, fünf Minuten zu Fuß.',
+      en: 'No, five minutes on foot.',
+    },
+    {
+      id: 'fyw-c7',
+      speaker: 'you',
+      de: 'Können Sie das noch einmal wiederholen? Mein Deutsch ist neu.',
+      en: 'Could you repeat that once more? My German is new.',
+    },
+    {
+      id: 'fyw-c8',
+      speaker: 'partner',
+      de: 'Natürlich. Geradeaus, zweite Straße rechts, dann sehen Sie das blaue U.',
+      en: "Of course. Straight ahead, second street on the right, then you'll see the blue U.",
+    },
+    {
+      id: 'fyw-c9',
+      speaker: 'you',
+      de: 'Perfekt. Vielen Dank!',
+      en: 'Perfect. Thanks a lot!',
+    },
+    {
+      id: 'fyw-c10',
+      speaker: 'partner',
+      de: 'Gern. Viel Erfolg!',
+      en: "You're welcome. Good luck!",
+    },
+  ],
+  practiceQuestions: [
+    {
+      id: 'fyw-q1',
+      kind: 'multiple-choice',
+      prompt: 'Someone answers: „Immer geradeaus, dann rechts.“ What do you do?',
+      options: [
+        'Walk straight ahead, then turn right',
+        'Turn right straight away',
+        'Take the bus two stops',
+      ],
+      answerIndex: 0,
+      explanation:
+        'geradeaus = straight ahead, rechts = right. The order in the sentence is the order you walk.',
+    },
+    {
+      id: 'fyw-q2',
+      kind: 'fill-blank',
+      prompt: 'Complete the question you will actually ask today.',
+      sentence: 'Entschuldigung, wie ___ ich zur Haltestelle?',
+      answer: 'komme',
+      alternatives: [],
+      explanation: '„Wie komme ich…“ is the everyday way to ask for a route.',
+    },
+    {
+      id: 'fyw-q3',
+      kind: 'write-sentence',
+      prompt: 'Write how you would politely ask a stranger for the nearest U-Bahn stop.',
+      mustInclude: ['Entschuldigung', 'Haltestelle'],
+      sample: 'Entschuldigung, wo ist die nächste U-Bahn-Haltestelle?',
+      explanation:
+        'Politeness word first, then the place you need. Word order can vary — the opener cannot.',
+    },
+  ],
+  badge: {
+    title: 'Wegfinder',
+    emoji: '🧭',
+    description: 'Asked a stranger for directions in German and followed them.',
+  },
+};

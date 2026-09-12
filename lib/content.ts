@@ -150,18 +150,3 @@ export function missingFromSentence(question: WriteSentenceQuestion, input: stri
   const value = normalizeAnswer(input);
   return question.mustInclude.filter((word) => !value.includes(normalizeAnswer(word)));
 }
-
-/** Copy for the "Keep your momentum" card on Today. */
-export function momentumFor(mission: Mission): { title: string; detail: string; emoji: string } {
-  const emoji: Record<string, string> = {
-    'find-your-way': '🚇',
-    'make-life-happen': '☕',
-    'meet-your-people': '👋',
-  };
-
-  return {
-    title: `Warm up for “${mission.title}”`,
-    detail: `${mission.vocab.length} useful phrases · ${mission.minutes}-minute conversation warm-up`,
-    emoji: emoji[mission.id] ?? '✨',
-  };
-}

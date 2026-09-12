@@ -1,0 +1,65 @@
+import type { Mission } from '@/lib/types';
+import { createScenarioMission } from '../createScenarioMission';
+
+export const expatMeetupB1: Mission = createScenarioMission({
+  id: 'expat-meetup-b1',
+  title: 'Expat networking event',
+  tagline: 'Introduce yourself and exchange Hamburg stories.',
+  category: 'Making friends',
+  icon: 'users',
+  level: 'intermediate',
+  minutes: 25,
+  accent: 'coral',
+  where: 'An international meetup or community event in Hamburg.',
+  reflectionFocus: 'introduce yourself at a networking event',
+  realLifeSteps: [
+    'Attend an open meetup.',
+    'Introduce yourself to one person.',
+    'Ask what brought them to Hamburg.',
+    'Share your work or reason for moving.',
+    'Ask for one local tip.',
+  ],
+  vocab: [
+    ['das Netzwerk / die Gruppe', 'network / group'],
+    ['der Austausch', 'exchange / conversation'],
+    ['auswandern / die Ausländerin', 'to emigrate / foreigner'],
+    ['der Grund', 'reason / purpose'],
+    ['der Beruf / arbeiten', 'profession / to work'],
+    ['die Erfahrung', 'experience'],
+    ['Was brachte dich nach Hamburg?', 'What brought you to Hamburg?'],
+    ['Wie lange bist du schon hier?', 'How long have you been here?'],
+  ],
+  dialogue: [
+    ['partner', 'Willkommen zum Austausch! Ich bin Julia.', "Welcome to the meetup! I'm Julia."],
+    ['you', 'Danke! Das ist mein erstes Mal hier.', "Thanks! It's my first time here."],
+    ['partner', 'Was brachte dich nach Hamburg?', 'What brought you to Hamburg?'],
+    ['you', 'Ich bin für die Arbeit hierher gekommen.', 'I came here for work.'],
+    ['partner', 'Was ist dein Beruf?', 'What is your profession?'],
+    ['you', 'Ich arbeite in der IT-Entwicklung.', 'I work in IT development.'],
+    ['you', 'Wie lange bist du schon hier?', 'How long have you been here?'],
+    [
+      'partner',
+      'Zwei Jahre. Der Austausch ist wichtig — du bist nicht allein!',
+      'Two years. The exchange is important — you are not alone!',
+    ],
+  ],
+  multipleChoice: {
+    prompt: 'Was ist Sams Beruf?',
+    options: ['Arzt', 'IT-Entwicklung', 'Lehrer'],
+    answerIndex: 1,
+    explanation: 'Sam says they work in IT development.',
+  },
+  fillBlank: {
+    prompt: 'Complete the encouragement.',
+    sentence: 'Der Austausch ist ___.',
+    answer: 'wichtig',
+    explanation: 'The speaker says the exchange is important.',
+  },
+  writeSentence: {
+    prompt: 'Write why you moved to Hamburg.',
+    mustInclude: ['Grund'],
+    sample: 'Der Grund für meinen Umzug war die Arbeit.',
+    explanation: 'Use „der Grund“ to explain your reason.',
+  },
+  badge: { title: 'Netzwerker', emoji: '🤝', description: 'Made a new connection at a meetup.' },
+});
