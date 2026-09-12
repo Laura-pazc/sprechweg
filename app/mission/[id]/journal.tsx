@@ -142,8 +142,14 @@ function MissionJournal({ mission }: { mission: Mission }) {
                       ),
                     )
                   }
-                  placeholder={reflectionIndex === 0 ? 'A sentence is enough' : 'Optional'}
+                  placeholder={
+                    reflectionIndex === 0
+                      ? 'Take a moment. What did you notice, feel, or do?'
+                      : 'Add another thought, if you’d like…'
+                  }
                   multiline
+                  className="min-h-[220px] px-4 py-4"
+                  textAlignVertical="top"
                 />
               </View>
               <View className="gap-2">
