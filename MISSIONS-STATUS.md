@@ -2,6 +2,35 @@
 
 **Completed:** 2026-09-12
 
+## Update — 2026-09-12: schema migration to `mission-<slug>`
+
+The five `scenarios/mission-<slug>/mission-<slug>.md` files (doctor visit,
+Ausländerbehörde, bank errand, running club, yoga class) use a newer structure
+than the one this report originally documented: vocabulary in context (not a
+table), plus Time to explore / Journal / Recall check screens instead of a
+5-exercise Practice block, and no CEFR-level suffix in the filename.
+
+- `MISSION-SCHEMA.md` and `.claude/skills/mission-generator/SKILL.md` were
+  rewritten to document and generate this structure, grounded in the CEFR global
+  scale and a register → address-form table (Sie vs. du), and modeled on the
+  `/scenarios` + `/humanizer` skills' method (small decision layer, humanizer-clean
+  writing from the first draft).
+- `scripts/validate-missions.js` was rewritten to check the new structure; it now
+  only looks at `mission-*` files under `scenarios/`.
+- All 5 `mission-<slug>` files were revised: removed a leftover authoring note
+  and `[link TBD]` placeholders that had been copy-pasted into shipped content,
+  fixed two vocabulary items ("die Anmeldung", "der/die Sachbearbeiter(in)") that
+  were never actually used in their conversation, and standardized the doctor
+  mission's pre-departure checklist to German (it was the only one in English).
+- All 5 now pass `node scripts/validate-missions.js scenarios/mission-*` with 0
+  errors.
+- **Open item:** the 10 `kb-<slug>-<level>` missions below (including the stray
+  draft at `scenarios/kb-doctor-first-visit-a2/mission-doctor-first-visit.md`,
+  superseded by `scenarios/mission-doctor-first-visit/`) still use the older
+  table-based schema and were left untouched — out of scope for this pass. They
+  need a separate migration or explicit sign-off to remove before they're
+  confusing dead weight in `scenarios/`.
+
 ## Summary
 
 Successfully created a reusable framework for generating language learning missions and expanded the Missio scenario library with 8 new advanced-level missions.
@@ -9,7 +38,6 @@ Successfully created a reusable framework for generating language learning missi
 ## Deliverables
 
 ### 1. ✅ MISSION-SCHEMA.md
-
 - Formal specification of mission file structure
 - Defines all 7 required sections (title, metadata, vocabulary, conversation, resources, practice, level-up)
 - File naming conventions: `kb-[scenario-slug]-[level]`
@@ -18,9 +46,7 @@ Successfully created a reusable framework for generating language learning missi
 - Register definitions (practical, friendly, formal)
 
 ### 2. ✅ Mission Generator Skill
-
 **Location:** `.claude/skills/mission-generator/SKILL.md`
-
 - Interactive skill that asks clarifying questions
 - Generates complete, ready-to-use mission files
 - Enforces:
@@ -32,9 +58,7 @@ Successfully created a reusable framework for generating language learning missi
 - Output format matches MISSION-SCHEMA exactly
 
 ### 3. ✅ Validation Script
-
 **Location:** `scripts/validate-missions.js`
-
 - Node.js script to validate mission files
 - Checks:
   - Filename format (`kb-[slug]-[level].md`)
@@ -49,13 +73,11 @@ Successfully created a reusable framework for generating language learning missi
 ### 4. ✅ Mission Library Expansion
 
 #### Renamed Existing Missions (to include CEFR level)
-
 1. `kb-doctor-first-visit-a2` — Medical appointment (A2)
 2. `kb-running-club-first-run-a1-a2` — Joining a running club (A1-A2)
 3. `kb-auslanderbehorde-appointment-a2` — Government agency (A2)
 
 #### New B1 Missions (Intermediate)
-
 1. **kb-job-interview-b1** — First job interview
    - Formal register, past/future tense, subjunctive for B1+
    - Vocabulary: Stelle, Qualifikation, Erfahrung, Lebenslauf, etc.
@@ -81,7 +103,6 @@ Successfully created a reusable framework for generating language learning missi
    - Vocabulary: Laden, Obst, Gemüse, Fisch, fragen nach, etc.
 
 #### New B2 Missions (Upper-Intermediate)
-
 1. **kb-university-orientation-b2** — University enrollment
    - Formal register, complex administrative systems, subjunctive
    - Vocabulary: Universität, Immatrikulation, ECTS, Vorlesung, etc.
@@ -97,12 +118,11 @@ Successfully created a reusable framework for generating language learning missi
 ```
 ✅ 10/10 missions passing validation
 ├─ A1/A2: 3 missions
-├─ B1: 5 missions
+├─ B1: 5 missions  
 └─ B2: 2 missions
 ```
 
 **Command to validate:**
-
 ```bash
 node scripts/validate-missions.js scenarios/
 ```
@@ -158,15 +178,15 @@ language-collective/
 
 ## Quality Metrics
 
-| Metric                 | Target | Actual          |
-| ---------------------- | ------ | --------------- |
-| Schema completeness    | 100%   | ✅ 100%         |
-| Validation pass rate   | 100%   | ✅ 100% (10/10) |
-| A1/A2 coverage         | 3+     | ✅ 3            |
-| B1/B2 coverage         | 4+     | ✅ 7            |
-| Vocab consistency      | 100%   | ✅ 100%         |
-| Vocabulary per mission | 8      | ✅ 8            |
-| Practice exercises     | 5      | ✅ 5            |
+| Metric | Target | Actual |
+|--------|--------|--------|
+| Schema completeness | 100% | ✅ 100% |
+| Validation pass rate | 100% | ✅ 100% (10/10) |
+| A1/A2 coverage | 3+ | ✅ 3 |
+| B1/B2 coverage | 4+ | ✅ 7 |
+| Vocab consistency | 100% | ✅ 100% |
+| Vocabulary per mission | 8 | ✅ 8 |
+| Practice exercises | 5 | ✅ 5 |
 
 ## Technical Notes
 
