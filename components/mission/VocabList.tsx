@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react-native';
+import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -13,16 +14,27 @@ interface VocabListProps {
 }
 
 export function VocabList({ mission, studiedIds, onToggle }: VocabListProps) {
-  const studiedCount = mission.vocab.filter((item) => studiedIds.includes(item.id)).length;
+  const [showHelp, setShowHelp] = useState(false);
 
   return (
     <View className="gap-2.5">
-      <Text className="text-muted font-strong text-[12px] leading-[17px]">
-        {studiedCount} of {mission.vocab.length} marked as studied. Your recall quiz in the journal
-        is built from the ones you tick.
-      </Text>
+      <View className="flex-row items-center justify-between gap-3">
+        <Text className="text-muted font-strong flex-1 text-[12px] leading-[17px]">
+          Tap the phrases you want to remember.
+        </Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityState={{ expanded: showHelp }}
+          onPress={() => setShowHelp((value) => !value)}
+          className="py-1"
+        >
+          <Text className="text-royal font-display text-[12px]">
+            {showHelp ? 'Hide help' : 'Need help?'}
+          </Text>
+        </Pressable>
+      </View>
 
-      <ChunkyCard tone="paper" className="px-0 py-0">
+      <ChunkyCard tone="paper" offset={3} className="px-0 py-0">
         {mission.vocab.map((item, index) => {
           const studied = studiedIds.includes(item.id);
           return (
@@ -48,10 +60,12 @@ export function VocabList({ mission, studiedIds, onToggle }: VocabListProps) {
               </View>
               <View className="flex-1 gap-0.5">
                 <Text className="text-ink font-display text-[14px] leading-[19px]">{item.de}</Text>
-                <Text className="text-ink font-strong text-[12.5px] leading-[17px]">{item.en}</Text>
-                <Text className="text-muted font-body text-[11.5px] leading-[16px]">
-                  {item.note}
-                </Text>
+                {showHelp ? (
+                  <>
+                    <Text className="text-ink font-strong text-[12.5px] leading-[17px]">{item.en}</Text>
+                    <Text className="text-muted font-body text-[11.5px] leading-[16px]">{item.note}</Text>
+                  </>
+                ) : null}
               </View>
             </Pressable>
           );

@@ -23,9 +23,9 @@ import type { Mission } from '@/lib/types';
 type PrepTab = 'vocab' | 'talk' | 'practice';
 
 const TABS: StepItem<PrepTab>[] = [
-  { id: 'vocab', label: 'Vocab' },
-  { id: 'talk', label: 'Conversation' },
-  { id: 'practice', label: 'Practice' },
+  { id: 'vocab', label: 'First, a few useful words.' },
+  { id: 'talk', label: 'Next, try a short conversation.' },
+  { id: 'practice', label: 'Last, check what feels ready.' },
 ];
 
 function MissionPrep({ mission }: { mission: Mission }) {
@@ -34,7 +34,6 @@ function MissionPrep({ mission }: { mission: Mission }) {
   const practiceDone = useAppStore((state) => state.practiceDone);
   const toggleVocabStudied = useAppStore((state) => state.toggleVocabStudied);
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
-
   const [tab, setTab] = useState<PrepTab>('vocab');
 
   const studiedIds = studied[mission.id] ?? [];
@@ -51,21 +50,15 @@ function MissionPrep({ mission }: { mission: Mission }) {
         right={<ChunkyChip label={LEVEL_LABEL[mission.level]} tone={mission.accent} />}
       />
 
-      <View className="gap-2 px-5 pb-2">
+      <View className="gap-3 px-5 pb-3">
         <View className="flex-row items-start gap-1.5">
           <MapPin color={palette.ink} size={13} strokeWidth={2.5} style={{ marginTop: 2 }} />
-          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">
-            {mission.where}
-          </Text>
+          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">{mission.where}</Text>
         </View>
         <StepPager items={TABS} value={tab} onChange={setTab} />
       </View>
 
       <ScrollView contentContainerClassName="gap-3 px-5 pb-6" keyboardShouldPersistTaps="handled">
-        <Text className="text-muted font-display text-[10px] tracking-widest">
-          PREPARED FOR YOUR {LEVEL_LABEL[tier].toUpperCase()} TIER
-        </Text>
-
         {tab === 'vocab' ? (
           <VocabList
             mission={mission}
@@ -88,7 +81,7 @@ function MissionPrep({ mission }: { mission: Mission }) {
               onAllAnswered={() => markPracticeDone(mission.id)}
             />
             {practiceDone[mission.id] ? (
-              <ChunkyCard tone="lime" className="gap-1 px-4 py-3.5">
+              <ChunkyCard tone="lime" offset={3} className="gap-1 px-4 py-3.5">
                 <Text className="text-ink font-display text-[15px]">Practice done</Text>
                 <Text className="text-ink font-body text-[12.5px] leading-[18px]">
                   That is the desk part finished. The rest only happens outside.
@@ -101,7 +94,7 @@ function MissionPrep({ mission }: { mission: Mission }) {
 
       <View className="border-ink bg-cream pb-safe-offset-3 border-t-2 px-5 pt-3">
         <ChunkyButton
-          label="I'm ready — do it for real"
+          label="I'm ready"
           fullWidth
           trailing={<Text className="text-cream font-display text-[15px]">→</Text>}
           onPress={() => router.push(routes.missionDo(mission.id))}

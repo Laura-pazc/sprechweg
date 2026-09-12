@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 
 import { ChunkyIconButton } from '@/components/ChunkyButton';
 import { palette } from '@/lib/theme';
+import { cn } from '@/lib/utils';
 
 export interface StepItem<T extends string = string> {
   id: T;
@@ -15,7 +16,6 @@ interface StepPagerProps<T extends string> {
   onChange: (id: T) => void;
 }
 
-/** Compact arrow pager: one line instead of a full-width segmented control. */
 export function StepPager<T extends string>({ items, value, onChange }: StepPagerProps<T>) {
   const found = items.findIndex((item) => item.id === value);
   const index = found < 0 ? 0 : found;
@@ -27,35 +27,27 @@ export function StepPager<T extends string>({ items, value, onChange }: StepPage
     if (next) onChange(next.id);
   };
 
-  const previous = items[(index - 1 + items.length) % items.length];
-  const upcoming = items[(index + 1) % items.length];
-
   return (
-    <View className="flex-row items-center gap-2">
-      <ChunkyIconButton
-        accessibilityLabel={previous ? `Back to ${previous.label}` : 'Previous section'}
-        onPress={() => step(-1)}
-        size={32}
-      >
-        <ChevronLeft color={palette.ink} size={16} strokeWidth={3} />
-      </ChunkyIconButton>
-
-      <View className="border-ink flex-1 flex-row items-center justify-center gap-2 rounded-full border-2 bg-white px-3 py-1.5">
-        <Text className="text-ink font-display text-[12px] tracking-widest" numberOfLines={1}>
-          {current.label.toUpperCase()}
+    <View className="gap-2">
+      <View className="flex-row items-center gap-2">
+        <ChunkyIconButton accessibilityLabel="Previous prep step" onPress={() => step(-1)} size={30}>
+          <ChevronLeft color={palette.ink} size={15} strokeWidth={3} />
+        </ChunkyIconButton>
+        <Text className="text-ink font-strong flex-1 text-center text-[13px] leading-[18px]">
+          {current.label}
         </Text>
-        <Text className="text-muted font-display text-[10px] tracking-widest">
-          {index + 1}/{items.length}
-        </Text>
+        <ChunkyIconButton accessibilityLabel="Next prep step" onPress={() => step(1)} size={30}>
+          <ChevronRight color={palette.ink} size={15} strokeWidth={3} />
+        </ChunkyIconButton>
       </View>
-
-      <ChunkyIconButton
-        accessibilityLabel={upcoming ? `On to ${upcoming.label}` : 'Next section'}
-        onPress={() => step(1)}
-        size={32}
-      >
-        <ChevronRight color={palette.ink} size={16} strokeWidth={3} />
-      </ChunkyIconButton>
+      <View className="flex-row justify-center gap-2" accessibilityLabel={`Step ${index + 1} of ${items.length}`}>
+        {items.map((item, itemIndex) => (
+          <View
+            key={item.id}
+            className={cn('h-2 rounded-full', itemIndex === index ? 'bg-royal w-6' : 'bg-muted/30 w-2')}
+          />
+        ))}
+      </View>
     </View>
   );
 }

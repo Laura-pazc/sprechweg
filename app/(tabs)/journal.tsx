@@ -81,7 +81,7 @@ export default function JournalScreen() {
               showBack={false}
               kicker="Journal"
               title="What actually happened"
-              subtitle="Two prompts and a quick recall check after every mission. One entry a day keeps your streak."
+              subtitle="A lighter record of what happened, one thought at a time."
             />
             <StreakCard
               streakCount={streakCount}
@@ -94,7 +94,7 @@ export default function JournalScreen() {
                   “{pending.title}” is waiting for a write-up
                 </Text>
                 <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-                  Do it now while the details are fresh — the recall quiz uses the words you ticked.
+                  Add a note while the details are still fresh.
                 </Text>
                 <ChunkyButton
                   label="Write it up"

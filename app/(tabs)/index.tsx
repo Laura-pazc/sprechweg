@@ -1,15 +1,23 @@
 import { router } from 'expo-router';
-import { ArrowRight, Heart, MapPin, Sparkles } from 'lucide-react-native';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import {
+  CalendarDays,
+  ChevronDown,
+  ChevronUp,
+  ExternalLink,
+  Heart,
+  MapPin,
+  Sparkles,
+} from 'lucide-react-native';
+import { useState } from 'react';
+import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 
-import { ChunkyIconButton } from '@/components/ChunkyButton';
+import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { ChunkyChip } from '@/components/ChunkyChip';
 import { MissionCard } from '@/components/MissionCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { SectionHeading } from '@/components/SectionHeading';
-import { momentumFor } from '@/lib/content';
 import { COMMUNITY_QUOTES, MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { confidencePercent, nextMission } from '@/lib/progress';
@@ -17,7 +25,10 @@ import { useAppStore } from '@/lib/store';
 import { palette } from '@/lib/theme';
 import { dayKey, hashString } from '@/lib/utils';
 
+const HAMBURG_EVENTS_URL = 'https://www.hamburg-travel.com/see-explore/events/events-calendar/';
+
 export default function TodayScreen() {
+  const [showMore, setShowMore] = useState(false);
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
@@ -34,10 +45,9 @@ export default function TodayScreen() {
     studied,
     journalCount: entries.length,
   });
-
   const upNext = nextMission(level, statuses);
-  const momentum = momentumFor(upNext);
-
+  const otherMissions = MISSIONS.filter((mission) => mission.id !== upNext.id);
+  const completedCount = Object.values(statuses).filter((status) => status === 'done').length;
   const quote = COMMUNITY_QUOTES[hashString(dayKey()) % COMMUNITY_QUOTES.length];
   const hasCheered = cheered.includes(quote.id);
 
@@ -55,94 +65,133 @@ export default function TodayScreen() {
             onPress={() => router.push(routes.howItWorks)}
             className="flex-row items-center gap-2 py-1"
           >
-            <Text className="text-ink font-strong border-ink border-b-2 text-[14px]">
+            <Text className="text-ink font-strong border-ink border-b-2 text-[13px]">
               How it works
             </Text>
-            <Sparkles color={palette.ink} size={18} strokeWidth={2.25} />
+            <Sparkles color={palette.ink} size={17} strokeWidth={2.25} />
           </Pressable>
         </View>
 
-        <View className="gap-2">
-          <Text className="text-ink font-display text-[30px] leading-[34px]">
-            Hallo, {name || 'friend'}.{'\n'}What feels possible today?
+        <View className="gap-1.5">
+          <Text className="text-ink font-display text-[27px] leading-[31px]">
+            Hallo, {name || 'friend'}. Ready for a small win?
           </Text>
-          <Text className="text-muted font-strong text-[15px] leading-[21px]">
-            Small real-life practice. Bigger everyday confidence.
+          <Text className="text-muted font-strong text-[14px] leading-[20px]">
+            One real-life practice is enough for today.
           </Text>
         </View>
 
-        <ProgressBar label="Your confidence: trying it outside" value={confidence} />
-
-        <View className="gap-4">
-          <SectionHeading
-            title="Pick a real-life mission"
-            actionLabel={`See all ${MISSIONS.length}`}
-            onActionPress={() => router.push(routes.missions)}
+        <View className="gap-3">
+          <View className="flex-row items-end justify-between gap-3">
+            <View className="gap-0.5">
+              <Text className="text-muted font-display text-[10px] tracking-widest">UP NEXT</Text>
+              <Text className="text-ink font-display text-[19px]">Your 5-minute win</Text>
+            </View>
+            <Text className="text-muted font-strong text-[12px]">
+              {completedCount} {completedCount === 1 ? 'mission' : 'missions'} completed
+            </Text>
+          </View>
+          <MissionCard
+            featured
+            mission={upNext}
+            status={statuses[upNext.id] ?? 'not_started'}
+            onPress={() => router.push(routes.missionPrep(upNext.id))}
           />
-          {MISSIONS.map((mission) => (
-            <MissionCard
-              key={mission.id}
-              mission={mission}
-              status={statuses[mission.id] ?? 'not_started'}
-              onPress={() => router.push(routes.missionPrep(mission.id))}
-            />
-          ))}
+          <ChunkyButton
+            label="Practice for 5 min"
+            fullWidth
+            onPress={() => router.push(routes.missionPrep(upNext.id))}
+          />
         </View>
 
-        <ChunkyCard tone="paper" className="gap-3 px-4 py-4">
-          <Text className="text-ink font-display text-[19px]">Keep your momentum</Text>
-          <View className="flex-row items-center gap-3">
-            <View className="border-ink bg-lime h-14 w-14 items-center justify-center rounded-2xl border-2">
-              <Text className="text-[24px]">{momentum.emoji}</Text>
+        <View className="gap-3">
+          <SectionHeading title="Happening in Hamburg" />
+          <ChunkyCard tone="paper" offset={3} className="gap-3 px-4 py-4">
+            <View className="flex-row items-start gap-3">
+              <View className="bg-sky h-10 w-10 items-center justify-center rounded-full">
+                <CalendarDays color={palette.ink} size={20} strokeWidth={2.4} />
+              </View>
+              <View className="flex-1 gap-1">
+                <Text className="text-ink font-display text-[16px]">Find something happening today</Text>
+                <Text className="text-muted font-body text-[13px] leading-[18px]">
+                  Live event cards need a secure feed connection. Until then, browse the official Hamburg calendar.
+                </Text>
+              </View>
             </View>
-            <View className="flex-1 gap-0.5">
-              <Text className="text-ink font-display text-[15.5px] leading-[20px]">
-                {momentum.title}
-              </Text>
-              <Text className="text-muted font-body text-[13px] leading-[18px]">
-                {momentum.detail}
-              </Text>
-            </View>
-            <ChunkyIconButton
-              accessibilityLabel={`Open prep for ${upNext.title}`}
-              tone="royal"
-              size={42}
-              onPress={() => router.push(routes.missionPrep(upNext.id))}
-            >
-              <ArrowRight color={palette.cream} size={20} strokeWidth={2.5} />
-            </ChunkyIconButton>
-          </View>
-        </ChunkyCard>
-
-        <ChunkyCard tone="sunny" className="gap-3 px-4 py-4">
-          <Text className="text-ink font-display text-[19px]">Your people are trying too</Text>
-          <Text className="text-ink font-display text-[26px] leading-[26px]">“</Text>
-          <Text className="text-ink font-strong text-[15px] leading-[22px]">{quote.text}</Text>
-          <View className="flex-row items-center gap-2.5">
-            <View className="border-ink h-8 w-8 items-center justify-center rounded-full border-2 bg-white">
-              <Text className="text-ink font-display text-[13px]">{quote.author.charAt(0)}</Text>
-            </View>
-            <Text className="text-ink font-strong text-[13.5px]">
-              {quote.author} · {quote.city}
-            </Text>
-          </View>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityState={{ selected: hasCheered }}
-            onPress={() => toggleCheer(quote.id)}
-            className="border-ink flex-row items-center gap-2 self-start rounded-full border-2 bg-white px-3.5 py-2"
-          >
-            <Heart
-              color={palette.ink}
-              fill={hasCheered ? palette.magenta : 'transparent'}
-              size={16}
-              strokeWidth={2.5}
+            <ChunkyButton
+              label="Open Hamburg events"
+              variant="paper"
+              size="sm"
+              trailing={<ExternalLink color={palette.ink} size={15} strokeWidth={2.5} />}
+              onPress={() => void Linking.openURL(HAMBURG_EVENTS_URL)}
             />
-            <Text className="text-ink font-strong text-[13px]">
-              {quote.cheers + (hasCheered ? 1 : 0)} people cheered this on
-            </Text>
-          </Pressable>
-        </ChunkyCard>
+          </ChunkyCard>
+        </View>
+
+        <Pressable
+          accessibilityRole="button"
+          accessibilityState={{ expanded: showMore }}
+          onPress={() => setShowMore((value) => !value)}
+          className="flex-row items-center justify-center gap-2 py-2"
+        >
+          <Text className="text-ink font-display text-[14px]">
+            {showMore ? 'Show less' : 'See more'}
+          </Text>
+          {showMore ? (
+            <ChevronUp color={palette.ink} size={18} strokeWidth={2.7} />
+          ) : (
+            <ChevronDown color={palette.ink} size={18} strokeWidth={2.7} />
+          )}
+        </Pressable>
+
+        {showMore ? (
+          <View className="gap-5">
+            <ProgressBar label="Your confidence: trying it outside" value={confidence} />
+
+            <View className="gap-3">
+              <SectionHeading
+                title="More missions"
+                actionLabel="See all"
+                onActionPress={() => router.push(routes.missions)}
+              />
+              {otherMissions.map((mission) => (
+                <MissionCard
+                  key={mission.id}
+                  mission={mission}
+                  status={statuses[mission.id] ?? 'not_started'}
+                  onPress={() => router.push(routes.missionPrep(mission.id))}
+                />
+              ))}
+            </View>
+
+            <ChunkyCard tone="sunny" offset={3} className="gap-3 px-4 py-4">
+              <Text className="text-ink font-display text-[17px]">Your people are trying too</Text>
+              <Text className="text-ink font-strong text-[14px] leading-[20px]">“{quote.text}”</Text>
+              <View className="flex-row items-center justify-between gap-3">
+                <Text className="text-ink font-strong text-[12.5px]">
+                  {quote.author} · {quote.city}
+                </Text>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: hasCheered }}
+                  accessibilityLabel="Cheer this story"
+                  onPress={() => toggleCheer(quote.id)}
+                  className="border-ink flex-row items-center gap-1.5 rounded-full border-2 bg-white px-3 py-2"
+                >
+                  <Heart
+                    color={palette.ink}
+                    fill={hasCheered ? palette.magenta : 'transparent'}
+                    size={15}
+                    strokeWidth={2.5}
+                  />
+                  <Text className="text-ink font-strong text-[12px]">
+                    {quote.cheers + (hasCheered ? 1 : 0)}
+                  </Text>
+                </Pressable>
+              </View>
+            </ChunkyCard>
+          </View>
+        ) : null}
       </ScrollView>
     </Screen>
   );
