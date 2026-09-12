@@ -161,6 +161,26 @@ const resources = {
         noResults: 'No missions found',
         noResultsBody: 'No missions match your search. Try different keywords or clear filters.',
         noResultsCompact: 'No missions match. Try different keywords or clear filters.',
+        allMissions: 'All Missions',
+        autumn: {
+          title: 'Autumn Special Edition',
+          subtitle: 'Three C1 missions, one seasonal theme',
+          season: 'SEPT–NOV',
+          leafIcon: 'Autumn leaf',
+          accessibilityLabel:
+            'Autumn Special Edition: three C1 missions in one seasonal collection.',
+          cardAccessibility:
+            '{{title}} mission. C1 level, {{minutes}} minutes. Mission {{position}} of {{count}}. Tap to open.',
+          minutes: '{{count}} min',
+          start: 'START MISSION',
+          continue: 'CONTINUE',
+          review: 'REVIEW',
+          completed: 'Completed',
+          previous: 'Previous autumn mission',
+          next: 'Next autumn mission',
+          dotAccessibility: 'Show autumn mission {{position}} of {{count}}',
+          swipeHint: 'Swipe or use the controls to explore all three',
+        },
         fixed: 'FIXED CONTENT',
         fixedBody:
           'Every mission is authored, not generated. What changes per learner is the prep inside it: which phrases lead, how much English shows, and the questions you get afterwards.',
@@ -373,6 +393,26 @@ const resources = {
         noResultsBody:
           'Keine Mission passt zu deiner Suche. Probiere andere Wörter oder lösche die Filter.',
         noResultsCompact: 'Keine Mission passt. Probiere andere Wörter oder lösche die Filter.',
+        allMissions: 'Alle Missionen',
+        autumn: {
+          title: 'Herbst-Sonderedition',
+          subtitle: 'Drei C1-Missionen, ein saisonales Thema',
+          season: 'SEPT.–NOV.',
+          leafIcon: 'Herbstblatt',
+          accessibilityLabel:
+            'Herbst-Sonderedition: drei C1-Missionen in einer saisonalen Sammlung.',
+          cardAccessibility:
+            'Mission {{title}}. Niveau C1, {{minutes}} Minuten. Mission {{position}} von {{count}}. Zum Öffnen antippen.',
+          minutes: '{{count}} Min.',
+          start: 'MISSION STARTEN',
+          continue: 'WEITERMACHEN',
+          review: 'WIEDERHOLEN',
+          completed: 'Erledigt',
+          previous: 'Vorherige Herbstmission',
+          next: 'Nächste Herbstmission',
+          dotAccessibility: 'Herbstmission {{position}} von {{count}} anzeigen',
+          swipeHint: 'Wische oder nutze die Tasten, um alle drei zu entdecken',
+        },
         fixed: 'FESTE INHALTE',
         fixedBody:
           'Jede Mission wurde redaktionell erstellt, nicht generiert. Je nach Person ändert sich die Vorbereitung: welche Sätze zuerst kommen, wie viel Englisch angezeigt wird und welche Fragen danach folgen.',
