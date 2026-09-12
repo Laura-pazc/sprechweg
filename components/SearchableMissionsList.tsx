@@ -222,15 +222,12 @@ export interface SearchableMissionsListProps {
   statuses: Record<string, MissionStatus>;
   userLevel: Level | null;
   onMissionPress: (mission: Mission) => void;
-  specialSection?: ReactNode;
-  specialMissionIds?: string[];
+  highlightedMissionIds?: string[];
   footer?: ReactNode;
 }
 
 type MissionListRow =
   | { kind: 'controls' }
-  | { kind: 'special'; content: ReactNode }
-  | { kind: 'heading' }
   | { kind: 'mission'; result: MissionSearchResult }
   | { kind: 'empty' };
 
@@ -239,8 +236,7 @@ export function SearchableMissionsList({
   statuses,
   userLevel,
   onMissionPress,
-  specialSection,
-  specialMissionIds = [],
+  highlightedMissionIds = [],
   footer,
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
@@ -248,18 +244,11 @@ export function SearchableMissionsList({
   const [filtersOpen, setFiltersOpen] = useState(false);
   const activeFilterCount =
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
-  const searchIsActive = search.query.trim().length > 0 || activeFilterCount > 0;
-  const specialIds = new Set(specialMissionIds);
-  const regularResults = searchIsActive
-    ? search.results
-    : search.results.filter(({ mission }) => !specialIds.has(mission.id));
+  const highlightedIds = new Set(highlightedMissionIds);
 
   const rows: MissionListRow[] = [{ kind: 'controls' }];
-  if (!searchIsActive && specialSection) {
-    rows.push({ kind: 'special', content: specialSection }, { kind: 'heading' });
-  }
-  if (regularResults.length > 0) {
-    rows.push(...regularResults.map((result): MissionListRow => ({ kind: 'mission', result })));
+  if (search.results.length > 0) {
+    rows.push(...search.results.map((result): MissionListRow => ({ kind: 'mission', result })));
   } else {
     rows.push({ kind: 'empty' });
   }
@@ -320,16 +309,6 @@ export function SearchableMissionsList({
       );
     }
 
-    if (item.kind === 'special') return <View className="pb-1">{item.content}</View>;
-
-    if (item.kind === 'heading') {
-      return (
-        <View className="border-autumn/50 mt-1 border-t-2 pt-4">
-          <Text className="text-ink font-display text-[18px]">{t('missions.allMissions')}</Text>
-        </View>
-      );
-    }
-
     if (item.kind === 'empty') {
       return (
         <ChunkyCard tone="canvas" offset={4} className="px-4 py-5">
@@ -346,6 +325,7 @@ export function SearchableMissionsList({
         <MissionCard
           mission={item.result.mission}
           status={statuses[item.result.mission.id] ?? 'not_started'}
+          seasonal={highlightedIds.has(item.result.mission.id)}
           onPress={() => onMissionPress(item.result.mission)}
         />
       </View>
