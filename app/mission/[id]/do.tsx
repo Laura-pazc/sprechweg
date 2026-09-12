@@ -36,9 +36,10 @@ function DoMission({ mission }: { mission: Mission }) {
           kicker={t('doMission.kicker')}
           title={mission.title}
           subtitle={mission.where}
+          missionDetail
           backFallback={routes.missionPrep(mission.id)}
           onBack={() => router.replace(routes.missionPrep(mission.id))}
-          right={<MissionStatusBadge status={status} />}
+          titleAccessory={<MissionStatusBadge status={status} />}
         />
 
         <ChunkyCard tone={mission.accent} className="gap-3 px-4 py-4">

@@ -38,6 +38,7 @@ Successfully created a reusable framework for generating language learning missi
 ## Deliverables
 
 ### 1. ✅ MISSION-SCHEMA.md
+
 - Formal specification of mission file structure
 - Defines all 7 required sections (title, metadata, vocabulary, conversation, resources, practice, level-up)
 - File naming conventions: `kb-[scenario-slug]-[level]`
@@ -46,7 +47,9 @@ Successfully created a reusable framework for generating language learning missi
 - Register definitions (practical, friendly, formal)
 
 ### 2. ✅ Mission Generator Skill
+
 **Location:** `.claude/skills/mission-generator/SKILL.md`
+
 - Interactive skill that asks clarifying questions
 - Generates complete, ready-to-use mission files
 - Enforces:
@@ -58,7 +61,9 @@ Successfully created a reusable framework for generating language learning missi
 - Output format matches MISSION-SCHEMA exactly
 
 ### 3. ✅ Validation Script
+
 **Location:** `scripts/validate-missions.js`
+
 - Node.js script to validate mission files
 - Checks:
   - Filename format (`kb-[slug]-[level].md`)
@@ -73,11 +78,13 @@ Successfully created a reusable framework for generating language learning missi
 ### 4. ✅ Mission Library Expansion
 
 #### Renamed Existing Missions (to include CEFR level)
+
 1. `kb-doctor-first-visit-a2` — Medical appointment (A2)
 2. `kb-running-club-first-run-a1-a2` — Joining a running club (A1-A2)
 3. `kb-auslanderbehorde-appointment-a2` — Government agency (A2)
 
 #### New B1 Missions (Intermediate)
+
 1. **kb-job-interview-b1** — First job interview
    - Formal register, past/future tense, subjunctive for B1+
    - Vocabulary: Stelle, Qualifikation, Erfahrung, Lebenslauf, etc.
@@ -103,6 +110,7 @@ Successfully created a reusable framework for generating language learning missi
    - Vocabulary: Laden, Obst, Gemüse, Fisch, fragen nach, etc.
 
 #### New B2 Missions (Upper-Intermediate)
+
 1. **kb-university-orientation-b2** — University enrollment
    - Formal register, complex administrative systems, subjunctive
    - Vocabulary: Universität, Immatrikulation, ECTS, Vorlesung, etc.
@@ -118,11 +126,12 @@ Successfully created a reusable framework for generating language learning missi
 ```
 ✅ 10/10 missions passing validation
 ├─ A1/A2: 3 missions
-├─ B1: 5 missions  
+├─ B1: 5 missions
 └─ B2: 2 missions
 ```
 
 **Command to validate:**
+
 ```bash
 node scripts/validate-missions.js scenarios/
 ```
@@ -178,15 +187,15 @@ language-collective/
 
 ## Quality Metrics
 
-| Metric | Target | Actual |
-|--------|--------|--------|
-| Schema completeness | 100% | ✅ 100% |
-| Validation pass rate | 100% | ✅ 100% (10/10) |
-| A1/A2 coverage | 3+ | ✅ 3 |
-| B1/B2 coverage | 4+ | ✅ 7 |
-| Vocab consistency | 100% | ✅ 100% |
-| Vocabulary per mission | 8 | ✅ 8 |
-| Practice exercises | 5 | ✅ 5 |
+| Metric                 | Target | Actual          |
+| ---------------------- | ------ | --------------- |
+| Schema completeness    | 100%   | ✅ 100%         |
+| Validation pass rate   | 100%   | ✅ 100% (10/10) |
+| A1/A2 coverage         | 3+     | ✅ 3            |
+| B1/B2 coverage         | 4+     | ✅ 7            |
+| Vocab consistency      | 100%   | ✅ 100%         |
+| Vocabulary per mission | 8      | ✅ 8            |
+| Practice exercises     | 5      | ✅ 5            |
 
 ## Technical Notes
 

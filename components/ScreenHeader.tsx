@@ -19,8 +19,12 @@ interface ScreenHeaderProps {
   /** Optional deterministic back action for flows with a known previous screen. */
   onBack?: () => void;
   showBack?: boolean;
-  /** Corner action on the right — status chip, close button, level tag. */
+  /** Corner action on the right — close button, level tag, or other independent action. */
   right?: ReactNode;
+  /** Context attached to the title, such as the current mission status. */
+  titleAccessory?: ReactNode;
+  /** Gives mission-detail headers a quieter kicker and more open title rhythm. */
+  missionDetail?: boolean;
   /** Tighter spacing and smaller type, for content-dense screens like mission prep. */
   compact?: boolean;
   /** Set when the header already sits inside a horizontally padded container. */
@@ -35,6 +39,8 @@ export function ScreenHeader({
   onBack,
   showBack = true,
   right,
+  titleAccessory,
+  missionDetail = false,
   compact = false,
   nested = false,
 }: ScreenHeaderProps) {
@@ -70,26 +76,36 @@ export function ScreenHeader({
           {kicker ? (
             <Text
               className={cn(
-                'text-magenta font-display tracking-widest',
-                compact ? 'text-[10.5px]' : 'text-[12px]',
+                'font-display tracking-widest',
+                missionDetail ? 'text-muted text-[10px]' : 'text-magenta',
+                !missionDetail && (compact ? 'text-[10.5px]' : 'text-[12px]'),
               )}
             >
               {kicker.toUpperCase()}
             </Text>
           ) : null}
-          <Text
-            className={cn(
-              'text-ink font-display',
-              compact ? 'text-[22px] leading-[26px]' : 'text-[24px] leading-[29px]',
-            )}
-          >
-            {title}
-          </Text>
+          <View className={cn(missionDetail && 'gap-2')}>
+            <Text
+              className={cn(
+                'text-ink font-display',
+                compact
+                  ? 'text-[22px] leading-[26px]'
+                  : missionDetail
+                    ? 'text-[24px] leading-[32px]'
+                    : 'text-[24px] leading-[29px]',
+              )}
+            >
+              {title}
+            </Text>
+            {titleAccessory ? <View className="self-start">{titleAccessory}</View> : null}
+          </View>
           {subtitle ? (
             <Text
               className={cn(
-                'text-muted font-strong',
-                compact ? 'text-[13px] leading-[18px]' : 'text-[14px] leading-[20px]',
+                'text-muted',
+                missionDetail ? 'font-ui text-[14px] leading-[21px]' : 'font-strong',
+                !missionDetail &&
+                  (compact ? 'text-[13px] leading-[18px]' : 'text-[14px] leading-[20px]'),
               )}
             >
               {subtitle}
