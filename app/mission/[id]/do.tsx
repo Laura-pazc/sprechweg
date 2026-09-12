@@ -146,7 +146,7 @@ function DoMission({ mission }: { mission: Mission }) {
                 label={t('doMission.writeJournal')}
                 size="lg"
                 fullWidth
-                onPress={() => router.push(routes.missionJournal(mission.id))}
+                onPress={() => router.replace(routes.missionJournal(mission.id))}
               />
               <ChunkyButton
                 label={t('doMission.backToday')}
