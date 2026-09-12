@@ -6,7 +6,6 @@ import { ChunkyCard } from '@/components/ChunkyCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SearchableMissionsList } from '@/components/SearchableMissionsList';
-import { LEVEL_LABEL } from '@/lib/levelChat';
 import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
@@ -24,11 +23,7 @@ export default function MissionsScreen() {
           showBack={false}
           kicker={t('missions.kicker')}
           title={t('missions.title')}
-          subtitle={
-            level === null
-              ? t('missions.subtitleNoLevel')
-              : t('missions.subtitle', { tier: LEVEL_LABEL[level] })
-          }
+          subtitle={t('missions.subtitle')}
         />
       </View>
 
