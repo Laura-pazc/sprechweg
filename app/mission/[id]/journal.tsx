@@ -4,7 +4,6 @@ import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-na
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
-import { ChunkyChip } from '@/components/ChunkyChip';
 import { ChunkyInput } from '@/components/ChunkyInput';
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { RecallQuiz } from '@/components/mission/RecallQuiz';
@@ -76,11 +75,18 @@ function MissionJournal({ mission }: { mission: Mission }) {
         >
           <ScreenHeader
             nested
+            compact
             kicker="Journal"
             title={saved ? 'Saved.' : 'One thought at a time'}
             subtitle={saved ? undefined : reflectionHint(tier)}
             backFallback={routes.journalTab}
-            right={<ChunkyChip label={mission.title} tone={mission.accent} />}
+            right={
+              <View className="border-ink bg-canvas max-w-[132px] rounded-full border px-2.5 py-1.5">
+                <Text className="text-muted font-strong text-[10.5px]" numberOfLines={1}>
+                  {mission.title}
+                </Text>
+              </View>
+            }
           />
 
           {saved ? (
@@ -125,14 +131,34 @@ function MissionJournal({ mission }: { mission: Mission }) {
               </View>
             </View>
           ) : stage === 'reflection' ? (
-            <View className="gap-4">
-              <Text className="text-muted font-display text-[10px] tracking-widest">
-                THOUGHT {reflectionIndex + 1} OF {prompts.length}
-              </Text>
-              <View className="gap-2">
-                <Text className="text-ink font-display text-[20px] leading-[25px]">
-                  {prompts[reflectionIndex]}
+            <View className="gap-4 pt-1">
+              <View className="flex-row items-center gap-3">
+                <Text className="text-muted font-strong text-[11px]">
+                  Thought {reflectionIndex + 1} of {prompts.length}
                 </Text>
+                <View className="flex-1 flex-row gap-1.5" accessibilityRole="progressbar">
+                  {prompts.map((prompt, index) => (
+                    <View
+                      key={`reflection-step-${prompt}`}
+                      className={
+                        index <= reflectionIndex
+                          ? 'bg-royal h-1.5 flex-1 rounded-full'
+                          : 'border-ink bg-canvas h-1.5 flex-1 rounded-full border'
+                      }
+                    />
+                  ))}
+                </View>
+              </View>
+
+              <View className="gap-3">
+                <View className="border-ink bg-sky gap-1.5 rounded-[14px] border-2 px-4 py-4">
+                  <Text className="text-muted font-display text-[10px] tracking-widest">
+                    YOUR PROMPT
+                  </Text>
+                  <Text className="text-ink font-strong text-[21px] leading-[27px]">
+                    {prompts[reflectionIndex]}
+                  </Text>
+                </View>
                 <ChunkyInput
                   value={currentAnswer}
                   onChangeText={(text) =>

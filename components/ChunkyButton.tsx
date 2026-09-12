@@ -83,7 +83,7 @@ export function ChunkyButtonFace({
         className={cn(
           'border-ink flex-row items-center justify-center gap-2 border-2',
           SIZE_BOX[size],
-          disabled ? 'bg-canvas opacity-60' : TONE_BG[tone],
+          disabled ? 'bg-canvas' : TONE_BG[tone],
         )}
         style={{ borderRadius: radius }}
       >
@@ -144,7 +144,7 @@ export function ChunkyButton({
         className={cn(
           'border-ink flex-row items-center justify-center gap-2 border-2',
           SIZE_BOX[size],
-          disabled ? 'bg-canvas opacity-60' : TONE_BG[tone],
+          disabled ? 'bg-canvas' : TONE_BG[tone],
         )}
         style={({ pressed }) => [
           { borderRadius: radius },
