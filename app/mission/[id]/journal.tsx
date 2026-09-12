@@ -67,6 +67,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
           keyboardShouldPersistTaps="handled"
         >
           <ScreenHeader
+            nested
             kicker="Journal"
             title={saved ? 'Logged.' : 'How did it actually go?'}
             subtitle={saved ? undefined : reflectionHint(tier)}

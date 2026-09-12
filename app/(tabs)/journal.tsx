@@ -77,6 +77,7 @@ export default function JournalScreen() {
         ListHeaderComponent={
           <View className="gap-4">
             <ScreenHeader
+              nested
               showBack={false}
               kicker="Journal"
               title="What actually happened"

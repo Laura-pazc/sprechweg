@@ -33,6 +33,7 @@ export default function MissionsScreen() {
         ListHeaderComponent={
           <View className="gap-4">
             <ScreenHeader
+              nested
               showBack={false}
               kicker="Explore"
               title="Real-life missions"

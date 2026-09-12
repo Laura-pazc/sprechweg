@@ -23,6 +23,7 @@ function DoMission({ mission }: { mission: Mission }) {
     <Screen>
       <ScrollView contentContainerClassName="gap-5 px-5 pb-safe-offset-8">
         <ScreenHeader
+          nested
           kicker="Do the mission"
           title={mission.title}
           subtitle={mission.where}

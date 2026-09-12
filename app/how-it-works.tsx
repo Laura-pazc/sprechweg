@@ -66,9 +66,9 @@ export default function HowItWorksScreen() {
             <ChunkyIconButton
               accessibilityLabel="Close"
               onPress={() => goBackOrReplace(routes.today)}
-              size={42}
+              size={36}
             >
-              <X color={palette.ink} size={20} />
+              <X color={palette.ink} size={18} strokeWidth={2.5} />
             </ChunkyIconButton>
           }
         />

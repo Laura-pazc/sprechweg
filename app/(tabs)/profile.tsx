@@ -55,6 +55,7 @@ export default function ProfileScreen() {
     <Screen>
       <ScrollView contentContainerClassName="gap-5 px-5 pb-10">
         <ScreenHeader
+          nested
           showBack={false}
           kicker="Your progress"
           title={name ? `${name}'s Hamburg run` : 'Your Hamburg run'}
