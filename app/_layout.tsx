@@ -156,9 +156,9 @@ export default function RootLayout() {
 
   return (
     <I18nextProvider i18n={i18n}>
+      <LocaleSync />
       <GestureHandlerRootView style={{ flex: 1 }}>
         <HeroUINativeProvider>
-          <LocaleSync />
           <Stack
             screenOptions={{
               headerShown: false,
