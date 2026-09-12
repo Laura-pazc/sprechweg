@@ -8,7 +8,7 @@ import { MissionMissing } from '@/components/mission/MissionMissing';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { getMission } from '@/lib/missions';
-import { goBackOrReplace, routes } from '@/lib/navigation';
+import { routes } from '@/lib/navigation';
 import { STATUS_LABEL } from '@/lib/progress';
 import { useAppStore } from '@/lib/store';
 import type { Mission } from '@/lib/types';
@@ -77,20 +77,12 @@ function DoMission({ mission }: { mission: Mission }) {
 
         <View className="gap-2">
           {status === 'not_started' ? (
-            <>
-              <ChunkyButton
-                label="I'm heading out now"
-                size="lg"
-                fullWidth
-                onPress={() => setStatus(mission.id, 'in_progress')}
-              />
-              <ChunkyButton
-                label="Back to prep"
-                variant="paper"
-                fullWidth
-                onPress={() => goBackOrReplace(routes.missionPrep(mission.id))}
-              />
-            </>
+            <ChunkyButton
+              label="I'm heading out now"
+              size="lg"
+              fullWidth
+              onPress={() => setStatus(mission.id, 'in_progress')}
+            />
           ) : null}
 
           {status === 'in_progress' ? (
