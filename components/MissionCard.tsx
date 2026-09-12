@@ -1,9 +1,9 @@
 import { MapPin } from 'lucide-react-native';
 import { Text, View } from 'react-native';
-import { useTranslation } from 'react-i18next';
 
 import { ChunkyPressableCard } from '@/components/ChunkyCard';
-import { DoneMark, MissionIcon } from '@/components/MissionIcon';
+import { MissionMetaBadges, MissionStatusBadge } from '@/components/MissionBadges';
+import { MissionIcon } from '@/components/MissionIcon';
 import { palette } from '@/lib/theme';
 import type { Mission, MissionStatus } from '@/lib/types';
 
@@ -15,10 +15,6 @@ interface MissionCardProps {
 }
 
 export function MissionCard({ mission, status, onPress, featured = false }: MissionCardProps) {
-  const { t } = useTranslation();
-  const note =
-    status === 'in_progress' ? t('common.inProgress') : status === 'done' ? t('common.done') : null;
-
   return (
     <ChunkyPressableCard
       tone={featured ? mission.accent : 'paper'}
@@ -30,24 +26,9 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
     >
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-1">
-          <View className="flex-row items-center gap-2">
-            <View className={featured ? 'rounded-full bg-white/70 px-2 py-1' : undefined}>
-              <Text
-                className={
-                  featured
-                    ? 'text-ink font-display text-[10px] tracking-widest'
-                    : 'text-muted font-display text-[10px] tracking-widest'
-                }
-              >
-                {mission.minutes} {t('common.minutesShort')}
-              </Text>
-            </View>
-            {note ? (
-              <View className="flex-row items-center gap-1">
-                {status === 'done' ? <DoneMark size={14} /> : null}
-                <Text className="text-ink font-strong text-[11px]">{note}</Text>
-              </View>
-            ) : null}
+          <View className="flex-row flex-wrap items-center gap-2">
+            <MissionMetaBadges mission={mission} />
+            {status !== 'not_started' ? <MissionStatusBadge status={status} /> : null}
           </View>
           <Text
             className={

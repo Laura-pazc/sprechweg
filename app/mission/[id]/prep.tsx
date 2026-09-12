@@ -6,6 +6,7 @@ import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
+import { MissionMetaBadges, MissionStatusBadge } from '@/components/MissionBadges';
 import { ConversationSim } from '@/components/mission/ConversationSim';
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
@@ -25,7 +26,9 @@ export default function MissionPrepScreen() {
   const router = useRouter();
   const { t } = useTranslation();
   const mission = useMemo(() => getMission(id), [id]);
+  const statuses = useAppStore((state) => state.statuses);
   const studied = useAppStore((state) => (id ? state.studied[id] : undefined));
+  const practiceComplete = useAppStore((state) => (id ? state.practiceDone[id] : false));
   const learnerLevel = useAppStore((state) => state.level);
   const toggleVocabStudied = useAppStore((state) => state.toggleVocabStudied);
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
@@ -44,7 +47,7 @@ export default function MissionPrepScreen() {
   ];
 
   const selectedVocab = studied ?? [];
-  const levelLabel = t(`levels.${mission.level}`);
+  const missionStatus = statuses[mission.id] ?? 'not_started';
 
   const changeStep = (nextStep: PrepStep) => {
     if (nextStep !== 'intro') setStatus(mission.id, 'in_progress');
@@ -79,16 +82,10 @@ export default function MissionPrepScreen() {
             </Text>
 
             <View className="mt-3 flex-row flex-wrap items-center gap-2">
-              <View className="border-ink rounded-full border-2 bg-white/70 px-2.5 py-1">
-                <Text className="text-ink font-strong text-[10px] tracking-[1px] uppercase">
-                  {mission.category} · {mission.minutes} {t('common.minutesShort')}
-                </Text>
-              </View>
-              <View className="border-ink bg-lime rounded-full border-2 px-2.5 py-1">
-                <Text className="text-ink font-display text-[10px] tracking-[1px] uppercase">
-                  {levelLabel}
-                </Text>
-              </View>
+              <MissionMetaBadges mission={mission} />
+              {missionStatus !== 'not_started' ? (
+                <MissionStatusBadge status={missionStatus} />
+              ) : null}
             </View>
 
             <View className="border-ink mt-3 flex-row items-start gap-2 rounded-2xl border-2 bg-white/75 px-3 py-2">
@@ -100,19 +97,11 @@ export default function MissionPrepScreen() {
           </ChunkyCard>
         ) : (
           <View className="px-2">
-            <View className="flex-row flex-wrap items-center gap-2">
-              <Text className="text-ink font-display mr-auto text-[21px] leading-6">
-                {mission.title}
-              </Text>
-              <View className="border-ink bg-lime rounded-full border-2 px-2.5 py-1">
-                <Text className="text-ink font-display text-[10px] tracking-[1px] uppercase">
-                  {levelLabel}
-                </Text>
-              </View>
+            <Text className="text-ink font-display text-[21px] leading-6">{mission.title}</Text>
+            <View className="mt-2 flex-row flex-wrap items-center gap-2">
+              <MissionMetaBadges mission={mission} />
+              <MissionStatusBadge status={missionStatus} />
             </View>
-            <Text className="text-muted font-strong mt-1 text-[10px] tracking-[1.2px] uppercase">
-              {mission.category} · {mission.minutes} {t('common.minutesShort')}
-            </Text>
           </View>
         )}
 
@@ -151,6 +140,13 @@ export default function MissionPrepScreen() {
                 selected={selectedVocab}
                 onToggle={(vocabId) => toggleVocabStudied(mission.id, vocabId)}
               />
+              <ChunkyButton
+                className="mt-5"
+                fullWidth
+                label={t('prep.continueConversation')}
+                onPress={() => changeStep('conversation')}
+                trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
+              />
             </View>
           ) : null}
 
@@ -173,15 +169,18 @@ export default function MissionPrepScreen() {
               </Text>
               <PracticeQuiz
                 questions={mission.practiceQuestions}
+                initiallyComplete={practiceComplete}
                 onAllAnswered={() => markPracticeDone(mission.id)}
               />
-              <ChunkyButton
-                className="mt-5"
-                fullWidth
-                label={t('prep.startMission')}
-                onPress={beginMission}
-                trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
-              />
+              {practiceComplete ? (
+                <ChunkyButton
+                  className="mt-5"
+                  fullWidth
+                  label={t('prep.startMission')}
+                  onPress={beginMission}
+                  trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
+                />
+              ) : null}
             </View>
           ) : null}
         </ScrollView>

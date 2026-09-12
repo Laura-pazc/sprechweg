@@ -1,5 +1,11 @@
 import type { ReactNode } from 'react';
-import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
+import {
+  Pressable,
+  View,
+  type AccessibilityState,
+  type StyleProp,
+  type ViewStyle,
+} from 'react-native';
 
 import { cn } from '@/lib/utils';
 
@@ -96,6 +102,7 @@ export function ChunkyCard({
 export interface ChunkyPressableCardProps extends ChunkyCardProps {
   onPress: () => void;
   accessibilityLabel?: string;
+  accessibilityState?: AccessibilityState;
 }
 
 /** Same surface as ChunkyCard, but the whole card presses into its shadow. */
@@ -107,6 +114,7 @@ export function ChunkyPressableCard({
   style,
   onPress,
   accessibilityLabel,
+  accessibilityState,
   children,
 }: ChunkyPressableCardProps) {
   return (
@@ -115,6 +123,7 @@ export function ChunkyPressableCard({
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel}
+        accessibilityState={accessibilityState}
         onPress={onPress}
         className={cn('border-ink overflow-hidden border-2', TONE_BG[tone], className)}
         style={({ pressed }) => [
