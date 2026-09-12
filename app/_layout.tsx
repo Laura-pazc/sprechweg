@@ -21,7 +21,6 @@ import {
   SplashScreen,
   Stack,
 } from 'expo-router';
-import { I18nextProvider } from 'react-i18next';
 
 import i18n from '@/lib/i18n';
 import { initPostHog } from '@/lib/posthog';
@@ -155,29 +154,27 @@ export default function RootLayout() {
   }
 
   return (
-    <I18nextProvider i18n={i18n}>
-      <LocaleSync />
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <HeroUINativeProvider>
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: { backgroundColor: palette.cream },
-            }}
-          >
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
-            <Stack.Screen name="level-result" options={{ gestureEnabled: false }} />
-            <Stack.Screen name="mission/[id]/prep" />
-            <Stack.Screen name="mission/[id]/do" />
-            <Stack.Screen name="mission/[id]/journal" />
-            <Stack.Screen name="journal/new" />
-            <Stack.Screen name="how-it-works" options={{ presentation: 'modal' }} />
-            <Stack.Screen name="settings" />
-          </Stack>
-          <InstallPrompt />
-        </HeroUINativeProvider>
-      </GestureHandlerRootView>
-    </I18nextProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <HeroUINativeProvider>
+        <LocaleSync />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: palette.cream },
+          }}
+        >
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="level-result" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="mission/[id]/prep" />
+          <Stack.Screen name="mission/[id]/do" />
+          <Stack.Screen name="mission/[id]/journal" />
+          <Stack.Screen name="journal/new" />
+          <Stack.Screen name="how-it-works" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="settings" />
+        </Stack>
+        <InstallPrompt />
+      </HeroUINativeProvider>
+    </GestureHandlerRootView>
   );
 }
