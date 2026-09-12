@@ -79,7 +79,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
             kicker="Journal"
             title={saved ? 'Saved.' : 'One thought at a time'}
             subtitle={saved ? undefined : reflectionHint(tier)}
-            backFallback={routes.journalTab}
+            onBack={() => router.replace(routes.missionDo(mission.id))}
             right={
               <View className="border-ink bg-canvas max-w-[132px] rounded-full border px-2.5 py-1.5">
                 <Text className="text-muted font-strong text-[10.5px]" numberOfLines={1}>
