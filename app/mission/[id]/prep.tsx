@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ArrowLeft, MapPin } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
@@ -13,9 +13,8 @@ import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
 import { VocabList } from '@/components/mission/VocabList';
 import { Screen } from '@/components/Screen';
 import { StepPager, type StepPagerItem } from '@/components/StepPager';
-import { getMission } from '@/lib/missions';
 import { goBackOrReplace, routes } from '@/lib/navigation';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 
 const STEP_VALUES = ['intro', 'vocab', 'conversation', 'practice'] as const;
@@ -25,7 +24,8 @@ export default function MissionPrepScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const { t } = useTranslation();
-  const mission = useMemo(() => getMission(id), [id]);
+  const hydrated = useAppStore((state) => state.hydrated);
+  const mission = useMission(id);
   const statuses = useAppStore((state) => state.statuses);
   const studied = useAppStore((state) => (id ? state.studied[id] : undefined));
   const practiceComplete = useAppStore((state) => (id ? state.practiceDone[id] : false));
@@ -34,6 +34,10 @@ export default function MissionPrepScreen() {
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
   const setStatus = useAppStore((state) => state.setStatus);
   const [step, setStep] = useState<PrepStep>('intro');
+
+  if (!hydrated) {
+    return <Screen />;
+  }
 
   if (!mission) {
     return <MissionMissing />;

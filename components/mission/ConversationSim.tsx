@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -12,18 +13,19 @@ interface ConversationSimProps {
 }
 
 export function ConversationSim({ lines, initialShowEnglish }: ConversationSimProps) {
+  const { t } = useTranslation();
   const [showEnglish, setShowEnglish] = useState(initialShowEnglish);
 
   return (
     <View className="gap-2.5">
       <View className="flex-row items-center justify-between gap-3">
         <Text className="text-muted font-strong flex-1 text-[12px] leading-[17px]">
-          One likely version of the exchange. Read your lines out loud before you go.
+          {t('conversation.hint')}
         </Text>
         <Pressable
           accessibilityRole="switch"
           accessibilityState={{ checked: showEnglish }}
-          accessibilityLabel="Show English glosses"
+          accessibilityLabel={t('conversation.toggleLabel')}
           onPress={() => setShowEnglish((value) => !value)}
           className={cn(
             'border-ink rounded-full border-2 px-2.5 py-1.5',
@@ -31,7 +33,7 @@ export function ConversationSim({ lines, initialShowEnglish }: ConversationSimPr
           )}
         >
           <Text className="text-ink font-display text-[10.5px] tracking-wide">
-            {showEnglish ? 'ENGLISH ON' : 'ENGLISH OFF'}
+            {showEnglish ? t('conversation.englishOn') : t('conversation.englishOff')}
           </Text>
         </Pressable>
       </View>
@@ -42,7 +44,7 @@ export function ConversationSim({ lines, initialShowEnglish }: ConversationSimPr
           return (
             <View key={line.id} className={cn('w-full', mine ? 'items-end' : 'items-start')}>
               <Text className="text-muted font-display mb-0.5 text-[9.5px] tracking-widest">
-                {mine ? 'YOU' : 'THEM'}
+                {mine ? t('conversation.you') : t('conversation.them')}
               </Text>
               <ChunkyCard
                 tone={mine ? 'lime' : 'paper'}

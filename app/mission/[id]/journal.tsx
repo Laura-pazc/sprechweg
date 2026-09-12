@@ -1,5 +1,6 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
@@ -10,14 +11,14 @@ import { RecallQuiz } from '@/components/mission/RecallQuiz';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { buildRecallQuiz, buildReflectionPrompts, reflectionHint } from '@/lib/content';
-import { getMission } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, useMission } from '@/lib/store';
 import type { Mission } from '@/lib/types';
 
 type JournalStage = 'reflection' | 'recall';
 
 function MissionJournal({ mission }: { mission: Mission }) {
+  const { t } = useTranslation();
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const studied = useAppStore((state) => state.studied);
@@ -85,8 +86,8 @@ function MissionJournal({ mission }: { mission: Mission }) {
           <ScreenHeader
             nested
             compact
-            kicker="Journal"
-            title={saved ? 'Saved.' : 'One thought at a time'}
+            kicker={t('journal.kicker')}
+            title={saved ? t('missionJournal.savedTitle') : t('missionJournal.title')}
             subtitle={saved ? undefined : reflectionHint(tier)}
             onBack={() => router.replace(routes.missionDo(mission.id))}
             right={
@@ -102,11 +103,14 @@ function MissionJournal({ mission }: { mission: Mission }) {
             <View className="gap-5">
               <ChunkyCard tone="lime" className="gap-2 px-4 py-5">
                 <Text className="text-ink font-display text-[22px] leading-[27px]">
-                  {streakCount} {streakCount === 1 ? 'day' : 'days'} in a row
+                  {t('missionJournal.streak', { count: streakCount })}
                 </Text>
                 <Text className="text-ink font-body text-[14px] leading-[21px]">
-                  Entry saved and “{mission.title}” is marked done. Recall quiz: {savedScore} of{' '}
-                  {questions.length}.
+                  {t('missionJournal.entrySaved', {
+                    title: mission.title,
+                    score: savedScore,
+                    total: questions.length,
+                  })}
                 </Text>
               </ChunkyCard>
 
@@ -116,7 +120,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
                 </View>
                 <View className="flex-1 gap-0.5">
                   <Text className="text-muted font-display text-[11px] tracking-widest">
-                    BADGE EARNED
+                    {t('missionJournal.badgeEarned')}
                   </Text>
                   <Text className="text-ink font-display text-[17px]">{mission.badge.title}</Text>
                   <Text className="text-ink font-body text-[13px] leading-[19px]">
@@ -127,12 +131,12 @@ function MissionJournal({ mission }: { mission: Mission }) {
 
               <View className="gap-2">
                 <ChunkyButton
-                  label="Back to today"
+                  label={t('doMission.backToday')}
                   fullWidth
                   onPress={() => router.replace(routes.today)}
                 />
                 <ChunkyButton
-                  label="See my progress"
+                  label={t('missionJournal.seeProgress')}
                   variant="paper"
                   fullWidth
                   onPress={() => router.replace(routes.profile)}
@@ -143,7 +147,10 @@ function MissionJournal({ mission }: { mission: Mission }) {
             <View className="gap-4 pt-1">
               <View className="flex-row items-center gap-3">
                 <Text className="text-muted font-strong text-[11px]">
-                  Thought {reflectionIndex + 1} of {prompts.length}
+                  {t('missionJournal.thoughtCount', {
+                    current: reflectionIndex + 1,
+                    total: prompts.length,
+                  })}
                 </Text>
                 <View className="flex-1 flex-row gap-1.5" accessibilityRole="progressbar">
                   {prompts.map((prompt, index) => (
@@ -162,7 +169,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
               <View className="gap-3">
                 <View className="border-ink bg-sky gap-1.5 rounded-[14px] border-2 px-4 py-4">
                   <Text className="text-muted font-display text-[10px] tracking-widest">
-                    YOUR PROMPT
+                    {t('missionJournal.yourPrompt')}
                   </Text>
                   <Text className="text-ink font-strong text-[21px] leading-[27px]">
                     {prompts[reflectionIndex]}
@@ -179,8 +186,8 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   }
                   placeholder={
                     reflectionIndex === 0
-                      ? 'Take a moment. What did you notice, feel, or do?'
-                      : 'Add another thought, if you’d like…'
+                      ? t('missionJournal.firstThoughtPlaceholder')
+                      : t('missionJournal.nextThoughtPlaceholder')
                   }
                   multiline
                   className="min-h-[220px] px-4 py-4"
@@ -189,14 +196,18 @@ function MissionJournal({ mission }: { mission: Mission }) {
               </View>
               <View className="gap-2">
                 <ChunkyButton
-                  label={isLastPrompt ? 'Continue to recall' : 'Next thought'}
+                  label={
+                    isLastPrompt
+                      ? t('missionJournal.continueToRecall')
+                      : t('missionJournal.nextThought')
+                  }
                   fullWidth
                   disabled={reflectionIndex === 0 && currentAnswer.trim().length === 0}
                   onPress={continueReflection}
                 />
                 {reflectionIndex > 0 && currentAnswer.trim().length === 0 ? (
                   <ChunkyButton
-                    label="Skip this one"
+                    label={t('missionJournal.skipThisOne')}
                     variant="quiet"
                     fullWidth
                     onPress={continueReflection}
@@ -207,9 +218,11 @@ function MissionJournal({ mission }: { mission: Mission }) {
           ) : (
             <View className="gap-4">
               <View className="gap-1">
-                <Text className="text-ink font-display text-[20px]">A quick recall</Text>
+                <Text className="text-ink font-display text-[20px]">
+                  {t('missionJournal.quickRecall')}
+                </Text>
                 <Text className="text-muted font-body text-[13px] leading-[18px]">
-                  One word at a time. No score is shown while you answer.
+                  {t('missionJournal.quickRecallBody')}
                 </Text>
               </View>
               <RecallQuiz
@@ -226,7 +239,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
                 revealed={false}
               />
               <ChunkyButton
-                label={isLastRecall ? 'Save entry' : 'Next word'}
+                label={isLastRecall ? t('missionJournal.saveEntry') : t('missionJournal.nextWord')}
                 fullWidth
                 disabled={currentSelection === null}
                 onPress={isLastRecall ? save : () => setRecallIndex((index) => index + 1)}
@@ -241,8 +254,10 @@ function MissionJournal({ mission }: { mission: Mission }) {
 
 export default function MissionJournalScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
-  const mission = getMission(id);
+  const hydrated = useAppStore((state) => state.hydrated);
+  const mission = useMission(id);
 
+  if (!hydrated) return <Screen />;
   if (!mission) return <MissionMissing />;
   return <MissionJournal mission={mission} />;
 }

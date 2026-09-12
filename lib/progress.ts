@@ -1,7 +1,7 @@
-import { MISSIONS } from '@/lib/missions';
 import type { Level, Mission, MissionStatus } from '@/lib/types';
 
 interface ProgressInput {
+  missions: Mission[];
   level: Level | null;
   statuses: Record<string, MissionStatus>;
   practiceDone: Record<string, boolean>;
@@ -14,6 +14,7 @@ interface ProgressInput {
  * score. Fixed weights: prep counts a little, going outside counts most.
  */
 export function confidencePercent({
+  missions,
   level,
   statuses,
   practiceDone,
@@ -31,7 +32,7 @@ export function confidencePercent({
   const practicePart =
     (Math.min(practiceCount, confidenceMissionTarget) / confidenceMissionTarget) * 15;
 
-  const doneCount = MISSIONS.filter((mission) => statuses[mission.id] === 'done').length;
+  const doneCount = missions.filter((mission) => statuses[mission.id] === 'done').length;
   const missionPart = (Math.min(doneCount, confidenceMissionTarget) / confidenceMissionTarget) * 40;
 
   const journalPart =
@@ -40,28 +41,22 @@ export function confidencePercent({
   return Math.min(100, Math.round(base + vocabPart + practicePart + missionPart + journalPart));
 }
 
-export function nextMission(level: Level | null, statuses: Record<string, MissionStatus>): Mission {
-  const inProgress = MISSIONS.find((mission) => statuses[mission.id] === 'in_progress');
+export function nextMission(
+  missions: Mission[],
+  level: Level | null,
+  statuses: Record<string, MissionStatus>,
+): Mission {
+  const inProgress = missions.find((mission) => statuses[mission.id] === 'in_progress');
   if (inProgress) return inProgress;
 
   const levelOrder: Level[] = ['beginner', 'intermediate', 'advanced'];
   const startIndex = level === null ? 0 : levelOrder.indexOf(level);
 
-  const atLevel = MISSIONS.find(
+  const atLevel = missions.find(
     (mission) => mission.level === levelOrder[startIndex] && statuses[mission.id] !== 'done',
   );
   if (atLevel) return atLevel;
 
-  const anyOpen = MISSIONS.find((mission) => statuses[mission.id] !== 'done');
-  return anyOpen ?? MISSIONS[0];
+  const anyOpen = missions.find((mission) => statuses[mission.id] !== 'done');
+  return anyOpen ?? missions[0];
 }
-
-export function earnedBadges(statuses: Record<string, MissionStatus>): Mission[] {
-  return MISSIONS.filter((mission) => statuses[mission.id] === 'done');
-}
-
-export const STATUS_LABEL: Record<MissionStatus, string> = {
-  not_started: 'Not started',
-  in_progress: 'In progress',
-  done: 'Done',
-};

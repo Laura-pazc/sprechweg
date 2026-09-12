@@ -129,8 +129,38 @@ const resources = {
         kicker: 'Explore',
         title: 'Real-life missions',
         subtitleNoLevel: 'Choose a real-life German mission in Hamburg.',
-        subtitle:
-          'Choose a real-life Hamburg mission. Your {{tier}} tier decides how much help you get, not what you can open.',
+        subtitle: 'Choose a real-life German mission in Hamburg.',
+        searchPlaceholder: 'Search missions, vocab, or location…',
+        searchLabel: 'Search missions',
+        clearSearch: 'Clear search',
+        filters: 'Filters',
+        filtersCount: 'Filters ({{count}})',
+        openFilters: 'Open mission filters',
+        filtersDescription: 'Narrow missions by level and category.',
+        apply: 'Apply',
+        clear: 'Clear',
+        levelFilter: 'LEVEL',
+        categoryFilter: 'CATEGORY',
+        selectCategory: 'Choose a category',
+        clearFilters: 'Clear filters',
+        allLevels: 'All levels',
+        allLevelsShort: 'All',
+        allCategories: 'All categories',
+        levels: {
+          beginner: 'Beginner',
+          intermediate: 'Intermediate',
+          advanced: 'Advanced',
+        },
+        match: {
+          title: 'title match',
+          tagline: 'description match',
+          category: 'category match',
+          vocabulary: 'vocabulary match',
+          location: 'location match',
+        },
+        noResults: 'No missions found',
+        noResultsBody: 'No missions match your search. Try different keywords or clear filters.',
+        noResultsCompact: 'No missions match. Try different keywords or clear filters.',
         fixed: 'FIXED CONTENT',
         fixedBody:
           'Every mission is authored, not generated. What changes per learner is the prep inside it: which phrases lead, how much English shows, and the questions you get afterwards.',
@@ -174,6 +204,134 @@ const resources = {
         reviewLevel: 'Review or retake my level chat',
         reset: 'Reset my progress',
         confirmReset: 'Tap again to erase everything',
+      },
+      onboarding: {
+        stepKicker: 'Step {{current}} of {{total}} · Hamburg',
+        title: "Let's find your level",
+        subtitle: 'A short chat, not a CEFR test. It only decides where you start.',
+        closingMessage: "That's everything I need, {{name}}. Here is where I would start you.",
+        seeLevel: 'See my level',
+        send: 'Send',
+      },
+      levelResult: {
+        kicker: 'Your starting point',
+        titleWithName: '{{title}}, {{name}}.',
+        subtitle: 'You can retake the chat any time — nothing here is locked in.',
+        tierChip: '{{title}} tier',
+        chatSignal: 'Chat signal: {{score}} of {{total}} points',
+        whatChanges: 'What changes for you',
+        generatedForYou: 'GENERATED FOR YOU',
+        generatedBody:
+          'This tier came from your five answers. The missions themselves are fixed and authored — the level only decides which one you meet first and how much English you see.',
+        startWith: 'Start with “{{title}}”',
+        browseAll: 'Browse all missions',
+        retakeChat: 'Not quite right? Retake the chat',
+      },
+      missionJournal: {
+        title: 'One thought at a time',
+        savedTitle: 'Saved.',
+        streak_one: '{{count}} day in a row',
+        streak_other: '{{count}} days in a row',
+        entrySaved:
+          'Entry saved and “{{title}}” is marked done. Recall quiz: {{score}} of {{total}}.',
+        badgeEarned: 'BADGE EARNED',
+        seeProgress: 'See my progress',
+        thoughtCount: 'Thought {{current}} of {{total}}',
+        yourPrompt: 'YOUR PROMPT',
+        firstThoughtPlaceholder: 'Take a moment. What did you notice, feel, or do?',
+        nextThoughtPlaceholder: 'Add another thought, if you’d like…',
+        continueToRecall: 'Continue to recall',
+        nextThought: 'Next thought',
+        skipThisOne: 'Skip this one',
+        quickRecall: 'A quick recall',
+        quickRecallBody: 'One word at a time. No score is shown while you answer.',
+        saveEntry: 'Save entry',
+        nextWord: 'Next word',
+      },
+      howItWorks: {
+        title: 'Practice outside, not in a streak menu.',
+        subtitle:
+          'City Sidekick prepares one small real-life exchange at a time, then asks you what happened.',
+        nothingVerifies: 'Nothing here verifies you',
+        nothingVerifiesBody:
+          'The app cannot hear your conversation and does not try. You mark the mission done yourself — the honesty is the point, and the journal is where the learning lands.',
+        generatedForYou: 'Generated for you',
+        saidPlainly: 'Said plainly',
+        saidPlainlyBody:
+          'In this version those four run as scripted on-device rules keyed to your tier, your mission, and the words you ticked — deterministic and offline. They are the exact seams a language model would take over later. No AI service is called today.',
+        fixedForEveryone: 'Fixed for everyone',
+        perLearner: {
+          '0': {
+            title: 'Your level estimate',
+            detail:
+              'Built from the five answers you gave in the onboarding chat. Three tiers only — beginner, intermediate, advanced.',
+          },
+          '1': {
+            title: 'Prep vocab and the conversation sim',
+            detail:
+              'Which phrases lead, how much English you see, and whether the exchange stays scripted or goes off-script depends on your tier.',
+          },
+          '2': {
+            title: 'Reflection prompts',
+            detail:
+              'The two journal questions are written against the mission you just did and your tier — a beginner gets asked about missing words, an advanced learner about what they could not prepare.',
+          },
+          '3': {
+            title: 'The recall quiz',
+            detail:
+              'Pulled from the vocab you personally ticked off in prep, with distractors drawn from the rest of that mission.',
+          },
+        },
+        fixed: {
+          '0': {
+            title: 'The mission library',
+            detail:
+              'Every mission has authored vocabulary, conversation text, practice, and a real-world action. The same source content is available to everyone.',
+          },
+          '1': {
+            title: 'Streak math',
+            detail:
+              'One journal entry per calendar day. Journal yesterday and today and it grows; skip a day and it restarts at one.',
+          },
+          '2': {
+            title: 'Badges',
+            detail: 'One badge per mission completed, with no hidden criteria.',
+          },
+          '3': {
+            title: 'The confidence number',
+            detail:
+              'Fixed weights: marking vocab and finishing practice count a little, actually going outside counts most.',
+          },
+        },
+      },
+      notFound: {
+        oopsTitle: 'Oops!',
+        body: "This screen doesn't exist.",
+        goHome: 'Go to home screen!',
+      },
+      missionMissing: {
+        title: 'Mission not found',
+        subtitle: 'That link points at a mission we do not have.',
+        body: 'That mission is not available. Pick one from the full list and you are back on track.',
+        seeAllMissions: 'See all missions',
+      },
+      conversation: {
+        hint: 'One likely version of the exchange. Read your lines out loud before you go.',
+        toggleLabel: 'Show English glosses',
+        englishOn: 'ENGLISH ON',
+        englishOff: 'ENGLISH OFF',
+        you: 'YOU',
+        them: 'THEM',
+      },
+      recall: {
+        wordCount: 'WORD {{current}} OF {{total}}',
+      },
+      install: {
+        addToHomeScreen: 'Add to home screen',
+        installBody: 'Install this app for a full-screen experience',
+        notNow: 'Not now',
+        install: 'Install',
+        iosHintBody: 'Tap Share, then “Add to Home Screen” to install this app',
       },
     },
   },
@@ -290,8 +448,39 @@ const resources = {
         kicker: 'Entdecken',
         title: 'Missionen fürs echte Leben',
         subtitleNoLevel: 'Wähle eine echte Deutsch-Mission in Hamburg.',
-        subtitle:
-          'Wähle eine Mission in Hamburg. Deine Stufe {{tier}} bestimmt, wie viel Hilfe du bekommst – nicht, was du öffnen kannst.',
+        subtitle: 'Wähle eine echte Deutsch-Mission in Hamburg.',
+        searchPlaceholder: 'Missionen, Vokabeln oder Orte suchen …',
+        searchLabel: 'Missionen suchen',
+        clearSearch: 'Suche löschen',
+        filters: 'Filter',
+        filtersCount: 'Filter ({{count}})',
+        openFilters: 'Missionsfilter öffnen',
+        filtersDescription: 'Grenze Missionen nach Niveau und Kategorie ein.',
+        apply: 'Anwenden',
+        clear: 'Löschen',
+        levelFilter: 'NIVEAU',
+        categoryFilter: 'KATEGORIE',
+        selectCategory: 'Kategorie auswählen',
+        clearFilters: 'Filter löschen',
+        allLevels: 'Alle Niveaus',
+        allLevelsShort: 'Alle',
+        allCategories: 'Alle Kategorien',
+        levels: {
+          beginner: 'Anfänger',
+          intermediate: 'Mittelstufe',
+          advanced: 'Fortgeschritten',
+        },
+        match: {
+          title: 'Treffer im Titel',
+          tagline: 'Treffer in der Beschreibung',
+          category: 'Treffer in der Kategorie',
+          vocabulary: 'Vokabeltreffer',
+          location: 'Ortstreffer',
+        },
+        noResults: 'Keine Missionen gefunden',
+        noResultsBody:
+          'Keine Mission passt zu deiner Suche. Probiere andere Wörter oder lösche die Filter.',
+        noResultsCompact: 'Keine Mission passt. Probiere andere Wörter oder lösche die Filter.',
         fixed: 'FESTE INHALTE',
         fixedBody:
           'Jede Mission wurde redaktionell erstellt, nicht generiert. Je nach Person ändert sich die Vorbereitung: welche Sätze zuerst kommen, wie viel Englisch angezeigt wird und welche Fragen danach folgen.',
@@ -336,6 +525,134 @@ const resources = {
         reviewLevel: 'Einstufungs-Chat ansehen oder wiederholen',
         reset: 'Fortschritt zurücksetzen',
         confirmReset: 'Noch einmal tippen, um alles zu löschen',
+      },
+      onboarding: {
+        stepKicker: 'Step {{current}} of {{total}} · Hamburg',
+        title: "Let's find your level",
+        subtitle: 'A short chat, not a CEFR test. It only decides where you start.',
+        closingMessage: "That's everything I need, {{name}}. Here is where I would start you.",
+        seeLevel: 'See my level',
+        send: 'Send',
+      },
+      levelResult: {
+        kicker: 'Your starting point',
+        titleWithName: '{{title}}, {{name}}.',
+        subtitle: 'You can retake the chat any time — nothing here is locked in.',
+        tierChip: '{{title}} tier',
+        chatSignal: 'Chat signal: {{score}} of {{total}} points',
+        whatChanges: 'What changes for you',
+        generatedForYou: 'GENERATED FOR YOU',
+        generatedBody:
+          'This tier came from your five answers. The missions themselves are fixed and authored — the level only decides which one you meet first and how much English you see.',
+        startWith: 'Start with “{{title}}”',
+        browseAll: 'Browse all missions',
+        retakeChat: 'Not quite right? Retake the chat',
+      },
+      missionJournal: {
+        title: 'One thought at a time',
+        savedTitle: 'Saved.',
+        streak_one: '{{count}} day in a row',
+        streak_other: '{{count}} days in a row',
+        entrySaved:
+          'Entry saved and “{{title}}” is marked done. Recall quiz: {{score}} of {{total}}.',
+        badgeEarned: 'BADGE EARNED',
+        seeProgress: 'See my progress',
+        thoughtCount: 'Thought {{current}} of {{total}}',
+        yourPrompt: 'YOUR PROMPT',
+        firstThoughtPlaceholder: 'Take a moment. What did you notice, feel, or do?',
+        nextThoughtPlaceholder: 'Add another thought, if you’d like…',
+        continueToRecall: 'Continue to recall',
+        nextThought: 'Next thought',
+        skipThisOne: 'Skip this one',
+        quickRecall: 'A quick recall',
+        quickRecallBody: 'One word at a time. No score is shown while you answer.',
+        saveEntry: 'Save entry',
+        nextWord: 'Next word',
+      },
+      howItWorks: {
+        title: 'Practice outside, not in a streak menu.',
+        subtitle:
+          'City Sidekick prepares one small real-life exchange at a time, then asks you what happened.',
+        nothingVerifies: 'Nothing here verifies you',
+        nothingVerifiesBody:
+          'The app cannot hear your conversation and does not try. You mark the mission done yourself — the honesty is the point, and the journal is where the learning lands.',
+        generatedForYou: 'Generated for you',
+        saidPlainly: 'Said plainly',
+        saidPlainlyBody:
+          'In this version those four run as scripted on-device rules keyed to your tier, your mission, and the words you ticked — deterministic and offline. They are the exact seams a language model would take over later. No AI service is called today.',
+        fixedForEveryone: 'Fixed for everyone',
+        perLearner: {
+          '0': {
+            title: 'Your level estimate',
+            detail:
+              'Built from the five answers you gave in the onboarding chat. Three tiers only — beginner, intermediate, advanced.',
+          },
+          '1': {
+            title: 'Prep vocab and the conversation sim',
+            detail:
+              'Which phrases lead, how much English you see, and whether the exchange stays scripted or goes off-script depends on your tier.',
+          },
+          '2': {
+            title: 'Reflection prompts',
+            detail:
+              'The two journal questions are written against the mission you just did and your tier — a beginner gets asked about missing words, an advanced learner about what they could not prepare.',
+          },
+          '3': {
+            title: 'The recall quiz',
+            detail:
+              'Pulled from the vocab you personally ticked off in prep, with distractors drawn from the rest of that mission.',
+          },
+        },
+        fixed: {
+          '0': {
+            title: 'The mission library',
+            detail:
+              'Every mission has authored vocabulary, conversation text, practice, and a real-world action. The same source content is available to everyone.',
+          },
+          '1': {
+            title: 'Streak math',
+            detail:
+              'One journal entry per calendar day. Journal yesterday and today and it grows; skip a day and it restarts at one.',
+          },
+          '2': {
+            title: 'Badges',
+            detail: 'One badge per mission completed, with no hidden criteria.',
+          },
+          '3': {
+            title: 'The confidence number',
+            detail:
+              'Fixed weights: marking vocab and finishing practice count a little, actually going outside counts most.',
+          },
+        },
+      },
+      notFound: {
+        oopsTitle: 'Oops!',
+        body: "This screen doesn't exist.",
+        goHome: 'Go to home screen!',
+      },
+      missionMissing: {
+        title: 'Mission not found',
+        subtitle: 'That link points at a mission we do not have.',
+        body: 'That mission is not available. Pick one from the full list and you are back on track.',
+        seeAllMissions: 'See all missions',
+      },
+      conversation: {
+        hint: 'One likely version of the exchange. Read your lines out loud before you go.',
+        toggleLabel: 'Show English glosses',
+        englishOn: 'ENGLISH ON',
+        englishOff: 'ENGLISH OFF',
+        you: 'YOU',
+        them: 'THEM',
+      },
+      recall: {
+        wordCount: 'WORD {{current}} OF {{total}}',
+      },
+      install: {
+        addToHomeScreen: 'Add to home screen',
+        installBody: 'Install this app for a full-screen experience',
+        notNow: 'Not now',
+        install: 'Install',
+        iosHintBody: 'Tap Share, then “Add to Home Screen” to install this app',
       },
     },
   },

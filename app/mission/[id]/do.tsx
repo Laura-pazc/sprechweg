@@ -10,9 +10,8 @@ import { MissionMetaBadges, MissionStatusBadge } from '@/components/MissionBadge
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { getMission } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 import type { Mission } from '@/lib/types';
 
@@ -36,9 +35,10 @@ function DoMission({ mission }: { mission: Mission }) {
           kicker={t('doMission.kicker')}
           title={mission.title}
           subtitle={mission.where}
+          missionDetail
           backFallback={routes.missionPrep(mission.id)}
           onBack={() => router.replace(routes.missionPrep(mission.id))}
-          right={<MissionStatusBadge status={status} />}
+          titleAccessory={<MissionStatusBadge status={status} />}
         />
 
         <ChunkyCard tone={mission.accent} className="gap-3 px-4 py-4">
@@ -164,8 +164,10 @@ function DoMission({ mission }: { mission: Mission }) {
 
 export default function DoMissionScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
-  const mission = getMission(id);
+  const hydrated = useAppStore((state) => state.hydrated);
+  const mission = useMission(id);
 
+  if (!hydrated) return <Screen />;
   if (!mission) return <MissionMissing />;
   return <DoMission mission={mission} />;
 }
