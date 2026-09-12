@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 import { NotebookPen } from 'lucide-react-native';
 import { FlatList, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -8,6 +9,7 @@ import { ChunkyChip } from '@/components/ChunkyChip';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StreakCard } from '@/components/StreakCard';
+import { DATE_LOCALES } from '@/lib/i18n';
 import { getMission, MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
@@ -15,8 +17,8 @@ import { palette } from '@/lib/theme';
 import type { JournalEntry } from '@/lib/types';
 import { dayKey } from '@/lib/utils';
 
-function formatDay(iso: string): string {
-  return new Date(iso).toLocaleDateString(undefined, {
+function formatDay(iso: string, locale: string): string {
+  return new Date(iso).toLocaleDateString(locale, {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
@@ -24,6 +26,8 @@ function formatDay(iso: string): string {
 }
 
 function EntryCard({ entry }: { entry: JournalEntry }) {
+  const { i18n, t } = useTranslation();
+  const locale = i18n.resolvedLanguage === 'de' ? DATE_LOCALES.de : DATE_LOCALES.en;
   const mission = getMission(entry.missionId);
 
   return (
@@ -31,12 +35,14 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-0.5">
           <Text className="text-ink font-display text-[18px] leading-[23px]">
-            {mission?.title ?? 'Mission'}
+            {mission?.title ?? t('common.mission')}
           </Text>
-          <Text className="text-muted font-strong text-[12.5px]">{formatDay(entry.createdAt)}</Text>
+          <Text className="text-muted font-strong text-[12.5px]">
+            {formatDay(entry.createdAt, locale)}
+          </Text>
         </View>
         <ChunkyChip
-          label={`Recall ${entry.quizScore}/${entry.quizTotal}`}
+          label={t('journal.recall', { score: entry.quizScore, total: entry.quizTotal })}
           tone={entry.quizScore === entry.quizTotal ? 'lime' : 'cream'}
         />
       </View>
@@ -56,6 +62,7 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
 }
 
 export default function JournalScreen() {
+  const { t } = useTranslation();
   const entries = useAppStore((state) => state.entries);
   const statuses = useAppStore((state) => state.statuses);
   const streakCount = useAppStore((state) => state.streakCount);
@@ -79,9 +86,9 @@ export default function JournalScreen() {
             <ScreenHeader
               nested
               showBack={false}
-              kicker="Journal"
-              title="What actually happened"
-              subtitle="A lighter record of what happened, one thought at a time."
+              kicker={t('journal.kicker')}
+              title={t('journal.title')}
+              subtitle={t('journal.subtitle')}
             />
             <StreakCard
               streakCount={streakCount}
@@ -91,13 +98,13 @@ export default function JournalScreen() {
             {pending ? (
               <ChunkyCard tone="sunny" className="gap-2.5 px-4 py-4">
                 <Text className="text-ink font-display text-[17px] leading-[22px]">
-                  “{pending.title}” is waiting for a write-up
+                  {t('journal.waiting', { title: pending.title })}
                 </Text>
                 <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-                  Add a note while the details are still fresh.
+                  {t('journal.fresh')}
                 </Text>
                 <ChunkyButton
-                  label="Write it up"
+                  label={t('journal.write')}
                   variant="ink"
                   leading={<NotebookPen color={palette.cream} size={16} strokeWidth={2.5} />}
                   onPress={() => router.push(routes.missionJournal(pending.id))}
@@ -108,11 +115,14 @@ export default function JournalScreen() {
         }
         ListEmptyComponent={
           <ChunkyCard tone="canvas" className="gap-2.5 px-4 py-5">
-            <Text className="text-ink font-display text-[18px]">No entries yet</Text>
+            <Text className="text-ink font-display text-[18px]">{t('journal.empty')}</Text>
             <Text className="text-muted font-body text-[14px] leading-[20px]">
-              Pick a mission, go out and try it, then come back and tell your Sidekick how it went.
+              {t('journal.emptyBody')}
             </Text>
-            <ChunkyButton label="Browse missions" onPress={() => router.push(routes.missions)} />
+            <ChunkyButton
+              label={t('journal.browse')}
+              onPress={() => router.push(routes.missions)}
+            />
           </ChunkyCard>
         }
       />

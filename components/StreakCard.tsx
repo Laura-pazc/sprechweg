@@ -1,5 +1,6 @@
 import { Flame } from 'lucide-react-native';
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { palette } from '@/lib/theme';
@@ -11,6 +12,8 @@ interface StreakCardProps {
 }
 
 export function StreakCard({ streakCount, entryCount, journaledToday }: StreakCardProps) {
+  const { t } = useTranslation();
+
   return (
     <ChunkyCard tone="lime" className="gap-3 px-4 py-4">
       <View className="flex-row items-center gap-3">
@@ -19,17 +22,13 @@ export function StreakCard({ streakCount, entryCount, journaledToday }: StreakCa
         </View>
         <View className="flex-1">
           <Text className="text-ink font-display text-[22px] leading-[26px]">
-            {streakCount} {streakCount === 1 ? 'day' : 'days'}
+            {t('streak.days', { count: streakCount })}
           </Text>
-          <Text className="text-ink font-strong text-[13px]">
-            Streak — one journal entry per day keeps it alive
-          </Text>
+          <Text className="text-ink font-strong text-[13px]">{t('streak.headline')}</Text>
         </View>
       </View>
       <Text className="text-ink font-body text-[13px] leading-[19px]">
-        {journaledToday
-          ? `Today is logged. ${entryCount} ${entryCount === 1 ? 'entry' : 'entries'} so far.`
-          : 'Nothing logged today yet. Journal a mission before midnight to keep it.'}
+        {journaledToday ? t('streak.logged', { count: entryCount }) : t('streak.notLogged')}
       </Text>
     </ChunkyCard>
   );

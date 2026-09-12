@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { Lock } from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -11,7 +12,6 @@ import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SectionHeading } from '@/components/SectionHeading';
 import { StreakCard } from '@/components/StreakCard';
-import { LEVEL_LABEL, LEVEL_SUMMARY } from '@/lib/levelChat';
 import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { confidencePercent } from '@/lib/progress';
@@ -29,6 +29,7 @@ function StatTile({ value, label }: { value: string; label: string }) {
 }
 
 export default function ProfileScreen() {
+  const { t } = useTranslation();
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
@@ -57,12 +58,15 @@ export default function ProfileScreen() {
         <ScreenHeader
           nested
           showBack={false}
-          kicker="Your progress"
-          title={name ? `${name}'s Hamburg run` : 'Your Hamburg run'}
+          kicker={t('progress.kicker')}
+          title={name ? t('progress.namedRun', { name }) : t('progress.run')}
           subtitle={
             level === null
-              ? 'Take the level chat to get started.'
-              : `${LEVEL_LABEL[level]} tier — ${LEVEL_SUMMARY[level].headline.toLowerCase()}.`
+              ? t('progress.takeChat')
+              : t('progress.tier', {
+                  tier: t(`levels.${level}`),
+                  headline: t(`levelHeadlines.${level}`).toLowerCase(),
+                })
           }
         />
 
@@ -72,16 +76,19 @@ export default function ProfileScreen() {
           journaledToday={lastJournalDay === dayKey()}
         />
 
-        <ProgressBar label="Your confidence: trying it outside" value={confidence} />
+        <ProgressBar label={t('today.confidence')} value={confidence} />
 
         <View className="flex-row gap-3">
-          <StatTile value={`${doneMissions.length}/${MISSIONS.length}`} label="Missions done" />
-          <StatTile value={String(studiedWords)} label="Words marked" />
-          <StatTile value={String(entries.length)} label="Journal entries" />
+          <StatTile
+            value={`${doneMissions.length}/${MISSIONS.length}`}
+            label={t('progress.missionsDone')}
+          />
+          <StatTile value={String(studiedWords)} label={t('progress.wordsMarked')} />
+          <StatTile value={String(entries.length)} label={t('progress.entries')} />
         </View>
 
         <View className="gap-3">
-          <SectionHeading title="Badges" />
+          <SectionHeading title={t('progress.badges')} />
           {MISSIONS.map((mission) => {
             const earned = statuses[mission.id] === 'done';
             return (
@@ -107,7 +114,9 @@ export default function ProfileScreen() {
                         : 'text-muted font-body text-[13px] leading-[18px]'
                     }
                   >
-                    {earned ? mission.badge.description : `Locked — finish “${mission.title}”`}
+                    {earned
+                      ? mission.badge.description
+                      : t('progress.locked', { title: mission.title })}
                   </Text>
                 </View>
               </ChunkyCard>
@@ -116,14 +125,16 @@ export default function ProfileScreen() {
         </View>
 
         <View className="gap-3">
-          <SectionHeading title="Completed missions" />
+          <SectionHeading title={t('progress.completed')} />
           {doneMissions.length === 0 ? (
             <ChunkyCard tone="canvas" offset={4} className="gap-2 px-4 py-4">
               <Text className="text-ink font-body text-[14px] leading-[20px]">
-                Nothing finished yet. A mission counts as done once you say it is — the app takes
-                your word for it.
+                {t('progress.none')}
               </Text>
-              <ChunkyButton label="Pick a mission" onPress={() => router.push(routes.missions)} />
+              <ChunkyButton
+                label={t('progress.pick')}
+                onPress={() => router.push(routes.missions)}
+              />
             </ChunkyCard>
           ) : (
             doneMissions.map((mission) => (
@@ -137,21 +148,21 @@ export default function ProfileScreen() {
                   <Text className="text-ink font-display text-[16px]">{mission.title}</Text>
                   <Text className="text-muted font-strong text-[12.5px]">{mission.category}</Text>
                 </View>
-                <ChunkyChip label="Done" tone="lime" />
+                <ChunkyChip label={t('common.done')} tone="lime" />
               </ChunkyCard>
             ))
           )}
         </View>
 
         <View className="gap-3">
-          <SectionHeading title="Settings" />
+          <SectionHeading title={t('common.settings')} />
           <Pressable
             accessibilityRole="button"
             onPress={() => router.push(routes.howItWorks)}
             className="self-start py-1"
           >
             <Text className="text-ink font-strong border-ink border-b-2 text-[14px]">
-              How it works — what is generated, what is fixed
+              {t('progress.howItWorks')}
             </Text>
           </Pressable>
           <Pressable
@@ -160,11 +171,11 @@ export default function ProfileScreen() {
             className="self-start py-1"
           >
             <Text className="text-ink font-strong border-ink border-b-2 text-[14px]">
-              Review or retake my level chat
+              {t('progress.reviewLevel')}
             </Text>
           </Pressable>
           <ChunkyButton
-            label={confirmReset ? 'Tap again to erase everything' : 'Reset my progress'}
+            label={confirmReset ? t('progress.confirmReset') : t('progress.reset')}
             variant={confirmReset ? 'ink' : 'quiet'}
             onPress={() => {
               if (!confirmReset) {

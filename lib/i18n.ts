@@ -1,0 +1,242 @@
+import { createInstance } from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+const i18n = createInstance();
+
+export const APP_LOCALES = ['en', 'de'] as const;
+export type AppLocale = (typeof APP_LOCALES)[number];
+
+export const LANGUAGE_OPTIONS: ReadonlyArray<{ value: AppLocale; label: string }> = [
+  { value: 'en', label: 'English' },
+  { value: 'de', label: 'Deutsch' },
+];
+
+export const DATE_LOCALES: Record<AppLocale, string> = {
+  en: 'en-GB',
+  de: 'de-DE',
+};
+
+const resources = {
+  en: {
+    translation: {
+      common: {
+        back: 'Go back',
+        close: 'Close',
+        done: 'Done',
+        inProgress: 'In progress',
+        notStarted: 'Not started',
+        mission: 'Mission',
+        minutesShort: 'MIN',
+        seeAll: 'See all',
+        settings: 'Settings',
+      },
+      streak: {
+        days_one: '{{count}} day',
+        days_other: '{{count}} days',
+        headline: 'Streak — one journal entry per day keeps it alive',
+        logged_one: 'Today is logged. {{count}} entry so far.',
+        logged_other: 'Today is logged. {{count}} entries so far.',
+        notLogged: 'Nothing logged today yet. Journal a mission before midnight to keep it.',
+      },
+      language: {
+        buttonLabel: 'Interface language: {{language}}',
+        title: 'Choose your language',
+        subtitle: 'The app interface changes immediately. German practice phrases stay in German.',
+        selected: 'Selected',
+      },
+      tabs: { today: 'Today', missions: 'Missions', journal: 'Journal', progress: 'Progress' },
+      levels: { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' },
+      levelHeadlines: {
+        beginner: 'Short sentences, real streets',
+        intermediate: 'You can order — now improvise',
+        advanced: 'Fluent enough to be social',
+      },
+      prep: {
+        previousStep: 'Previous prep step',
+        nextStep: 'Next prep step',
+        stepCount: 'Step {{current}} of {{total}}',
+      },
+      today: {
+        howItWorks: 'How it works',
+        greeting: 'Hallo, {{name}}. Ready for a small win?',
+        friend: 'friend',
+        intro: 'One real-life practice is enough for today.',
+        upNext: 'UP NEXT',
+        quickWin: 'Your 5-minute win',
+        completed_one: '{{count}} mission completed',
+        completed_other: '{{count}} missions completed',
+        practice: 'Practice for 5 min',
+        happening: 'Happening in Hamburg',
+        findEvent: 'Find something happening today',
+        eventBody:
+          'Live event cards need a secure feed connection. Until then, browse the official Hamburg calendar.',
+        openEvents: 'Open Hamburg events',
+        showLess: 'Show less',
+        seeMore: 'See more',
+        confidence: 'Your confidence: trying it outside',
+        moreMissions: 'More missions',
+        community: 'Your people are trying too',
+        cheer: 'Cheer this story',
+      },
+      missions: {
+        kicker: 'Explore',
+        title: 'Real-life missions',
+        subtitleNoLevel: 'Choose a real-life German mission in Hamburg.',
+        subtitle:
+          'Choose a real-life Hamburg mission. Your {{tier}} tier decides how much help you get, not what you can open.',
+        fixed: 'FIXED CONTENT',
+        fixedBody:
+          'Every mission is authored, not generated. What changes per learner is the prep inside it: which phrases lead, how much English shows, and the questions you get afterwards.',
+      },
+      journal: {
+        kicker: 'Journal',
+        title: 'What actually happened',
+        subtitle: 'A lighter record of what happened, one thought at a time.',
+        recall: 'Recall {{score}}/{{total}}',
+        waiting: '“{{title}}” is waiting for a write-up',
+        fresh: 'Add a note while the details are still fresh.',
+        write: 'Write it up',
+        empty: 'No entries yet',
+        emptyBody:
+          'Pick a mission, go out and try it, then come back and tell your Sidekick how it went.',
+        browse: 'Browse missions',
+      },
+      progress: {
+        kicker: 'Your progress',
+        namedRun: "{{name}}'s Hamburg run",
+        run: 'Your Hamburg run',
+        takeChat: 'Take the level chat to get started.',
+        tier: '{{tier}} tier — {{headline}}.',
+        missionsDone: 'Missions done',
+        wordsMarked: 'Words marked',
+        entries: 'Journal entries',
+        badges: 'Badges',
+        locked: 'Locked — finish “{{title}}”',
+        completed: 'Completed missions',
+        none: 'Nothing finished yet. A mission counts as done once you say it is — the app takes your word for it.',
+        pick: 'Pick a mission',
+        howItWorks: 'How it works — what is generated, what is fixed',
+        reviewLevel: 'Review or retake my level chat',
+        reset: 'Reset my progress',
+        confirmReset: 'Tap again to erase everything',
+      },
+    },
+  },
+  de: {
+    translation: {
+      common: {
+        back: 'Zurück',
+        close: 'Schließen',
+        done: 'Erledigt',
+        inProgress: 'In Arbeit',
+        notStarted: 'Noch nicht begonnen',
+        mission: 'Mission',
+        minutesShort: 'MIN',
+        seeAll: 'Alle ansehen',
+        settings: 'Einstellungen',
+      },
+      streak: {
+        days_one: '{{count}} Tag',
+        days_other: '{{count}} Tage',
+        headline: 'Serie — ein Journal-Eintrag pro Tag hält sie am Leben',
+        logged_one: 'Heute ist eingetragen. Bisher {{count}} Eintrag.',
+        logged_other: 'Heute ist eingetragen. Bisher {{count}} Einträge.',
+        notLogged: 'Heute noch nichts eingetragen. Schreibe vor Mitternacht über eine Mission.',
+      },
+      language: {
+        buttonLabel: 'Oberflächensprache: {{language}}',
+        title: 'Sprache auswählen',
+        subtitle:
+          'Die App-Oberfläche ändert sich sofort. Deutsche Übungssätze bleiben auf Deutsch.',
+        selected: 'Ausgewählt',
+      },
+      tabs: { today: 'Heute', missions: 'Missionen', journal: 'Journal', progress: 'Fortschritt' },
+      levels: { beginner: 'Anfänger', intermediate: 'Mittelstufe', advanced: 'Fortgeschritten' },
+      levelHeadlines: {
+        beginner: 'Kurze Sätze, echte Straßen',
+        intermediate: 'Bestellen klappt — jetzt improvisieren',
+        advanced: 'Fließend genug für echte Kontakte',
+      },
+      prep: {
+        previousStep: 'Vorheriger Vorbereitungsschritt',
+        nextStep: 'Nächster Vorbereitungsschritt',
+        stepCount: 'Schritt {{current}} von {{total}}',
+      },
+      today: {
+        howItWorks: 'So funktioniert es',
+        greeting: 'Hallo, {{name}}. Bereit für einen kleinen Erfolg?',
+        friend: 'du',
+        intro: 'Eine Übung im echten Leben reicht für heute.',
+        upNext: 'ALS NÄCHSTES',
+        quickWin: 'Dein 5-Minuten-Erfolg',
+        completed_one: '{{count}} Mission abgeschlossen',
+        completed_other: '{{count}} Missionen abgeschlossen',
+        practice: '5 Minuten üben',
+        happening: 'Heute in Hamburg',
+        findEvent: 'Finde etwas, das heute stattfindet',
+        eventBody:
+          'Live-Veranstaltungen benötigen eine sichere Datenverbindung. Bis dahin kannst du den offiziellen Hamburger Kalender öffnen.',
+        openEvents: 'Hamburger Events öffnen',
+        showLess: 'Weniger anzeigen',
+        seeMore: 'Mehr anzeigen',
+        confidence: 'Dein Selbstvertrauen: draußen ausprobieren',
+        moreMissions: 'Weitere Missionen',
+        community: 'Andere probieren es auch',
+        cheer: 'Dieser Geschichte Mut machen',
+      },
+      missions: {
+        kicker: 'Entdecken',
+        title: 'Missionen fürs echte Leben',
+        subtitleNoLevel: 'Wähle eine echte Deutsch-Mission in Hamburg.',
+        subtitle:
+          'Wähle eine Mission in Hamburg. Deine Stufe {{tier}} bestimmt, wie viel Hilfe du bekommst – nicht, was du öffnen kannst.',
+        fixed: 'FESTE INHALTE',
+        fixedBody:
+          'Jede Mission wurde redaktionell erstellt, nicht generiert. Je nach Person ändert sich die Vorbereitung: welche Sätze zuerst kommen, wie viel Englisch angezeigt wird und welche Fragen danach folgen.',
+      },
+      journal: {
+        kicker: 'Journal',
+        title: 'Was wirklich passiert ist',
+        subtitle: 'Halte leicht und in einzelnen Gedanken fest, was passiert ist.',
+        recall: 'Erinnerung {{score}}/{{total}}',
+        waiting: '„{{title}}“ wartet auf deinen Eintrag',
+        fresh: 'Notiere etwas, solange die Details noch frisch sind.',
+        write: 'Eintrag schreiben',
+        empty: 'Noch keine Einträge',
+        emptyBody:
+          'Wähle eine Mission, probiere sie aus und erzähle deinem Sidekick danach, wie es lief.',
+        browse: 'Missionen ansehen',
+      },
+      progress: {
+        kicker: 'Dein Fortschritt',
+        namedRun: '{{name}} in Hamburg',
+        run: 'Dein Weg durch Hamburg',
+        takeChat: 'Starte den Einstufungs-Chat, um loszulegen.',
+        tier: 'Stufe {{tier}} — {{headline}}.',
+        missionsDone: 'Missionen erledigt',
+        wordsMarked: 'Wörter markiert',
+        entries: 'Journal-Einträge',
+        badges: 'Abzeichen',
+        locked: 'Gesperrt — schließe „{{title}}“ ab',
+        completed: 'Abgeschlossene Missionen',
+        none: 'Noch nichts abgeschlossen. Eine Mission zählt als erledigt, sobald du es sagst – die App vertraut dir.',
+        pick: 'Mission auswählen',
+        howItWorks: 'So funktioniert es — was generiert und was fest ist',
+        reviewLevel: 'Einstufungs-Chat ansehen oder wiederholen',
+        reset: 'Fortschritt zurücksetzen',
+        confirmReset: 'Noch einmal tippen, um alles zu löschen',
+      },
+    },
+  },
+} as const;
+
+void i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en',
+  fallbackLng: 'en',
+  supportedLngs: APP_LOCALES,
+  interpolation: { escapeValue: false },
+  react: { useSuspense: false },
+});
+
+export default i18n;

@@ -1,17 +1,18 @@
 import { router } from 'expo-router';
 import { FlatList, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { MissionCard } from '@/components/MissionCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { LEVEL_LABEL } from '@/lib/levelChat';
 import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
 import type { Mission } from '@/lib/types';
 
 export default function MissionsScreen() {
+  const { t } = useTranslation();
   const statuses = useAppStore((state) => state.statuses);
   const level = useAppStore((state) => state.level);
 
@@ -35,12 +36,12 @@ export default function MissionsScreen() {
             <ScreenHeader
               nested
               showBack={false}
-              kicker="Explore"
-              title="Real-life missions"
+              kicker={t('missions.kicker')}
+              title={t('missions.title')}
               subtitle={
                 level === null
-                  ? 'Choose a real-life German mission in Hamburg.'
-                  : `Choose a real-life Hamburg mission. Your ${LEVEL_LABEL[level].toLowerCase()} tier decides how much help you get, not what you can open.`
+                  ? t('missions.subtitleNoLevel')
+                  : t('missions.subtitle', { tier: t(`levels.${level}`).toLowerCase() })
               }
             />
           </View>
@@ -48,11 +49,10 @@ export default function MissionsScreen() {
         ListFooterComponent={
           <ChunkyCard tone="canvas" offset={4} className="mt-1 gap-1.5 px-4 py-3.5">
             <Text className="text-muted font-display text-[11px] tracking-widest">
-              FIXED CONTENT
+              {t('missions.fixed')}
             </Text>
             <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-              Every mission is authored, not generated. What changes per learner is the prep inside
-              it: which phrases lead, how much English shows, and the questions you get afterwards.
+              {t('missions.fixedBody')}
             </Text>
           </ChunkyCard>
         }

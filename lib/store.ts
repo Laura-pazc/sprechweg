@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import type { AppLocale } from '@/lib/i18n';
 import { MISSIONS } from '@/lib/missions';
 import type { JournalEntry, Level, MissionStatus } from '@/lib/types';
 import { dayKey, yesterdayKey } from '@/lib/utils';
@@ -20,6 +21,7 @@ interface AppState {
   streakCount: number;
   lastJournalDay: string | null;
   cheered: string[];
+  locale: AppLocale;
 
   completeOnboarding: (name: string, level: Level, levelScore: number) => void;
   setStatus: (missionId: string, status: MissionStatus) => void;
@@ -33,6 +35,7 @@ interface AppState {
     quizTotal: number;
   }) => void;
   toggleCheer: (quoteId: string) => void;
+  setLocale: (locale: AppLocale) => void;
   resetProgress: () => void;
 }
 
@@ -54,6 +57,7 @@ export const useAppStore = create<AppState>()(
       streakCount: 0,
       lastJournalDay: null,
       cheered: [],
+      locale: 'en',
 
       completeOnboarding: (name, level, levelScore) =>
         set({ name: name.trim(), level, levelScore }),
@@ -111,6 +115,8 @@ export const useAppStore = create<AppState>()(
             ? state.cheered.filter((id) => id !== quoteId)
             : [...state.cheered, quoteId],
         })),
+
+      setLocale: (locale) => set({ locale }),
 
       resetProgress: () =>
         set({

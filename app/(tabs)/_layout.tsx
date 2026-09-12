@@ -2,12 +2,14 @@ import { Compass, Home, NotebookPen, Sparkles } from 'lucide-react-native';
 import { Redirect, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
 import { palette } from '@/lib/theme';
 
 export default function TabLayout() {
+  const { t } = useTranslation();
   const hydrated = useAppStore((state) => state.hydrated);
   const level = useAppStore((state) => state.level);
 
@@ -46,28 +48,28 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Today',
+            title: t('tabs.today'),
             tabBarIcon: ({ color, size }) => <Home color={color} size={size ?? 24} />,
           }}
         />
         <Tabs.Screen
           name="missions"
           options={{
-            title: 'Missions',
+            title: t('tabs.missions'),
             tabBarIcon: ({ color, size }) => <Compass color={color} size={size ?? 24} />,
           }}
         />
         <Tabs.Screen
           name="journal"
           options={{
-            title: 'Journal',
+            title: t('tabs.journal'),
             tabBarIcon: ({ color, size }) => <NotebookPen color={color} size={size ?? 24} />,
           }}
         />
         <Tabs.Screen
           name="profile"
           options={{
-            title: 'Progress',
+            title: t('tabs.progress'),
             tabBarIcon: ({ color, size }) => <Sparkles color={color} size={size ?? 24} />,
           }}
         />

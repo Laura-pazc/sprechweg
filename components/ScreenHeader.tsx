@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react-native';
 import type { ReactNode } from 'react';
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import type { Href } from 'expo-router';
 
 import { ChunkyIconButton } from '@/components/ChunkyButton';
@@ -34,6 +35,8 @@ export function ScreenHeader({
   compact = false,
   nested = false,
 }: ScreenHeaderProps) {
+  const { t } = useTranslation();
+
   return (
     <View
       className={cn(
@@ -44,7 +47,7 @@ export function ScreenHeader({
       <View className="flex-row items-start gap-2.5">
         {showBack ? (
           <ChunkyIconButton
-            accessibilityLabel="Go back"
+            accessibilityLabel={t('common.back')}
             onPress={() => goBackOrReplace(backFallback)}
             size={compact ? 32 : 36}
             className={cn('mt-0.5', nested && '-ml-2.5')}

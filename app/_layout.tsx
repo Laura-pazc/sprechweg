@@ -22,7 +22,9 @@ import {
   Stack,
 } from 'expo-router';
 
+import i18n from '@/lib/i18n';
 import { initPostHog } from '@/lib/posthog';
+import { useAppStore } from '@/lib/store';
 import { palette } from '@/lib/theme';
 import { registerServiceWorker } from '@/lib/registerServiceWorker';
 import { reportErrorToParent } from '@/lib/reportPreviewError';
@@ -48,6 +50,18 @@ export { ErrorBoundary };
 Uniwind.setTheme('light');
 
 void SplashScreen.preventAutoHideAsync();
+
+function LocaleSync() {
+  const locale = useAppStore((state) => state.locale);
+
+  useEffect(() => {
+    if (i18n.resolvedLanguage !== locale) {
+      void i18n.changeLanguage(locale);
+    }
+  }, [locale]);
+
+  return null;
+}
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -142,6 +156,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider>
+        <LocaleSync />
         <Stack
           screenOptions={{
             headerShown: false,

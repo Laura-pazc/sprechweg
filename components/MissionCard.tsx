@@ -1,5 +1,6 @@
 import { MapPin } from 'lucide-react-native';
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyPressableCard } from '@/components/ChunkyCard';
 import { DoneMark, MissionIcon } from '@/components/MissionIcon';
@@ -13,14 +14,10 @@ interface MissionCardProps {
   featured?: boolean;
 }
 
-const STATUS_NOTE: Record<MissionStatus, string | null> = {
-  not_started: null,
-  in_progress: 'In progress',
-  done: 'Done',
-};
-
 export function MissionCard({ mission, status, onPress, featured = false }: MissionCardProps) {
-  const note = STATUS_NOTE[status];
+  const { t } = useTranslation();
+  const note =
+    status === 'in_progress' ? t('common.inProgress') : status === 'done' ? t('common.done') : null;
 
   return (
     <ChunkyPressableCard
@@ -42,7 +39,7 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
                     : 'text-muted font-display text-[10px] tracking-widest'
                 }
               >
-                {mission.minutes} MIN
+                {mission.minutes} {t('common.minutesShort')}
               </Text>
             </View>
             {note ? (

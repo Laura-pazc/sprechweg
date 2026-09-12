@@ -9,13 +9,16 @@ import {
   MapPin,
   Sparkles,
 } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { ChunkyChip } from '@/components/ChunkyChip';
+import { LanguagePicker } from '@/components/LanguagePicker';
 import { MissionCard } from '@/components/MissionCard';
+import { LANGUAGE_OPTIONS } from '@/lib/i18n';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -29,8 +32,12 @@ import { dayKey, hashString } from '@/lib/utils';
 const HAMBURG_EVENTS_URL = 'https://www.hamburg-travel.com/see-explore/events/events-calendar/';
 
 export default function TodayScreen() {
+  const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
+  const [languagePickerOpen, setLanguagePickerOpen] = useState(false);
   const name = useAppStore((state) => state.name);
+  const locale = useAppStore((state) => state.locale);
+  const setLocale = useAppStore((state) => state.setLocale);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
   const practiceDone = useAppStore((state) => state.practiceDone);
@@ -63,12 +70,23 @@ export default function TodayScreen() {
               leading={<MapPin color={palette.ink} size={14} strokeWidth={2.5} />}
               className="px-2.5"
             />
-            <ChunkyChip
-              label="German"
-              tone="sunny"
-              leading={<Languages color={palette.ink} size={14} strokeWidth={2.5} />}
-              className="px-2.5"
-            />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={t('language.buttonLabel', {
+                language: LANGUAGE_OPTIONS.find((option) => option.value === locale)?.label,
+              })}
+              accessibilityState={{ expanded: languagePickerOpen }}
+              onPress={() => setLanguagePickerOpen(true)}
+            >
+              <ChunkyChip
+                label={
+                  LANGUAGE_OPTIONS.find((option) => option.value === locale)?.label ?? 'English'
+                }
+                tone="sunny"
+                leading={<Languages color={palette.ink} size={14} strokeWidth={2.5} />}
+                className="px-2.5"
+              />
+            </Pressable>
           </View>
           <Pressable
             accessibilityRole="button"
@@ -76,7 +94,7 @@ export default function TodayScreen() {
             className="flex-row items-center gap-2 py-1"
           >
             <Text className="text-ink font-strong border-ink border-b-2 text-[13px]">
-              How it works
+              {t('today.howItWorks')}
             </Text>
             <Sparkles color={palette.ink} size={17} strokeWidth={2.25} />
           </Pressable>
@@ -84,21 +102,23 @@ export default function TodayScreen() {
 
         <View className="gap-1.5">
           <Text className="text-ink font-display text-[24px] leading-[29px]">
-            Hallo, {name || 'friend'}. Ready for a small win?
+            {t('today.greeting', { name: name || t('today.friend') })}
           </Text>
           <Text className="text-muted font-strong text-[14px] leading-[20px]">
-            One real-life practice is enough for today.
+            {t('today.intro')}
           </Text>
         </View>
 
         <View className="gap-3">
           <View className="flex-row items-end justify-between gap-3">
             <View className="gap-0.5">
-              <Text className="text-muted font-display text-[10px] tracking-widest">UP NEXT</Text>
-              <Text className="text-ink font-display text-[19px]">Your 5-minute win</Text>
+              <Text className="text-muted font-display text-[10px] tracking-widest">
+                {t('today.upNext')}
+              </Text>
+              <Text className="text-ink font-display text-[19px]">{t('today.quickWin')}</Text>
             </View>
             <Text className="text-muted font-strong text-[12px]">
-              {completedCount} {completedCount === 1 ? 'mission' : 'missions'} completed
+              {t('today.completed', { count: completedCount })}
             </Text>
           </View>
           <MissionCard
@@ -108,31 +128,28 @@ export default function TodayScreen() {
             onPress={() => router.push(routes.missionPrep(upNext.id))}
           />
           <ChunkyButton
-            label="Practice for 5 min"
+            label={t('today.practice')}
             fullWidth
             onPress={() => router.push(routes.missionPrep(upNext.id))}
           />
         </View>
 
         <View className="gap-3">
-          <SectionHeading title="Happening in Hamburg" />
+          <SectionHeading title={t('today.happening')} />
           <ChunkyCard tone="paper" offset={3} className="gap-3 px-4 py-4">
             <View className="flex-row items-start gap-3">
               <View className="bg-sky h-10 w-10 items-center justify-center rounded-full">
                 <CalendarDays color={palette.ink} size={20} strokeWidth={2.4} />
               </View>
               <View className="flex-1 gap-1">
-                <Text className="text-ink font-display text-[16px]">
-                  Find something happening today
-                </Text>
+                <Text className="text-ink font-display text-[16px]">{t('today.findEvent')}</Text>
                 <Text className="text-muted font-body text-[13px] leading-[18px]">
-                  Live event cards need a secure feed connection. Until then, browse the official
-                  Hamburg calendar.
+                  {t('today.eventBody')}
                 </Text>
               </View>
             </View>
             <ChunkyButton
-              label="Open Hamburg events"
+              label={t('today.openEvents')}
               variant="paper"
               size="sm"
               trailing={<ExternalLink color={palette.ink} size={15} strokeWidth={2.5} />}
@@ -148,7 +165,7 @@ export default function TodayScreen() {
           className="flex-row items-center justify-center gap-2 py-2"
         >
           <Text className="text-ink font-display text-[14px]">
-            {showMore ? 'Show less' : 'See more'}
+            {showMore ? t('today.showLess') : t('today.seeMore')}
           </Text>
           {showMore ? (
             <ChevronUp color={palette.ink} size={18} strokeWidth={2.7} />
@@ -159,12 +176,12 @@ export default function TodayScreen() {
 
         {showMore ? (
           <View className="gap-5">
-            <ProgressBar label="Your confidence: trying it outside" value={confidence} />
+            <ProgressBar label={t('today.confidence')} value={confidence} />
 
             <View className="gap-3">
               <SectionHeading
-                title="More missions"
-                actionLabel="See all"
+                title={t('today.moreMissions')}
+                actionLabel={t('common.seeAll')}
                 onActionPress={() => router.push(routes.missions)}
               />
               {otherMissions.slice(0, 3).map((mission) => (
@@ -178,7 +195,7 @@ export default function TodayScreen() {
             </View>
 
             <ChunkyCard tone="sunny" offset={3} className="gap-3 px-4 py-4">
-              <Text className="text-ink font-display text-[17px]">Your people are trying too</Text>
+              <Text className="text-ink font-display text-[17px]">{t('today.community')}</Text>
               <Text className="text-ink font-strong text-[14px] leading-[20px]">
                 “{quote.text}”
               </Text>
@@ -189,7 +206,7 @@ export default function TodayScreen() {
                 <Pressable
                   accessibilityRole="button"
                   accessibilityState={{ selected: hasCheered }}
-                  accessibilityLabel="Cheer this story"
+                  accessibilityLabel={t('today.cheer')}
                   onPress={() => toggleCheer(quote.id)}
                   className="border-ink flex-row items-center gap-1.5 rounded-full border-2 bg-white px-3 py-2"
                 >
@@ -208,6 +225,15 @@ export default function TodayScreen() {
           </View>
         ) : null}
       </ScrollView>
+      <LanguagePicker
+        visible={languagePickerOpen}
+        locale={locale}
+        onSelect={(nextLocale) => {
+          setLocale(nextLocale);
+          setLanguagePickerOpen(false);
+        }}
+        onClose={() => setLanguagePickerOpen(false)}
+      />
     </Screen>
   );
 }
