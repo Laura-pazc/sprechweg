@@ -34,9 +34,17 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-1">
           <View className="flex-row items-center gap-2">
-            <Text className="text-muted font-display text-[10px] tracking-widest">
-              {mission.minutes} MIN
-            </Text>
+            <View className={featured ? 'rounded-full bg-white/70 px-2 py-1' : undefined}>
+              <Text
+                className={
+                  featured
+                    ? 'text-ink font-display text-[10px] tracking-widest'
+                    : 'text-muted font-display text-[10px] tracking-widest'
+                }
+              >
+                {mission.minutes} MIN
+              </Text>
+            </View>
             {note ? (
               <View className="flex-row items-center gap-1">
                 {status === 'done' ? <DoneMark size={14} /> : null}
@@ -62,8 +70,15 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
       <Text className="text-ink font-strong text-[13px] leading-[18px]">{mission.tagline}</Text>
 
       <View className="flex-row items-center gap-1.5">
-        <MapPin color={palette.muted} size={13} strokeWidth={2.4} />
-        <Text className="text-muted font-body flex-1 text-[12px] leading-[17px]" numberOfLines={1}>
+        <MapPin color={featured ? palette.ink : palette.muted} size={13} strokeWidth={2.4} />
+        <Text
+          className={
+            featured
+              ? 'text-ink font-body flex-1 text-[12px] leading-[17px]'
+              : 'text-muted font-body flex-1 text-[12px] leading-[17px]'
+          }
+          numberOfLines={1}
+        >
           {mission.where}
         </Text>
         <Text className="text-ink font-display text-[16px]">→</Text>
