@@ -1,42 +1,74 @@
-import { Home } from 'lucide-react-native';
-import { Tabs } from 'expo-router';
+import { Compass, Home, NotebookPen, Sparkles } from 'lucide-react-native';
+import { Redirect, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useThemeColor } from 'heroui-native';
-import { useUniwind } from 'uniwind';
+import { View } from 'react-native';
+
+import { routes } from '@/lib/navigation';
+import { useAppStore } from '@/lib/store';
+import { palette } from '@/lib/theme';
 
 export default function TabLayout() {
-  const { theme } = useUniwind();
-  const [background, foreground, border, accent, muted] = useThemeColor([
-    'background',
-    'foreground',
-    'border',
-    'accent',
-    'muted',
-  ]);
+  const hydrated = useAppStore((state) => state.hydrated);
+  const level = useAppStore((state) => state.level);
+
+  // Wait for storage before deciding: otherwise a returning learner flashes
+  // through onboarding on every cold start.
+  if (!hydrated) {
+    return <View className="bg-cream flex-1" />;
+  }
+
+  if (level === null) {
+    return <Redirect href={routes.onboarding} />;
+  }
 
   return (
     <>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+      {/* oxlint-disable-next-line react/style-prop-object -- expo-status-bar's `style` is a string enum ("dark" | "light" | "auto"), not a React Native style object */}
+      <StatusBar style="dark" />
       <Tabs
         screenOptions={{
-          headerStyle: { backgroundColor: background },
-          headerTintColor: foreground,
-          headerTitleStyle: { color: foreground },
-          headerShadowVisible: false,
-          sceneStyle: { backgroundColor: background },
+          headerShown: false,
+          sceneStyle: { backgroundColor: palette.cream },
           tabBarStyle: {
-            backgroundColor: background,
-            borderTopColor: border,
+            backgroundColor: palette.cream,
+            borderTopColor: palette.ink,
+            borderTopWidth: 2,
+            elevation: 0,
+            shadowColor: 'transparent',
+            shadowOpacity: 0,
+            shadowRadius: 0,
           },
-          tabBarActiveTintColor: accent,
-          tabBarInactiveTintColor: muted,
+          tabBarActiveTintColor: palette.ink,
+          tabBarInactiveTintColor: palette.muted,
+          tabBarLabelStyle: { fontFamily: 'Inter_600SemiBold', fontSize: 11 },
         }}
       >
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Home',
+            title: 'Today',
             tabBarIcon: ({ color, size }) => <Home color={color} size={size ?? 24} />,
+          }}
+        />
+        <Tabs.Screen
+          name="missions"
+          options={{
+            title: 'Missions',
+            tabBarIcon: ({ color, size }) => <Compass color={color} size={size ?? 24} />,
+          }}
+        />
+        <Tabs.Screen
+          name="journal"
+          options={{
+            title: 'Journal',
+            tabBarIcon: ({ color, size }) => <NotebookPen color={color} size={size ?? 24} />,
+          }}
+        />
+        <Tabs.Screen
+          name="profile"
+          options={{
+            title: 'Progress',
+            tabBarIcon: ({ color, size }) => <Sparkles color={color} size={size ?? 24} />,
           }}
         />
       </Tabs>

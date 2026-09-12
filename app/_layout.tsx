@@ -23,6 +23,7 @@ import {
 } from 'expo-router';
 
 import { initPostHog } from '@/lib/posthog';
+import { palette } from '@/lib/theme';
 import { registerServiceWorker } from '@/lib/registerServiceWorker';
 import { reportErrorToParent } from '@/lib/reportPreviewError';
 import { InstallPrompt } from '@/components/InstallPrompt';
@@ -141,8 +142,19 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <HeroUINativeProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ title: 'Habits', headerShown: false }} />
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: palette.cream },
+          }}
+        >
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="level-result" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="mission/[id]/prep" />
+          <Stack.Screen name="mission/[id]/do" />
+          <Stack.Screen name="mission/[id]/journal" />
+          <Stack.Screen name="how-it-works" options={{ presentation: 'modal' }} />
         </Stack>
         <InstallPrompt />
       </HeroUINativeProvider>

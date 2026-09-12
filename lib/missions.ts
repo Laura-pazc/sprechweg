@@ -1,0 +1,545 @@
+import type { Mission } from '@/lib/types';
+
+/**
+ * Fixed content. The three missions, their vocab, their conversation
+ * simulations and their practice questions are authored, not generated —
+ * see app/how-it-works.tsx for the plain-language breakdown.
+ */
+export const MISSIONS: Mission[] = [
+  {
+    id: 'find-your-way',
+    title: 'Find your way',
+    tagline: 'Ask for directions and make the next U-Bahn ride feel easy.',
+    category: 'Getting around',
+    icon: 'compass',
+    level: 'beginner',
+    minutes: 15,
+    accent: 'sky',
+    where: 'Any busy corner in Hamburg — Jungfernstieg, Sternschanze, your own street.',
+    reflectionFocus: 'ask a stranger for directions',
+    realLifeSteps: [
+      'Find a corner where people are walking, not rushing.',
+      'Open with „Entschuldigung“ and wait for eye contact.',
+      'Ask: „Wie komme ich zur nächsten U-Bahn-Haltestelle?“',
+      'Repeat back what you heard, even if it is only two words.',
+      'Say „Vielen Dank!“ and walk the way they showed you.',
+    ],
+    vocab: [
+      {
+        id: 'fyw-1',
+        de: 'Entschuldigung',
+        en: 'Excuse me',
+        note: 'Opens any question. Say it once, clearly, then pause.',
+      },
+      {
+        id: 'fyw-2',
+        de: 'Wie komme ich zu…?',
+        en: 'How do I get to…?',
+        note: 'zum Bahnhof (m/n), zur Haltestelle (f).',
+      },
+      {
+        id: 'fyw-3',
+        de: 'die Haltestelle',
+        en: 'the stop',
+        note: 'Bus or U-Bahn stop. Look for the blue U sign.',
+      },
+      {
+        id: 'fyw-4',
+        de: 'geradeaus',
+        en: 'straight ahead',
+        note: 'Often paired with immer: „immer geradeaus“.',
+      },
+      {
+        id: 'fyw-5',
+        de: 'links / rechts',
+        en: 'left / right',
+        note: '„Nach links“ = to the left.',
+      },
+      {
+        id: 'fyw-6',
+        de: 'Ist es weit?',
+        en: 'Is it far?',
+        note: 'Gets you a distance you can picture.',
+      },
+      {
+        id: 'fyw-7',
+        de: 'Können Sie das wiederholen?',
+        en: 'Could you repeat that?',
+        note: 'Your safety net. Nobody minds being asked.',
+      },
+      {
+        id: 'fyw-8',
+        de: 'Vielen Dank!',
+        en: 'Thanks a lot!',
+        note: 'Ends the exchange warmly, whatever happened.',
+      },
+    ],
+    conversationSimulation: [
+      {
+        id: 'fyw-c1',
+        speaker: 'you',
+        de: 'Entschuldigung, darf ich Sie kurz etwas fragen?',
+        en: 'Excuse me, may I ask you something quickly?',
+      },
+      {
+        id: 'fyw-c2',
+        speaker: 'partner',
+        de: 'Ja, klar. Was suchen Sie?',
+        en: 'Yes, of course. What are you looking for?',
+      },
+      {
+        id: 'fyw-c3',
+        speaker: 'you',
+        de: 'Wie komme ich zur nächsten U-Bahn-Haltestelle?',
+        en: 'How do I get to the nearest U-Bahn stop?',
+      },
+      {
+        id: 'fyw-c4',
+        speaker: 'partner',
+        de: 'Gehen Sie hier immer geradeaus, dann die zweite Straße rechts.',
+        en: 'Go straight ahead here, then take the second street on the right.',
+      },
+      {
+        id: 'fyw-c5',
+        speaker: 'you',
+        de: 'Also geradeaus und dann rechts. Ist es weit?',
+        en: 'So straight ahead and then right. Is it far?',
+      },
+      {
+        id: 'fyw-c6',
+        speaker: 'partner',
+        de: 'Nein, fünf Minuten zu Fuß.',
+        en: 'No, five minutes on foot.',
+      },
+      {
+        id: 'fyw-c7',
+        speaker: 'you',
+        de: 'Können Sie das noch einmal wiederholen? Mein Deutsch ist neu.',
+        en: 'Could you repeat that once more? My German is new.',
+      },
+      {
+        id: 'fyw-c8',
+        speaker: 'partner',
+        de: 'Natürlich. Geradeaus, zweite Straße rechts, dann sehen Sie das blaue U.',
+        en: "Of course. Straight ahead, second street on the right, then you'll see the blue U.",
+      },
+      {
+        id: 'fyw-c9',
+        speaker: 'you',
+        de: 'Perfekt. Vielen Dank!',
+        en: 'Perfect. Thanks a lot!',
+      },
+      {
+        id: 'fyw-c10',
+        speaker: 'partner',
+        de: 'Gern. Viel Erfolg!',
+        en: "You're welcome. Good luck!",
+      },
+    ],
+    practiceQuestions: [
+      {
+        id: 'fyw-q1',
+        kind: 'multiple-choice',
+        prompt: 'Someone answers: „Immer geradeaus, dann rechts.“ What do you do?',
+        options: [
+          'Walk straight ahead, then turn right',
+          'Turn right straight away',
+          'Take the bus two stops',
+        ],
+        answerIndex: 0,
+        explanation:
+          'geradeaus = straight ahead, rechts = right. The order in the sentence is the order you walk.',
+      },
+      {
+        id: 'fyw-q2',
+        kind: 'fill-blank',
+        prompt: 'Complete the question you will actually ask today.',
+        sentence: 'Entschuldigung, wie ___ ich zur Haltestelle?',
+        answer: 'komme',
+        alternatives: [],
+        explanation: '„Wie komme ich…“ is the everyday way to ask for a route.',
+      },
+      {
+        id: 'fyw-q3',
+        kind: 'write-sentence',
+        prompt: 'Write how you would politely ask a stranger for the nearest U-Bahn stop.',
+        mustInclude: ['Entschuldigung', 'Haltestelle'],
+        sample: 'Entschuldigung, wo ist die nächste U-Bahn-Haltestelle?',
+        explanation:
+          'Politeness word first, then the place you need. Word order can vary — the opener cannot.',
+      },
+    ],
+    badge: {
+      title: 'Wegfinder',
+      emoji: '🧭',
+      description: 'Asked a stranger for directions in German and followed them.',
+    },
+  },
+  {
+    id: 'make-life-happen',
+    title: 'Make life happen',
+    tagline: 'Order lunch, ask a question, and do the practical stuff in German.',
+    category: 'Everyday errands',
+    icon: 'utensils',
+    level: 'intermediate',
+    minutes: 20,
+    accent: 'coral',
+    where: 'A bakery, Imbiss or lunch counter — pick a quiet hour, not the 12:30 rush.',
+    reflectionFocus: 'order and pay in German',
+    realLifeSteps: [
+      'Choose a counter with a short queue so nobody is rushing you.',
+      'Order with „Ich hätte gern …, bitte.“',
+      'Answer the takeaway question: „Zum Mitnehmen, bitte.“',
+      'Ask one extra question — a recommendation, or something vegetarian.',
+      'Pay in German: „Mit Karte, bitte.“',
+    ],
+    vocab: [
+      {
+        id: 'mlh-1',
+        de: 'Ich hätte gern…',
+        en: 'I would like…',
+        note: 'The politest everyday order. Works at every counter.',
+      },
+      {
+        id: 'mlh-2',
+        de: 'die Speisekarte',
+        en: 'the menu',
+        note: '„Die Speisekarte, bitte.“ — three words, done.',
+      },
+      {
+        id: 'mlh-3',
+        de: 'zum Mitnehmen',
+        en: 'to take away',
+        note: 'The opposite is „hier essen“ (eat in).',
+      },
+      {
+        id: 'mlh-4',
+        de: 'Was empfehlen Sie?',
+        en: 'What do you recommend?',
+        note: 'Turns an order into a short conversation.',
+      },
+      {
+        id: 'mlh-5',
+        de: 'Haben Sie etwas Vegetarisches?',
+        en: 'Do you have something vegetarian?',
+        note: 'Swap in „Veganes“ or „ohne Nüsse“ as needed.',
+      },
+      {
+        id: 'mlh-6',
+        de: 'Mit Karte, bitte.',
+        en: 'By card, please.',
+        note: 'Or „Bar, bitte.“ — plenty of places are still cash only.',
+      },
+      {
+        id: 'mlh-7',
+        de: 'Zahlen, bitte.',
+        en: 'The bill, please.',
+        note: 'For table service. At a counter you pay up front.',
+      },
+      {
+        id: 'mlh-8',
+        de: "Das war's, danke.",
+        en: "That's all, thanks.",
+        note: 'Signals your order is finished so they can total it up.',
+      },
+    ],
+    conversationSimulation: [
+      {
+        id: 'mlh-c1',
+        speaker: 'partner',
+        de: 'Hallo! Was darf es sein?',
+        en: 'Hello! What can I get you?',
+      },
+      {
+        id: 'mlh-c2',
+        speaker: 'you',
+        de: 'Hallo! Ich hätte gern die Gemüsesuppe, bitte.',
+        en: 'Hello! I would like the vegetable soup, please.',
+      },
+      {
+        id: 'mlh-c3',
+        speaker: 'partner',
+        de: 'Gerne. Und etwas zu trinken?',
+        en: 'Sure. And something to drink?',
+      },
+      {
+        id: 'mlh-c4',
+        speaker: 'you',
+        de: 'Ein Wasser, bitte. Was empfehlen Sie noch?',
+        en: 'A water, please. What else do you recommend?',
+      },
+      {
+        id: 'mlh-c5',
+        speaker: 'partner',
+        de: 'Die Brezel ist ganz frisch.',
+        en: 'The pretzel is very fresh.',
+      },
+      {
+        id: 'mlh-c6',
+        speaker: 'you',
+        de: 'Dann eine Brezel dazu. Haben Sie etwas Vegetarisches als Nachtisch?',
+        en: 'A pretzel with it, then. Do you have something vegetarian for dessert?',
+      },
+      {
+        id: 'mlh-c7',
+        speaker: 'partner',
+        de: 'Ja, den Apfelkuchen. Zum Mitnehmen oder hier essen?',
+        en: 'Yes, the apple cake. To take away or eat in?',
+      },
+      {
+        id: 'mlh-c8',
+        speaker: 'you',
+        de: "Zum Mitnehmen, bitte. Das war's, danke.",
+        en: "To take away, please. That's all, thanks.",
+      },
+      {
+        id: 'mlh-c9',
+        speaker: 'partner',
+        de: 'Macht neun Euro achtzig.',
+        en: "That'll be nine euros eighty.",
+      },
+      {
+        id: 'mlh-c10',
+        speaker: 'you',
+        de: 'Mit Karte, bitte.',
+        en: 'By card, please.',
+      },
+      {
+        id: 'mlh-c11',
+        speaker: 'partner',
+        de: 'Klar. Guten Appetit!',
+        en: 'Sure. Enjoy your meal!',
+      },
+    ],
+    practiceQuestions: [
+      {
+        id: 'mlh-q1',
+        kind: 'multiple-choice',
+        prompt:
+          'The person behind the counter asks: „Zum Mitnehmen oder hier essen?“ What are they asking?',
+        options: ['Takeaway or eat in', 'Cash or card', 'Whether you want a bag'],
+        answerIndex: 0,
+        explanation: 'mitnehmen = to take with you. „Hier essen“ = eat in.',
+      },
+      {
+        id: 'mlh-q2',
+        kind: 'fill-blank',
+        prompt: 'Complete the polite order.',
+        sentence: 'Ich ___ gern einen Kaffee, bitte.',
+        answer: 'hätte',
+        alternatives: ['hatte'],
+        explanation: '„Ich hätte gern“ — subjunctive, and the reason it sounds polite.',
+      },
+      {
+        id: 'mlh-q3',
+        kind: 'write-sentence',
+        prompt: 'Write the real order you will place today, and ask for it to go.',
+        mustInclude: ['bitte', 'Mitnehmen'],
+        sample: 'Ich hätte gern einen Kaffee, bitte. Zum Mitnehmen.',
+        explanation: 'Two short sentences beat one complicated one at a busy counter.',
+      },
+    ],
+    badge: {
+      title: 'Alltagsheld',
+      emoji: '🥨',
+      description: 'Ordered and paid for something entirely in German.',
+    },
+  },
+  {
+    id: 'meet-your-people',
+    title: 'Meet your people',
+    tagline: 'Start a conversation and suggest a plan without overthinking it.',
+    category: 'Making friends',
+    icon: 'users',
+    level: 'advanced',
+    minutes: 25,
+    accent: 'magenta',
+    where: 'A Sportverein session, a language café, or your building courtyard.',
+    reflectionFocus: 'start a conversation with someone new',
+    realLifeSteps: [
+      'Go somewhere people repeat — a club, a class, a café you can return to.',
+      'Open with an observation, not a lesson: „Kommst du oft hierher?“',
+      'Ask one follow-up question about them before talking about yourself.',
+      'Suggest something concrete with a day in it: „Passt dir Samstag?“',
+      'Swap numbers, or agree when you will both be back.',
+    ],
+    vocab: [
+      {
+        id: 'myp-1',
+        de: 'Kommst du oft hierher?',
+        en: 'Do you come here often?',
+        note: 'The easiest opener when you are both just standing around.',
+      },
+      {
+        id: 'myp-2',
+        de: 'Ich bin neu in der Stadt.',
+        en: "I'm new in the city.",
+        note: 'Buys patience, and usually a tip about the neighbourhood.',
+      },
+      {
+        id: 'myp-3',
+        de: 'Wie lange wohnst du schon hier?',
+        en: 'How long have you lived here?',
+        note: 'German keeps this in the present tense with „schon“.',
+      },
+      {
+        id: 'myp-4',
+        de: 'Hast du Lust auf…?',
+        en: 'Do you feel like…?',
+        note: '„Hast du Lust auf einen Kaffee?“ — low pressure invitation.',
+      },
+      {
+        id: 'myp-5',
+        de: 'Wollen wir…?',
+        en: 'Shall we…?',
+        note: '„Wollen wir mal zusammen laufen gehen?“',
+      },
+      {
+        id: 'myp-6',
+        de: 'Passt dir Samstag?',
+        en: 'Does Saturday work for you?',
+        note: 'Naming a day is what turns a nice chat into a plan.',
+      },
+      {
+        id: 'myp-7',
+        de: 'Ich schreibe dir.',
+        en: "I'll text you.",
+        note: 'Closes the loop before you walk away.',
+      },
+      {
+        id: 'myp-8',
+        de: 'Das klingt gut.',
+        en: 'That sounds good.',
+        note: 'Accepts an invitation without a speech.',
+      },
+    ],
+    conversationSimulation: [
+      {
+        id: 'myp-c1',
+        speaker: 'partner',
+        de: 'Bist du das erste Mal hier?',
+        en: 'Is this your first time here?',
+      },
+      {
+        id: 'myp-c2',
+        speaker: 'you',
+        de: 'Ja, ich bin neu in der Stadt. Kommst du oft hierher?',
+        en: "Yes, I'm new in the city. Do you come here often?",
+      },
+      {
+        id: 'myp-c3',
+        speaker: 'partner',
+        de: 'Jeden Donnerstag. Wie lange wohnst du schon in Hamburg?',
+        en: 'Every Thursday. How long have you been living in Hamburg?',
+      },
+      {
+        id: 'myp-c4',
+        speaker: 'you',
+        de: 'Seit drei Monaten. Mein Deutsch ist noch langsam, aber ich übe.',
+        en: "For three months. My German is still slow, but I'm practising.",
+      },
+      {
+        id: 'myp-c5',
+        speaker: 'partner',
+        de: 'Klingt doch super. Sag einfach, wenn ich langsamer sprechen soll.',
+        en: 'Sounds great. Just say if I should speak more slowly.',
+      },
+      {
+        id: 'myp-c6',
+        speaker: 'you',
+        de: 'Danke. Hast du Lust auf einen Kaffee nach dem Training?',
+        en: 'Thanks. Do you feel like a coffee after the session?',
+      },
+      {
+        id: 'myp-c7',
+        speaker: 'partner',
+        de: 'Heute muss ich los, aber gerne ein andermal.',
+        en: 'I have to go today, but gladly another time.',
+      },
+      {
+        id: 'myp-c8',
+        speaker: 'you',
+        de: 'Passt dir Samstag am Nachmittag?',
+        en: 'Does Saturday afternoon work for you?',
+      },
+      {
+        id: 'myp-c9',
+        speaker: 'partner',
+        de: 'Samstag passt. Schreib mir einfach.',
+        en: 'Saturday works. Just text me.',
+      },
+      {
+        id: 'myp-c10',
+        speaker: 'you',
+        de: 'Mache ich. Ich schreibe dir. Bis Samstag!',
+        en: "I will. I'll text you. See you Saturday!",
+      },
+    ],
+    practiceQuestions: [
+      {
+        id: 'myp-q1',
+        kind: 'multiple-choice',
+        prompt: '„Hast du Lust auf einen Kaffee?“ — what is happening here?',
+        options: [
+          'An invitation you can accept with „Das klingt gut.“',
+          'A complaint about the coffee',
+          'A question about where you live',
+        ],
+        answerIndex: 0,
+        explanation: '„Lust auf“ + noun is the standard low-pressure invitation.',
+      },
+      {
+        id: 'myp-q2',
+        kind: 'fill-blank',
+        prompt: 'Complete the line that buys you patience.',
+        sentence: 'Ich bin ___ in der Stadt.',
+        answer: 'neu',
+        alternatives: [],
+        explanation: 'Say it early. Most people slow down straight away.',
+      },
+      {
+        id: 'myp-q3',
+        kind: 'write-sentence',
+        prompt: 'Write an invitation with a specific day in it.',
+        mustInclude: ['Samstag'],
+        sample: 'Wollen wir am Samstag einen Kaffee trinken?',
+        explanation: 'A day makes it a plan. „Mal irgendwann“ never happens.',
+      },
+    ],
+    badge: {
+      title: 'Anschluss',
+      emoji: '🤝',
+      description: 'Started a conversation with someone new and suggested a plan.',
+    },
+  },
+];
+
+export function getMission(id: string | undefined): Mission | undefined {
+  if (!id) return undefined;
+  return MISSIONS.find((mission) => mission.id === id);
+}
+
+/** Fixed community quotes shown on the Today screen. */
+export const COMMUNITY_QUOTES = [
+  {
+    id: 'quote-mara',
+    text: 'I mixed up the words, but they understood me — and I kept going.',
+    author: 'Mara',
+    city: 'Hamburg',
+    cheers: 18,
+  },
+  {
+    id: 'quote-tomas',
+    text: 'Asked for directions twice. The second time I actually understood the answer.',
+    author: 'Tomás',
+    city: 'Hamburg',
+    cheers: 24,
+  },
+  {
+    id: 'quote-ayla',
+    text: 'Ordered lunch without switching to English. Small thing, huge day.',
+    author: 'Ayla',
+    city: 'Hamburg',
+    cheers: 31,
+  },
+];
