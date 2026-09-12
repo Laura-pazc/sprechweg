@@ -5,7 +5,6 @@ import {
   ChevronUp,
   ExternalLink,
   Heart,
-  Languages,
   MapPin,
   Sparkles,
 } from 'lucide-react-native';
@@ -16,9 +15,7 @@ import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { ChunkyChip } from '@/components/ChunkyChip';
-import { LanguagePicker } from '@/components/LanguagePicker';
 import { MissionCard } from '@/components/MissionCard';
-import { LANGUAGE_OPTIONS } from '@/lib/i18n';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -34,10 +31,7 @@ const HAMBURG_EVENTS_URL = 'https://www.hamburg-travel.com/see-explore/events/ev
 export default function TodayScreen() {
   const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
-  const [languagePickerOpen, setLanguagePickerOpen] = useState(false);
   const name = useAppStore((state) => state.name);
-  const locale = useAppStore((state) => state.locale);
-  const setLocale = useAppStore((state) => state.setLocale);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
   const practiceDone = useAppStore((state) => state.practiceDone);
@@ -63,31 +57,12 @@ export default function TodayScreen() {
     <Screen>
       <ScrollView contentContainerClassName="gap-5 px-5 pt-2 pb-8">
         <View className="flex-row items-center justify-between gap-3">
-          <View className="flex-row items-center gap-2">
-            <ChunkyChip
-              label="Hamburg"
-              tone="sky"
-              leading={<MapPin color={palette.ink} size={14} strokeWidth={2.5} />}
-              className="px-2.5"
-            />
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={t('language.buttonLabel', {
-                language: LANGUAGE_OPTIONS.find((option) => option.value === locale)?.label,
-              })}
-              accessibilityState={{ expanded: languagePickerOpen }}
-              onPress={() => setLanguagePickerOpen(true)}
-            >
-              <ChunkyChip
-                label={
-                  LANGUAGE_OPTIONS.find((option) => option.value === locale)?.label ?? 'English'
-                }
-                tone="sunny"
-                leading={<Languages color={palette.ink} size={14} strokeWidth={2.5} />}
-                className="px-2.5"
-              />
-            </Pressable>
-          </View>
+          <ChunkyChip
+            label="Hamburg"
+            tone="sky"
+            leading={<MapPin color={palette.ink} size={14} strokeWidth={2.5} />}
+            className="px-2.5"
+          />
           <Pressable
             accessibilityRole="button"
             onPress={() => router.push(routes.howItWorks)}
@@ -225,15 +200,6 @@ export default function TodayScreen() {
           </View>
         ) : null}
       </ScrollView>
-      <LanguagePicker
-        visible={languagePickerOpen}
-        locale={locale}
-        onSelect={(nextLocale) => {
-          setLocale(nextLocale);
-          setLanguagePickerOpen(false);
-        }}
-        onClose={() => setLanguagePickerOpen(false)}
-      />
     </Screen>
   );
 }
