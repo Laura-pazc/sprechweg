@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -18,6 +19,7 @@ import type { Mission } from '@/lib/types';
 type JournalStage = 'reflection' | 'recall';
 
 function MissionJournal({ mission }: { mission: Mission }) {
+  const { t } = useTranslation();
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const studied = useAppStore((state) => state.studied);
@@ -85,8 +87,8 @@ function MissionJournal({ mission }: { mission: Mission }) {
           <ScreenHeader
             nested
             compact
-            kicker="Journal"
-            title={saved ? 'Saved.' : 'One thought at a time'}
+            kicker={t('journal.kicker')}
+            title={saved ? t('journal.missionJournalSaved') : t('journal.missionJournalTitle')}
             subtitle={saved ? undefined : reflectionHint(tier)}
             onBack={() => router.replace(routes.missionDo(mission.id))}
             right={
@@ -99,41 +101,44 @@ function MissionJournal({ mission }: { mission: Mission }) {
           />
 
           {saved ? (
-            <View className="gap-5">
-              <ChunkyCard tone="lime" className="gap-2 px-4 py-5">
-                <Text className="text-ink font-display text-[22px] leading-[27px]">
-                  {streakCount} {streakCount === 1 ? 'day' : 'days'} in a row
+            <View className=”gap-5”>
+              <ChunkyCard tone=”lime” className=”gap-2 px-4 py-5”>
+                <Text className=”text-ink font-display text-[22px] leading-[27px]”>
+                  {t('journal.streakDays', { count: streakCount })}
                 </Text>
-                <Text className="text-ink font-body text-[14px] leading-[21px]">
-                  Entry saved and “{mission.title}” is marked done. Recall quiz: {savedScore} of{' '}
-                  {questions.length}.
+                <Text className=”text-ink font-body text-[14px] leading-[21px]”>
+                  {t('journal.entrySavedText', {
+                    title: mission.title,
+                    score: savedScore,
+                    total: questions.length,
+                  })}
                 </Text>
               </ChunkyCard>
 
-              <ChunkyCard tone="sunny" className="flex-row items-center gap-3 px-4 py-4">
-                <View className="border-ink h-14 w-14 items-center justify-center rounded-full border-2 bg-white">
-                  <Text className="text-[24px]">{mission.badge.emoji}</Text>
+              <ChunkyCard tone=”sunny” className=”flex-row items-center gap-3 px-4 py-4”>
+                <View className=”border-ink h-14 w-14 items-center justify-center rounded-full border-2 bg-white”>
+                  <Text className=”text-[24px]”>{mission.badge.emoji}</Text>
                 </View>
-                <View className="flex-1 gap-0.5">
-                  <Text className="text-muted font-display text-[11px] tracking-widest">
-                    BADGE EARNED
+                <View className=”flex-1 gap-0.5”>
+                  <Text className=”text-muted font-display text-[11px] tracking-widest”>
+                    {t('journal.badgeEarned')}
                   </Text>
-                  <Text className="text-ink font-display text-[17px]">{mission.badge.title}</Text>
-                  <Text className="text-ink font-body text-[13px] leading-[19px]">
+                  <Text className=”text-ink font-display text-[17px]”>{mission.badge.title}</Text>
+                  <Text className=”text-ink font-body text-[13px] leading-[19px]”>
                     {mission.badge.description}
                   </Text>
                 </View>
               </ChunkyCard>
 
-              <View className="gap-2">
+              <View className=”gap-2”>
                 <ChunkyButton
-                  label="Back to today"
+                  label={t('journal.backToToday')}
                   fullWidth
                   onPress={() => router.replace(routes.today)}
                 />
                 <ChunkyButton
-                  label="See my progress"
-                  variant="paper"
+                  label={t('journal.seeProgress')}
+                  variant=”paper”
                   fullWidth
                   onPress={() => router.replace(routes.profile)}
                 />
@@ -143,7 +148,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
             <View className="gap-4 pt-1">
               <View className="flex-row items-center gap-3">
                 <Text className="text-muted font-strong text-[11px]">
-                  Thought {reflectionIndex + 1} of {prompts.length}
+                  {t('journal.thoughtCount', { current: reflectionIndex + 1, total: prompts.length })}
                 </Text>
                 <View className="flex-1 flex-row gap-1.5" accessibilityRole="progressbar">
                   {prompts.map((prompt, index) => (
@@ -162,7 +167,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
               <View className="gap-3">
                 <View className="border-ink bg-sky gap-1.5 rounded-[14px] border-2 px-4 py-4">
                   <Text className="text-muted font-display text-[10px] tracking-widest">
-                    YOUR PROMPT
+                    {t(‘journal.reflectionPromptLabel’)}
                   </Text>
                   <Text className="text-ink font-strong text-[21px] leading-[27px]">
                     {prompts[reflectionIndex]}
@@ -179,8 +184,8 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   }
                   placeholder={
                     reflectionIndex === 0
-                      ? 'Take a moment. What did you notice, feel, or do?'
-                      : 'Add another thought, if you’d like…'
+                      ? t(‘journal.reflectionPlaceholder1’)
+                      : t(‘journal.reflectionPlaceholderN’)
                   }
                   multiline
                   className="min-h-[220px] px-4 py-4"
@@ -189,14 +194,14 @@ function MissionJournal({ mission }: { mission: Mission }) {
               </View>
               <View className="gap-2">
                 <ChunkyButton
-                  label={isLastPrompt ? 'Continue to recall' : 'Next thought'}
+                  label={isLastPrompt ? t('journal.continueToRecall') : t('journal.nextThought')}
                   fullWidth
                   disabled={reflectionIndex === 0 && currentAnswer.trim().length === 0}
                   onPress={continueReflection}
                 />
                 {reflectionIndex > 0 && currentAnswer.trim().length === 0 ? (
                   <ChunkyButton
-                    label="Skip this one"
+                    label={t('journal.skipThis')}
                     variant="quiet"
                     fullWidth
                     onPress={continueReflection}
@@ -207,9 +212,11 @@ function MissionJournal({ mission }: { mission: Mission }) {
           ) : (
             <View className="gap-4">
               <View className="gap-1">
-                <Text className="text-ink font-display text-[20px]">A quick recall</Text>
+                <Text className="text-ink font-display text-[20px]">
+                  {t('journal.recallQuizTitle')}
+                </Text>
                 <Text className="text-muted font-body text-[13px] leading-[18px]">
-                  One word at a time. No score is shown while you answer.
+                  {t('journal.recallQuizSubtitle')}
                 </Text>
               </View>
               <RecallQuiz
@@ -226,7 +233,7 @@ function MissionJournal({ mission }: { mission: Mission }) {
                 revealed={false}
               />
               <ChunkyButton
-                label={isLastRecall ? 'Save entry' : 'Next word'}
+                label={isLastRecall ? t('journal.saveEntry') : t('journal.nextWord')}
                 fullWidth
                 disabled={currentSelection === null}
                 onPress={isLastRecall ? save : () => setRecallIndex((index) => index + 1)}
