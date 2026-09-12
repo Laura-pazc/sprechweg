@@ -37,6 +37,7 @@ function DoMission({ mission }: { mission: Mission }) {
           title={mission.title}
           subtitle={mission.where}
           backFallback={routes.missionPrep(mission.id)}
+          onBack={() => router.replace(routes.missionPrep(mission.id))}
           right={<MissionStatusBadge status={status} />}
         />
 

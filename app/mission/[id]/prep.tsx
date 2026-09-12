@@ -105,9 +105,11 @@ export default function MissionPrepScreen() {
           </View>
         )}
 
-        <View className="mt-3 mb-2">
-          <StepPager items={steps} value={step} onChange={changeStep} />
-        </View>
+        {step !== 'practice' ? (
+          <View className="mt-3 mb-2">
+            <StepPager items={steps} value={step} onChange={changeStep} />
+          </View>
+        ) : null}
 
         <ScrollView
           className="flex-1"
