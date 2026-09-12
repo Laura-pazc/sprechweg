@@ -2,6 +2,7 @@ import { Compass, Home, NotebookPen, Sparkles } from 'lucide-react-native';
 import { Redirect, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
 import { routes } from '@/lib/navigation';
@@ -10,6 +11,7 @@ import { palette } from '@/lib/theme';
 
 export default function TabLayout() {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const hydrated = useAppStore((state) => state.hydrated);
   const level = useAppStore((state) => state.level);
 
@@ -35,6 +37,9 @@ export default function TabLayout() {
             backgroundColor: palette.cream,
             borderTopColor: palette.ink,
             borderTopWidth: 2,
+            height: 64 + insets.bottom,
+            paddingTop: 8,
+            paddingBottom: Math.max(insets.bottom, 10),
             elevation: 0,
             shadowColor: 'transparent',
             shadowOpacity: 0,
