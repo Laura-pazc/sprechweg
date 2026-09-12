@@ -27,8 +27,7 @@ function DoMission({ mission }: { mission: Mission }) {
           kicker="Do the mission"
           title={mission.title}
           subtitle={mission.where}
-          backFallback={routes.missions}
-          onBack={() => router.replace(routes.missionPrep(mission.id))}
+          backFallback={routes.missionPrep(mission.id)}
           right={
             <ChunkyChip
               label={STATUS_LABEL[status]}
