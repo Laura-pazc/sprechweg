@@ -5,7 +5,6 @@ import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
-import { ChunkyChip } from '@/components/ChunkyChip';
 import { ConversationSim } from '@/components/mission/ConversationSim';
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
@@ -43,17 +42,19 @@ function MissionPrep({ mission }: { mission: Mission }) {
     <Screen>
       <ScreenHeader
         compact
-        kicker={`${mission.category} · ${mission.minutes} min`}
+        kicker={`${mission.category} · ${LEVEL_LABEL[mission.level]} · ${mission.minutes} min`}
         title={mission.title}
         subtitle={mission.tagline}
         backFallback={routes.missions}
-        right={<ChunkyChip label={LEVEL_LABEL[mission.level]} tone={mission.accent} />}
       />
 
-      <View className="gap-3 px-5 pb-3">
+      <View className="gap-2.5 px-5 pb-2.5">
         <View className="flex-row items-start gap-1.5">
-          <MapPin color={palette.ink} size={13} strokeWidth={2.5} style={{ marginTop: 2 }} />
-          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">
+          <MapPin color={palette.muted} size={12} strokeWidth={2.4} style={{ marginTop: 2 }} />
+          <Text
+            className="text-muted font-strong flex-1 text-[11.5px] leading-[16px]"
+            numberOfLines={2}
+          >
             {mission.where}
           </Text>
         </View>

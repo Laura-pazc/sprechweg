@@ -1,7 +1,7 @@
 import { Compass, Home, NotebookPen, Sparkles } from 'lucide-react-native';
 import { Redirect, Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +14,9 @@ export default function TabLayout() {
   const insets = useSafeAreaInsets();
   const hydrated = useAppStore((state) => state.hydrated);
   const level = useAppStore((state) => state.level);
+  const isWeb = Platform.OS === 'web';
+  const bottomInset = isWeb ? 18 : Math.max(insets.bottom, 10);
+  const tabBarHeight = (isWeb ? 68 : 64) + bottomInset;
 
   // Wait for storage before deciding: otherwise a returning learner flashes
   // through onboarding on every cold start.
@@ -37,9 +40,9 @@ export default function TabLayout() {
             backgroundColor: palette.cream,
             borderTopColor: palette.ink,
             borderTopWidth: 2,
-            height: 64 + insets.bottom,
+            height: tabBarHeight,
             paddingTop: 8,
-            paddingBottom: Math.max(insets.bottom, 10),
+            paddingBottom: bottomInset,
             elevation: 0,
             shadowColor: 'transparent',
             shadowOpacity: 0,
@@ -47,7 +50,12 @@ export default function TabLayout() {
           },
           tabBarActiveTintColor: palette.ink,
           tabBarInactiveTintColor: palette.muted,
-          tabBarLabelStyle: { fontFamily: 'Inter_600SemiBold', fontSize: 11 },
+          tabBarLabelStyle: {
+            fontFamily: 'Inter_600SemiBold',
+            fontSize: 11,
+            lineHeight: 16,
+            marginBottom: 0,
+          },
         }}
       >
         <Tabs.Screen
