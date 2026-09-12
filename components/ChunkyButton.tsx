@@ -30,9 +30,8 @@ const SIZE_TEXT: Record<ButtonSize, string> = {
 
 const SIZE_RADIUS: Record<ButtonSize, number> = { sm: 12, md: 14, lg: 16 };
 
-interface ChunkyButtonProps {
+interface ChunkyButtonFaceProps {
   label: string;
-  onPress: () => void;
   variant?: ButtonVariant;
   size?: ButtonSize;
   /** Trailing element, e.g. an arrow glyph or lucide icon. */
@@ -41,6 +40,67 @@ interface ChunkyButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   className?: string;
+}
+
+/**
+ * The button surface without any press handling. Use inside an already
+ * pressable parent (e.g. ChunkyPressableCard) so the web build does not nest
+ * one button element inside another.
+ */
+export function ChunkyButtonFace({
+  label,
+  variant = 'primary',
+  size = 'md',
+  trailing,
+  leading,
+  fullWidth = false,
+  disabled = false,
+  className,
+}: ChunkyButtonFaceProps) {
+  const tone = VARIANT_TONE[variant];
+  const offset = size === 'sm' ? 3 : 4;
+  const radius = SIZE_RADIUS[size];
+
+  return (
+    <View
+      style={{ marginRight: offset, marginBottom: offset }}
+      className={cn(fullWidth ? 'self-stretch' : 'self-start', className)}
+    >
+      {!disabled && (
+        <View
+          pointerEvents="none"
+          className="bg-ink absolute"
+          style={{
+            left: offset,
+            top: offset,
+            right: -offset,
+            bottom: -offset,
+            borderRadius: radius,
+          }}
+        />
+      )}
+      <View
+        className={cn(
+          'border-ink flex-row items-center justify-center gap-2 border-2',
+          SIZE_BOX[size],
+          disabled ? 'bg-canvas opacity-60' : TONE_BG[tone],
+        )}
+        style={{ borderRadius: radius }}
+      >
+        {leading}
+        <Text
+          className={cn('font-display', SIZE_TEXT[size], disabled ? 'text-muted' : TONE_TEXT[tone])}
+        >
+          {label}
+        </Text>
+        {trailing}
+      </View>
+    </View>
+  );
+}
+
+interface ChunkyButtonProps extends ChunkyButtonFaceProps {
+  onPress: () => void;
 }
 
 export function ChunkyButton({

@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 
-import { ChunkyButton } from '@/components/ChunkyButton';
+import { ChunkyButtonFace } from '@/components/ChunkyButton';
 import { ChunkyPressableCard } from '@/components/ChunkyCard';
 import { ChunkyChip } from '@/components/ChunkyChip';
 import { DoneMark, MissionIcon } from '@/components/MissionIcon';
@@ -45,11 +45,10 @@ export function MissionCard({ mission, status, onPress }: MissionCardProps) {
       </View>
 
       <View className="flex-row items-center justify-between gap-3">
-        <ChunkyButton
+        <ChunkyButtonFace
           label={status === 'done' ? 'Revisit' : 'Start practicing'}
           trailing={<Text className="text-ink font-display text-[15px]">→</Text>}
           variant="paper"
-          onPress={onPress}
         />
         {note ? (
           <View className="flex-row items-center gap-1.5">
