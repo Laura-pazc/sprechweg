@@ -10,6 +10,7 @@ export const routes = {
   today: '/(tabs)' as Href,
   missions: '/(tabs)/missions' as Href,
   journalTab: '/(tabs)/journal' as Href,
+  dailyJournal: '/journal/new' as Href,
   profile: '/(tabs)/profile' as Href,
   onboarding: '/onboarding' as Href,
   levelResult: '/level-result' as Href,

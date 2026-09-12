@@ -147,6 +147,14 @@ const resources = {
         emptyBody:
           'Pick a mission, go out and try it, then come back and tell your Sidekick how it went.',
         browse: 'Browse missions',
+        dailyTitle: 'Your thoughts today',
+        dailyBody: 'No mission to reflect on? Capture whatever is on your mind.',
+        dailyPrompt: 'What are your thoughts today?',
+        dailyPlaceholder: 'Write a thought, feeling, question, or small win…',
+        dailyWrite: 'Write today’s thought',
+        dailySave: 'Save today’s thought',
+        dailyEntry: 'Daily reflection',
+        saved: 'Your thought is saved.',
       },
       progress: {
         kicker: 'Your progress',
@@ -300,6 +308,15 @@ const resources = {
         emptyBody:
           'Wähle eine Mission, probiere sie aus und erzähle deinem Sidekick danach, wie es lief.',
         browse: 'Missionen ansehen',
+        dailyTitle: 'Deine Gedanken heute',
+        dailyBody: 'Keine Mission zum Reflektieren? Halte fest, was dich gerade beschäftigt.',
+        dailyPrompt: 'Was sind heute deine Gedanken?',
+        dailyPlaceholder:
+          'Schreibe einen Gedanken, ein Gefühl, eine Frage oder einen kleinen Erfolg auf …',
+        dailyWrite: 'Heutigen Gedanken schreiben',
+        dailySave: 'Heutigen Gedanken speichern',
+        dailyEntry: 'Tagesreflexion',
+        saved: 'Dein Gedanke wurde gespeichert.',
       },
       progress: {
         kicker: 'Dein Fortschritt',

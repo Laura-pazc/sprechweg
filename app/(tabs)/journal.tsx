@@ -28,23 +28,25 @@ function formatDay(iso: string, locale: string): string {
 function EntryCard({ entry }: { entry: JournalEntry }) {
   const { i18n, t } = useTranslation();
   const locale = i18n.resolvedLanguage === 'de' ? DATE_LOCALES.de : DATE_LOCALES.en;
-  const mission = getMission(entry.missionId);
+  const mission = getMission(entry.missionId ?? undefined);
 
   return (
     <ChunkyCard tone="paper" className="gap-3 px-4 py-4">
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-0.5">
           <Text className="text-ink font-display text-[18px] leading-[23px]">
-            {mission?.title ?? t('common.mission')}
+            {mission?.title ?? t('journal.dailyEntry')}
           </Text>
           <Text className="text-muted font-strong text-[12.5px]">
             {formatDay(entry.createdAt, locale)}
           </Text>
         </View>
-        <ChunkyChip
-          label={t('journal.recall', { score: entry.quizScore, total: entry.quizTotal })}
-          tone={entry.quizScore === entry.quizTotal ? 'lime' : 'cream'}
-        />
+        {entry.quizTotal > 0 ? (
+          <ChunkyChip
+            label={t('journal.recall', { score: entry.quizScore, total: entry.quizTotal })}
+            tone={entry.quizScore === entry.quizTotal ? 'lime' : 'cream'}
+          />
+        ) : null}
       </View>
 
       {entry.prompts.map((prompt, index) => {
@@ -110,7 +112,22 @@ export default function JournalScreen() {
                   onPress={() => router.push(routes.missionJournal(pending.id))}
                 />
               </ChunkyCard>
-            ) : null}
+            ) : (
+              <ChunkyCard tone="sky" className="gap-2.5 px-4 py-4">
+                <Text className="text-ink font-display text-[18px] leading-[23px]">
+                  {t('journal.dailyTitle')}
+                </Text>
+                <Text className="text-ink font-body text-[13.5px] leading-[20px]">
+                  {t('journal.dailyBody')}
+                </Text>
+                <ChunkyButton
+                  label={t('journal.dailyWrite')}
+                  variant="ink"
+                  leading={<NotebookPen color={palette.cream} size={16} strokeWidth={2.5} />}
+                  onPress={() => router.push(routes.dailyJournal)}
+                />
+              </ChunkyCard>
+            )}
           </View>
         }
         ListEmptyComponent={

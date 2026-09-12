@@ -28,7 +28,7 @@ interface AppState {
   toggleVocabStudied: (missionId: string, vocabId: string) => void;
   markPracticeDone: (missionId: string) => void;
   addJournalEntry: (entry: {
-    missionId: string;
+    missionId: string | null;
     prompts: string[];
     answers: string[];
     quizScore: number;
@@ -91,7 +91,7 @@ export const useAppStore = create<AppState>()(
         }
 
         const entry: JournalEntry = {
-          id: `${missionId}-${Date.now()}`,
+          id: `${missionId ?? 'daily'}-${Date.now()}`,
           missionId,
           createdAt: new Date().toISOString(),
           day: today,
@@ -105,7 +105,7 @@ export const useAppStore = create<AppState>()(
           entries: [entry, ...state.entries],
           streakCount: nextStreak,
           lastJournalDay: today,
-          statuses: { ...state.statuses, [missionId]: 'done' },
+          statuses: missionId ? { ...state.statuses, [missionId]: 'done' } : state.statuses,
         }));
       },
 

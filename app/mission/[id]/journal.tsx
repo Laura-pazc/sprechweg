@@ -21,12 +21,21 @@ function MissionJournal({ mission }: { mission: Mission }) {
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const studied = useAppStore((state) => state.studied);
+  const practiceDone = useAppStore((state) => state.practiceDone[mission.id] ?? false);
+  const entries = useAppStore((state) => state.entries);
   const streakCount = useAppStore((state) => state.streakCount);
   const addJournalEntry = useAppStore((state) => state.addJournalEntry);
 
   const tier = level ?? 'beginner';
   const studiedIds = useMemo(() => studied[mission.id] ?? [], [studied, mission.id]);
-  const prompts = useMemo(() => buildReflectionPrompts(mission, tier, name), [mission, tier, name]);
+  const prompts = useMemo(
+    () =>
+      buildReflectionPrompts(mission, tier, name, {
+        sessionNumber: entries.filter((entry) => entry.missionId === mission.id).length,
+        includeCarryForward: studiedIds.length > 0 || practiceDone,
+      }),
+    [mission, tier, name, entries, studiedIds.length, practiceDone],
+  );
   const questions = useMemo(() => buildRecallQuiz(mission, studiedIds), [mission, studiedIds]);
 
   const [answers, setAnswers] = useState<string[]>(() => prompts.map(() => ''));

@@ -169,6 +169,7 @@ export default function RootLayout() {
           <Stack.Screen name="mission/[id]/prep" />
           <Stack.Screen name="mission/[id]/do" />
           <Stack.Screen name="mission/[id]/journal" />
+          <Stack.Screen name="journal/new" />
           <Stack.Screen name="how-it-works" options={{ presentation: 'modal' }} />
         </Stack>
         <InstallPrompt />

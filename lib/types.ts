@@ -78,7 +78,8 @@ export interface Mission {
 
 export interface JournalEntry {
   id: string;
-  missionId: string;
+  /** Null for a free-form daily reflection that is not tied to a mission. */
+  missionId: string | null;
   createdAt: string;
   /** Local calendar day, yyyy-mm-dd. Drives the streak. */
   day: string;
