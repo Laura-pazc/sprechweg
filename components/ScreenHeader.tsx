@@ -16,6 +16,8 @@ interface ScreenHeaderProps {
   subtitle?: string;
   /** Where back goes when the screen was opened directly (deep link, reload). */
   backFallback?: Href;
+  /** Optional deterministic back action for flows with a known previous screen. */
+  onBack?: () => void;
   showBack?: boolean;
   /** Corner action on the right — status chip, close button, level tag. */
   right?: ReactNode;
@@ -30,6 +32,7 @@ export function ScreenHeader({
   kicker,
   subtitle,
   backFallback = '/(tabs)',
+  onBack,
   showBack = true,
   right,
   compact = false,
@@ -48,7 +51,7 @@ export function ScreenHeader({
         {showBack ? (
           <ChunkyIconButton
             accessibilityLabel={t('common.back')}
-            onPress={() => goBackOrReplace(backFallback)}
+            onPress={onBack ?? (() => goBackOrReplace(backFallback))}
             size={compact ? 32 : 36}
             className={cn('mt-0.5', nested && '-ml-2.5')}
           >
