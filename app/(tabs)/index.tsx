@@ -5,6 +5,7 @@ import {
   ChevronUp,
   ExternalLink,
   Heart,
+  Languages,
   MapPin,
   Sparkles,
 } from 'lucide-react-native';
@@ -55,11 +56,20 @@ export default function TodayScreen() {
     <Screen>
       <ScrollView contentContainerClassName="gap-5 px-5 pt-2 pb-8">
         <View className="flex-row items-center justify-between gap-3">
-          <ChunkyChip
-            label="Hamburg · German"
-            tone="sky"
-            leading={<MapPin color={palette.ink} size={14} strokeWidth={2.5} />}
-          />
+          <View className="flex-row items-center gap-2">
+            <ChunkyChip
+              label="Hamburg"
+              tone="sky"
+              leading={<MapPin color={palette.ink} size={14} strokeWidth={2.5} />}
+              className="px-2.5"
+            />
+            <ChunkyChip
+              label="German"
+              tone="sunny"
+              leading={<Languages color={palette.ink} size={14} strokeWidth={2.5} />}
+              className="px-2.5"
+            />
+          </View>
           <Pressable
             accessibilityRole="button"
             onPress={() => router.push(routes.howItWorks)}
