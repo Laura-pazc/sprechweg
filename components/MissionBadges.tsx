@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 
 import { ChunkyChip } from '@/components/ChunkyChip';
+import { LEVEL_LABEL } from '@/lib/levelChat';
 import { palette } from '@/lib/theme';
 import type { Mission, MissionStatus } from '@/lib/types';
 
@@ -23,7 +24,7 @@ export function MissionMetaBadges({ mission, includeLevel = true }: MissionMetaB
         className="bg-white/75 px-2.5 py-1"
       />
       {includeLevel ? (
-        <ChunkyChip label={t(`levels.${mission.level}`)} tone="lime" meta className="px-2.5 py-1" />
+        <ChunkyChip label={LEVEL_LABEL[mission.level]} tone="lime" meta className="px-2 py-0.5" />
       ) : null}
     </View>
   );

@@ -204,9 +204,9 @@ export const LEVEL_SUMMARY: Record<Level, LevelSummary> = {
   },
 };
 
-/** Short tier name for tags and chips. */
+/** Compact CEFR range used for mission tags and list context. */
 export const LEVEL_LABEL: Record<Level, string> = {
-  beginner: LEVEL_SUMMARY.beginner.title,
-  intermediate: LEVEL_SUMMARY.intermediate.title,
-  advanced: LEVEL_SUMMARY.advanced.title,
+  beginner: 'A1–A2',
+  intermediate: 'B1–B2',
+  advanced: 'C1–C2',
 };

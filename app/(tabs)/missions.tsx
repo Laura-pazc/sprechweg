@@ -6,6 +6,7 @@ import { ChunkyCard } from '@/components/ChunkyCard';
 import { MissionCard } from '@/components/MissionCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
+import { LEVEL_LABEL } from '@/lib/levelChat';
 import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
@@ -15,6 +16,12 @@ export default function MissionsScreen() {
   const { t } = useTranslation();
   const statuses = useAppStore((state) => state.statuses);
   const level = useAppStore((state) => state.level);
+
+  const orderedMissions = level
+    ? [...MISSIONS].sort(
+        (first, second) => Number(second.level === level) - Number(first.level === level),
+      )
+    : MISSIONS;
 
   const renderItem = ({ item }: { item: Mission }) => (
     <MissionCard
@@ -27,7 +34,7 @@ export default function MissionsScreen() {
   return (
     <Screen>
       <FlatList
-        data={MISSIONS}
+        data={orderedMissions}
         keyExtractor={(mission) => mission.id}
         renderItem={renderItem}
         contentContainerClassName="gap-4 px-5 pb-8"
@@ -41,7 +48,7 @@ export default function MissionsScreen() {
               subtitle={
                 level === null
                   ? t('missions.subtitleNoLevel')
-                  : t('missions.subtitle', { tier: t(`levels.${level}`).toLowerCase() })
+                  : t('missions.subtitle', { tier: LEVEL_LABEL[level] })
               }
             />
           </View>
