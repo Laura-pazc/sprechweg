@@ -1,3 +1,4 @@
+import { MapPin } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -11,16 +12,17 @@ import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
 import { VocabList } from '@/components/mission/VocabList';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { SegmentedTabs, type SegmentItem } from '@/components/SegmentedTabs';
+import { StepPager, type StepItem } from '@/components/StepPager';
 import { LEVEL_LABEL } from '@/lib/levelChat';
 import { getMission } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
+import { palette } from '@/lib/theme';
 import type { Mission } from '@/lib/types';
 
 type PrepTab = 'vocab' | 'talk' | 'practice';
 
-const TABS: SegmentItem<PrepTab>[] = [
+const TABS: StepItem<PrepTab>[] = [
   { id: 'vocab', label: 'Vocab' },
   { id: 'talk', label: 'Conversation' },
   { id: 'practice', label: 'Practice' },
@@ -41,6 +43,7 @@ function MissionPrep({ mission }: { mission: Mission }) {
   return (
     <Screen>
       <ScreenHeader
+        compact
         kicker={`${mission.category} · ${mission.minutes} min`}
         title={mission.title}
         subtitle={mission.tagline}
@@ -48,13 +51,18 @@ function MissionPrep({ mission }: { mission: Mission }) {
         right={<ChunkyChip label={LEVEL_LABEL[mission.level]} tone={mission.accent} />}
       />
 
-      <View className="gap-3 px-5 pb-3">
-        <ChunkyChip label={mission.where} tone="sky" />
-        <SegmentedTabs items={TABS} value={tab} onChange={setTab} />
+      <View className="gap-2 px-5 pb-2">
+        <View className="flex-row items-start gap-1.5">
+          <MapPin color={palette.ink} size={13} strokeWidth={2.5} style={{ marginTop: 2 }} />
+          <Text className="text-ink font-strong flex-1 text-[12px] leading-[17px]">
+            {mission.where}
+          </Text>
+        </View>
+        <StepPager items={TABS} value={tab} onChange={setTab} />
       </View>
 
-      <ScrollView contentContainerClassName="gap-4 px-5 pb-6" keyboardShouldPersistTaps="handled">
-        <Text className="text-muted font-display text-[11px] tracking-widest">
+      <ScrollView contentContainerClassName="gap-3 px-5 pb-6" keyboardShouldPersistTaps="handled">
+        <Text className="text-muted font-display text-[10px] tracking-widest">
           PREPARED FOR YOUR {LEVEL_LABEL[tier].toUpperCase()} TIER
         </Text>
 
@@ -74,15 +82,15 @@ function MissionPrep({ mission }: { mission: Mission }) {
         ) : null}
 
         {tab === 'practice' ? (
-          <View className="gap-4">
+          <View className="gap-3">
             <PracticeQuiz
               questions={mission.practiceQuestions}
               onAllAnswered={() => markPracticeDone(mission.id)}
             />
             {practiceDone[mission.id] ? (
-              <ChunkyCard tone="lime" className="gap-1.5 px-4 py-4">
-                <Text className="text-ink font-display text-[17px]">Practice done</Text>
-                <Text className="text-ink font-body text-[13.5px] leading-[20px]">
+              <ChunkyCard tone="lime" className="gap-1 px-4 py-3.5">
+                <Text className="text-ink font-display text-[15px]">Practice done</Text>
+                <Text className="text-ink font-body text-[12.5px] leading-[18px]">
                   That is the desk part finished. The rest only happens outside.
                 </Text>
               </ChunkyCard>
@@ -91,12 +99,11 @@ function MissionPrep({ mission }: { mission: Mission }) {
         ) : null}
       </ScrollView>
 
-      <View className="border-ink bg-cream pb-safe-offset-4 border-t-2 px-5 pt-4">
+      <View className="border-ink bg-cream pb-safe-offset-3 border-t-2 px-5 pt-3">
         <ChunkyButton
           label="I'm ready — do it for real"
-          size="lg"
           fullWidth
-          trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
+          trailing={<Text className="text-cream font-display text-[15px]">→</Text>}
           onPress={() => router.push(routes.missionDo(mission.id))}
         />
       </View>

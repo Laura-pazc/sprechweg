@@ -61,8 +61,8 @@ export function PracticeQuiz({ questions, onAllAnswered }: PracticeQuizProps) {
   };
 
   return (
-    <View className="gap-4">
-      <Text className="text-muted font-strong text-[13px] leading-[19px]">
+    <View className="gap-3">
+      <Text className="text-muted font-strong text-[12px] leading-[17px]">
         Three questions, one of each kind. Answer them however you like — nothing is timed.
       </Text>
 
@@ -73,15 +73,15 @@ export function PracticeQuiz({ questions, onAllAnswered }: PracticeQuizProps) {
         const canCheck = value.trim().length > 0;
 
         return (
-          <ChunkyCard key={question.id} tone="paper" className="gap-3 px-4 py-4">
+          <ChunkyCard key={question.id} tone="paper" className="gap-2.5 px-3.5 py-3.5">
             <View className="flex-row items-center justify-between gap-2">
-              <Text className="text-magenta font-display text-[11px] tracking-widest">
+              <Text className="text-magenta font-display text-[10px] tracking-widest">
                 QUESTION {index + 1} OF {questions.length}
               </Text>
               <ChunkyChip label={KIND_LABEL[question.kind]} tone="cream" />
             </View>
 
-            <Text className="text-ink font-display text-[17px] leading-[23px]">
+            <Text className="text-ink font-display text-[15px] leading-[21px]">
               {question.prompt}
             </Text>
 
@@ -98,13 +98,13 @@ export function PracticeQuiz({ questions, onAllAnswered }: PracticeQuizProps) {
                       disabled={checked}
                       onPress={() => setValue(question.id, String(optionIndex))}
                       className={cn(
-                        'border-ink rounded-2xl border-2 px-3.5 py-3',
+                        'border-ink rounded-2xl border-2 px-3 py-2.5',
                         selected ? 'bg-sky' : 'bg-white',
                         checked && isAnswer && 'bg-lime',
                         checked && selected && !isAnswer && 'bg-coral',
                       )}
                     >
-                      <Text className="text-ink font-strong text-[15px] leading-[20px]">
+                      <Text className="text-ink font-strong text-[13.5px] leading-[19px]">
                         {option}
                       </Text>
                     </Pressable>
@@ -115,8 +115,8 @@ export function PracticeQuiz({ questions, onAllAnswered }: PracticeQuizProps) {
 
             {question.kind === 'fill-blank' ? (
               <View className="gap-2">
-                <View className="border-ink bg-canvas rounded-2xl border-2 px-3.5 py-3">
-                  <Text className="text-ink font-display text-[15px] leading-[22px]">
+                <View className="border-ink bg-canvas rounded-2xl border-2 px-3 py-2.5">
+                  <Text className="text-ink font-display text-[13.5px] leading-[20px]">
                     {question.sentence}
                   </Text>
                 </View>
