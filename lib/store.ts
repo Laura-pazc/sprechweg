@@ -193,7 +193,8 @@ void Promise.all([persistedStateReady, data.listMissions(), data.listJournalEntr
     const current = useAppStore.getState();
     // Existing installs predate cefrLevel. Their interview score is already
     // persisted, so derive the new value without asking them again.
-    const cefrLevel = current.cefrLevel ?? (current.level ? cefrFromScore(current.levelScore) : null);
+    const cefrLevel =
+      current.cefrLevel ?? (current.level ? cefrFromScore(current.levelScore) : null);
     useAppStore.setState({ missions, entries, cefrLevel, hydrated: true });
   },
 );

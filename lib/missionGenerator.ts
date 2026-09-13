@@ -186,7 +186,11 @@ const FRIENDLY_PATTERN: DemoPattern = {
       de: 'Sehr gern. Wann trefft ihr euch? Wir treffen uns jeden Mittwoch.',
       en: 'Gladly. When do you all meet? We meet every Wednesday.',
     },
-    { speaker: 'you', de: 'Das klingt gut. Danke, bis dann!', en: 'That sounds good. Thanks, see you then!' },
+    {
+      speaker: 'you',
+      de: 'Das klingt gut. Danke, bis dann!',
+      en: 'That sounds good. Thanks, see you then!',
+    },
   ],
 };
 
@@ -208,7 +212,10 @@ function categoryFor(
 }
 
 function titleFromScenario(scenario: string): string {
-  const tidy = scenario.replace(/\s+/g, ' ').trim().replace(/[.!?]+$/, '');
+  const tidy = scenario
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[.!?]+$/, '');
   const short = tidy.length > 68 ? `${tidy.slice(0, 65).trim()}…` : tidy;
   return short.charAt(0).toLocaleUpperCase() + short.slice(1);
 }

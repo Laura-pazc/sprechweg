@@ -4,7 +4,7 @@ import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
-import { ChunkyCard, ChunkyPressableCard } from '@/components/ChunkyCard';
+import { ChunkyCard } from '@/components/ChunkyCard';
 import { ChunkyInput } from '@/components/ChunkyInput';
 import { generateSmartMission } from '@/lib/missionGenerator';
 import { palette } from '@/lib/theme';
@@ -43,9 +43,7 @@ export function SmartMissionCreator({ cefrLevel, onMissionCreated }: SmartMissio
       setScenario('');
       setOpen(false);
     } catch (reason) {
-      setError(
-        reason instanceof Error ? reason.message : t('missions.creator.genericError'),
-      );
+      setError(reason instanceof Error ? reason.message : t('missions.creator.genericError'));
     } finally {
       setIsCreating(false);
     }
@@ -58,9 +56,7 @@ export function SmartMissionCreator({ cefrLevel, onMissionCreated }: SmartMissio
           <Sparkles color={palette.ink} size={20} strokeWidth={2.5} />
         </View>
         <View className="min-w-0 flex-1 gap-0.5">
-          <Text className="text-ink font-display text-[17px]">
-            {t('missions.creator.title')}
-          </Text>
+          <Text className="text-ink font-display text-[17px]">{t('missions.creator.title')}</Text>
           <Text className="text-ink/75 font-body text-[13px] leading-[18px]">
             {t('missions.creator.body', { level: cefrLevel })}
           </Text>
@@ -76,7 +72,7 @@ export function SmartMissionCreator({ cefrLevel, onMissionCreated }: SmartMissio
           trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
         />
       ) : (
-        <View className="gap-4 border-ink border-t-2 pt-4">
+        <View className="border-ink gap-4 border-t-2 pt-4">
           <View className="gap-2">
             <Text className="text-ink font-display text-[14px]">
               {t('missions.creator.scenarioLabel')}
@@ -136,7 +132,9 @@ export function SmartMissionCreator({ cefrLevel, onMissionCreated }: SmartMissio
               label={isCreating ? t('missions.creator.creating') : t('missions.creator.create')}
               fullWidth
               disabled={scenario.trim().length < 8 || isCreating}
-              leading={isCreating ? <ActivityIndicator color={palette.cream} size="small" /> : undefined}
+              leading={
+                isCreating ? <ActivityIndicator color={palette.cream} size="small" /> : undefined
+              }
               onPress={() => void createMission()}
             />
             <ChunkyButton

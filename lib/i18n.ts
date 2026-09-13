@@ -174,7 +174,8 @@ const resources = {
           body: 'Tell us what you want to do. AI creates the words, conversation, and real-life plan for your {{level}} German.',
           open: 'Create a mission',
           scenarioLabel: 'What do you want to do in German?',
-          scenarioPlaceholder: 'For example: I want to ask about a pottery class near me and sign up for a trial session.',
+          scenarioPlaceholder:
+            'For example: I want to ask about a pottery class near me and sign up for a trial session.',
           registerLabel: 'What kind of situation is it?',
           registers: {
             practical: { title: 'Practical', body: 'An everyday errand with a professional.' },
@@ -517,11 +518,15 @@ const resources = {
           body: 'Beschreibe, was du machen möchtest. KI erstellt Wörter, Gespräch und einen Plan für dein Deutsch auf {{level}}.',
           open: 'Mission erstellen',
           scenarioLabel: 'Was möchtest du auf Deutsch machen?',
-          scenarioPlaceholder: 'Zum Beispiel: Ich möchte nach einem Töpferkurs in meiner Nähe fragen und eine Probestunde buchen.',
+          scenarioPlaceholder:
+            'Zum Beispiel: Ich möchte nach einem Töpferkurs in meiner Nähe fragen und eine Probestunde buchen.',
           registerLabel: 'Was für eine Situation ist es?',
           registers: {
             practical: { title: 'Praktisch', body: 'Ein Alltagstermin mit einer Fachperson.' },
-            bureaucratic: { title: 'Behördlich', body: 'Ein Amt, eine Bank oder ein offizieller Vorgang.' },
+            bureaucratic: {
+              title: 'Behördlich',
+              body: 'Ein Amt, eine Bank oder ein offizieller Vorgang.',
+            },
             friendly: { title: 'Freundlich', body: 'Eine soziale Situation mit anderen Menschen.' },
             formal: { title: 'Formell', body: 'Eine wichtige berufliche Situation.' },
           },

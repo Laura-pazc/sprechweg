@@ -1,7 +1,7 @@
 {
-  "name": "Your App Name",
-  "short_name": "Your App",
-  "description": "An app built with Bilt",
+  "name": "Gather",
+  "short_name": "Gather",
+  "description": "Learn German through real-life missions in Hamburg",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
