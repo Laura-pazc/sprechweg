@@ -110,11 +110,22 @@ The app ships with **10+ professionally-crafted missions** across A1-B2 levels:
 - ✅ Registers you actually use
 - ✅ Cross-platform (mobile, tablet, web)
 - ✅ Works offline
-- ✅ Multiple languages (i18next ready)
 - ✅ Your journal, your pace
 - ✅ **User Settings** – Name, language preference, learning level
 - ✅ **Hamburg Integration** – Quick access to Hamburg events & cultural calendar
-- ✅ **Multi-Language UI** – Interface in 5+ languages (powered by i18next)
+- ✅ **Multi-Language UI** – Interface in English & German
+
+---
+
+## 🔮 Scalability & Upcoming Features
+
+Gather is built for growth. Planned expansions include:
+
+- 🤖 **AI-Powered Mission Generation** – Dynamically create personalized missions for any language scenario or context
+- 💬 **Conversational AI Feedback** – Chat-based AI tutor for real-time feedback, corrections, and dialogue practice
+- 🌍 **Multi-Language Expansion** – From German foundation, scale to Spanish, French, Mandarin, and beyond
+- 📊 **Advanced Analytics** – Deep learning insights and proficiency prediction
+- 🎓 **Adaptive Difficulty** – ML-driven progression that adjusts mission complexity based on user performance
 
 ---
 
@@ -142,10 +153,6 @@ Start where you are, learn at your pace.
 **Interface Languages:**
 - 🇩🇪 Deutsch (German)
 - 🇬🇧 English
-- 🇪🇸 Español (Spanish)
-- 🇫🇷 Français (French)
-- 🇮🇹 Italiano (Italian)
-- ...and more (powered by i18next)
 
 UI in your language. Mission content always in German for immersion.
 
