@@ -1,11 +1,29 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { MISSIONS } from '@/lib/content/missions';
-import type { JournalEntry } from '@/lib/types';
+import { missionListSchema, missionSchema } from '@/lib/missionSchema';
+import type { JournalEntry, Mission } from '@/lib/types';
 
 import type { DataSource } from './types';
 
 const JOURNAL_KEY = 'sprechweg-journal-v1';
+const USER_MISSIONS_KEY = 'sprechweg-user-missions-v1';
+
+async function readUserMissions(): Promise<Mission[]> {
+  const parsed = parseJson(await AsyncStorage.getItem(USER_MISSIONS_KEY));
+  const result = missionListSchema.safeParse(parsed);
+  return result.success ? result.data : [];
+}
+
+async function writeUserMissions(missions: Mission[]): Promise<void> {
+  await AsyncStorage.setItem(USER_MISSIONS_KEY, JSON.stringify(missions));
+}
+
+async function listMissions(): Promise<Mission[]> {
+  const userMissions = await readUserMissions();
+  const bundledIds = new Set(MISSIONS.map((mission) => mission.id));
+  return [...MISSIONS, ...userMissions.filter((mission) => !bundledIds.has(mission.id))];
+}
 
 /**
  * Journal entries used to live inside the persisted app store under this key.
@@ -52,9 +70,16 @@ async function readEntries(): Promise<JournalEntry[]> {
 }
 
 export const localDataSource: DataSource = {
-  listMissions: () => Promise.resolve(MISSIONS),
+  listMissions,
 
-  getMission: (id) => Promise.resolve(MISSIONS.find((mission) => mission.id === id)),
+  getMission: async (id) => (await listMissions()).find((mission) => mission.id === id),
+
+  addUserMission: async (mission) => {
+    const validated = missionSchema.parse(mission);
+    const missions = await readUserMissions();
+    const withoutDuplicate = missions.filter((item) => item.id !== validated.id);
+    await writeUserMissions([...withoutDuplicate, validated]);
+  },
 
   listJournalEntries: readEntries,
 

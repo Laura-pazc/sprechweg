@@ -2,6 +2,7 @@ import {
   ChevronDown,
   GraduationCap,
   MapPinned,
+  Plus,
   Search,
   ShoppingBag,
   SlidersHorizontal,
@@ -9,7 +10,7 @@ import {
   X,
 } from 'lucide-react-native';
 import { useState } from 'react';
-import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BottomSheet } from 'heroui-native';
 
@@ -67,41 +68,57 @@ function CategoryIcon({ category }: { category: string }) {
 function CategoryPicker({
   categories,
   onSelect,
+  onCreate,
 }: {
   categories: string[];
   onSelect: (category: string) => void;
+  onCreate: () => void;
 }) {
   const { t } = useTranslation();
-  const rows = Array.from({ length: Math.ceil(categories.length / 2) }, (_, index) =>
-    categories.slice(index * 2, index * 2 + 2),
+  const { width } = useWindowDimensions();
+  const columnCount = width >= 1100 ? 5 : width >= 700 ? 3 : 2;
+  const gap = 12;
+  const availableWidth = width - 40;
+  const itemWidth = Math.floor(
+    (availableWidth - gap * (columnCount - 1) - 3 * columnCount) / columnCount,
   );
+  const items = [
+    ...categories.map((category) => ({ key: category, category, create: false })),
+    { key: 'create-your-own', category: t('missions.create.category'), create: true },
+  ];
 
   return (
     <View className="gap-3 pt-2">
       <SectionHeading title={t('missions.browseByCategory')} />
-      {rows.map((row) => (
-        <View key={row[0]} className="flex-row gap-3">
-          {row.map((category) => (
-            <ChunkyPressableCard
-              key={category}
-              tone={categoryTone(category)}
-              offset={3}
-              radius={18}
-              className="flex-1 items-center justify-center gap-2 px-3 py-4"
-              accessibilityLabel={t('missions.openCategory', { category })}
-              onPress={() => onSelect(category)}
-            >
-              <View className="h-11 w-11 items-center justify-center rounded-full bg-white/70">
-                <CategoryIcon category={category} />
-              </View>
-              <Text className="text-ink font-display text-center text-[15px] leading-[19px]">
-                {category}
-              </Text>
-            </ChunkyPressableCard>
-          ))}
-          {row.length === 1 ? <View className="flex-1" /> : null}
-        </View>
-      ))}
+      <View className="flex-row flex-wrap gap-3">
+        {items.map((item) => (
+          <ChunkyPressableCard
+            key={item.key}
+            tone={item.create ? 'magenta' : categoryTone(item.category)}
+            offset={3}
+            radius={18}
+            className="min-h-[132px] items-center justify-center gap-2 px-3 py-4"
+            style={{ width: itemWidth }}
+            accessibilityLabel={
+              item.create
+                ? t('missions.create.open')
+                : t('missions.openCategory', { category: item.category })
+            }
+            onPress={item.create ? onCreate : () => onSelect(item.category)}
+          >
+            <View className="h-11 w-11 items-center justify-center rounded-full bg-white/70">
+              {item.create ? (
+                <Plus color={palette.ink} size={26} strokeWidth={2.5} />
+              ) : (
+                <CategoryIcon category={item.category} />
+              )}
+            </View>
+            <Text className="text-ink font-display text-center text-[15px] leading-[19px]">
+              {item.category}
+            </Text>
+          </ChunkyPressableCard>
+        ))}
+      </View>
     </View>
   );
 }
@@ -307,6 +324,7 @@ export interface SearchableMissionsListProps {
   missions: Mission[];
   statuses: Record<string, MissionStatus>;
   userLevel: Level | null;
+  onCreatePress: () => void;
   onMissionPress: (mission: Mission) => void;
 }
 
@@ -314,6 +332,7 @@ export function SearchableMissionsList({
   missions,
   statuses,
   userLevel,
+  onCreatePress,
   onMissionPress,
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
@@ -331,6 +350,7 @@ export function SearchableMissionsList({
       return (
         <CategoryPicker
           categories={item.categories}
+          onCreate={onCreatePress}
           onSelect={(category) => search.setCategory(category)}
         />
       );

@@ -166,6 +166,7 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="onboarding" options={{ gestureEnabled: false }} />
           <Stack.Screen name="level-result" options={{ gestureEnabled: false }} />
+          <Stack.Screen name="mission/create" />
           <Stack.Screen name="mission/[id]/prep" />
           <Stack.Screen name="mission/[id]/do" />
           <Stack.Screen name="mission/[id]/journal" />

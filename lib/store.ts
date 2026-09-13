@@ -42,6 +42,7 @@ interface AppState {
   toggleCheer: (quoteId: string) => void;
   setLocale: (locale: AppLocale) => void;
   resetProgress: () => void;
+  saveMission: (mission: Mission) => Promise<void>;
 }
 
 export const useAppStore = create<AppState>()(
@@ -122,6 +123,12 @@ export const useAppStore = create<AppState>()(
         })),
 
       setLocale: (locale) => set({ locale }),
+
+      saveMission: async (mission) => {
+        await data.addUserMission(mission);
+        const missions = await data.listMissions();
+        set({ missions });
+      },
 
       resetProgress: () => {
         set({

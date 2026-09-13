@@ -30,6 +30,7 @@ export default function MissionsScreen() {
         missions={missions}
         statuses={statuses}
         userLevel={level}
+        onCreatePress={() => router.push(routes.createMission)}
         onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
       />
     </Screen>
