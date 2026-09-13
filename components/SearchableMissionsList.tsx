@@ -99,6 +99,7 @@ function CategoryPicker({
                 offset={3}
                 radius={18}
                 className="flex-1 items-center justify-center gap-2 px-3 py-4"
+                style={{ marginRight: 0 }}
                 accessibilityLabel={
                   isCreate
                     ? t('missions.creator.open')
