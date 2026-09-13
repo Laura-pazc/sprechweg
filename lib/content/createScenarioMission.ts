@@ -1,4 +1,11 @@
-import type { ConversationLine, Level, Mission, MissionAccent, MissionIcon } from '@/lib/types';
+import type {
+  ConversationLine,
+  Level,
+  Mission,
+  MissionAccent,
+  MissionIcon,
+  MissionSeason,
+} from '@/lib/types';
 
 type VocabPair = readonly [de: string, en: string];
 
@@ -10,6 +17,7 @@ interface ScenarioMissionInput {
   tagline: string;
   category: string;
   icon: MissionIcon;
+  season?: MissionSeason;
   level: Level;
   minutes: number;
   accent: MissionAccent;
@@ -47,6 +55,7 @@ export function createScenarioMission(input: ScenarioMissionInput): Mission {
     tagline: input.tagline,
     category: input.category,
     icon: input.icon,
+    season: input.season,
     level: input.level,
     minutes: input.minutes,
     accent: input.accent,
