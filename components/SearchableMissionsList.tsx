@@ -2,6 +2,7 @@ import {
   ChevronDown,
   GraduationCap,
   MapPinned,
+  Plus,
   Search,
   ShoppingBag,
   SlidersHorizontal,
@@ -68,39 +69,63 @@ function CategoryIcon({ category }: { category: string }) {
 
 function CategoryPicker({
   categories,
+  canCreate,
+  onCreate,
   onSelect,
 }: {
   categories: string[];
+  canCreate: boolean;
+  onCreate: () => void;
   onSelect: (category: string) => void;
 }) {
   const { t } = useTranslation();
-  const rows = Array.from({ length: Math.ceil(categories.length / 2) }, (_, index) =>
-    categories.slice(index * 2, index * 2 + 2),
+  const items = [
+    ...(canCreate ? [{ type: 'create' as const, key: 'create-your-own' }] : []),
+    ...categories.map((category) => ({ type: 'category' as const, key: category, category })),
+  ];
+  const rows = Array.from({ length: Math.ceil(items.length / 2) }, (_, index) =>
+    items.slice(index * 2, index * 2 + 2),
   );
 
   return (
     <View className="gap-3 pt-2">
       <SectionHeading title={t('missions.browseByCategory')} />
       {rows.map((row) => (
-        <View key={row[0]} className="flex-row gap-3">
-          {row.map((category) => (
-            <ChunkyPressableCard
-              key={category}
-              tone={categoryTone(category)}
-              offset={3}
-              radius={18}
-              className="flex-1 items-center justify-center gap-2 px-3 py-4"
-              accessibilityLabel={t('missions.openCategory', { category })}
-              onPress={() => onSelect(category)}
-            >
-              <View className="h-11 w-11 items-center justify-center rounded-full bg-white/70">
-                <CategoryIcon category={category} />
-              </View>
-              <Text className="text-ink font-display text-center text-[15px] leading-[19px]">
-                {category}
-              </Text>
-            </ChunkyPressableCard>
-          ))}
+        <View key={row[0].key} className="flex-row gap-3">
+          {row.map((item) => {
+            const isCreate = item.type === 'create';
+            return (
+              <ChunkyPressableCard
+                key={item.key}
+                tone={isCreate ? 'royal' : categoryTone(item.category)}
+                offset={3}
+                radius={18}
+                className="flex-1 items-center justify-center gap-2 px-3 py-4"
+                accessibilityLabel={
+                  isCreate
+                    ? t('missions.creator.open')
+                    : t('missions.openCategory', { category: item.category })
+                }
+                onPress={isCreate ? onCreate : () => onSelect(item.category)}
+              >
+                <View className="h-11 w-11 items-center justify-center rounded-full bg-white/80">
+                  {isCreate ? (
+                    <Plus color={palette.ink} size={27} strokeWidth={2.8} />
+                  ) : (
+                    <CategoryIcon category={item.category} />
+                  )}
+                </View>
+                <Text
+                  className={cn(
+                    'font-display text-center text-[15px] leading-[19px]',
+                    isCreate ? 'text-cream' : 'text-ink',
+                  )}
+                >
+                  {isCreate ? t('missions.creator.categoryTitle') : item.category}
+                </Text>
+              </ChunkyPressableCard>
+            );
+          })}
           {row.length === 1 ? <View className="flex-1" /> : null}
         </View>
       ))}
@@ -327,24 +352,34 @@ export function SearchableMissionsList({
   const { t } = useTranslation();
   const search = useMissionSearch(missions, userLevel);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [creatorOpen, setCreatorOpen] = useState(false);
   const activeFilterCount =
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
   const highlightedIds = new Set(highlightedMissionIds);
   const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
-  const creatorItem: MissionListItem[] = cefrLevel ? [{ type: 'creator' }] : [];
+  const creatorItem: MissionListItem[] = creatorOpen && cefrLevel ? [{ type: 'creator' }] : [];
   const items: MissionListItem[] = showCategoryPicker
-    ? [...creatorItem, { type: 'category-picker', categories: search.categories }]
+    ? [{ type: 'category-picker', categories: search.categories }, ...creatorItem]
     : [...creatorItem, ...search.results.map((result) => ({ type: 'mission' as const, result }))];
 
   const renderItem = ({ item }: { item: MissionListItem }) => {
     if (item.type === 'creator') {
-      return <SmartMissionCreator cefrLevel={cefrLevel} onMissionCreated={onMissionCreated} />;
+      if (!cefrLevel) return null;
+      return (
+        <SmartMissionCreator
+          cefrLevel={cefrLevel}
+          onMissionCreated={onMissionCreated}
+          onClose={() => setCreatorOpen(false)}
+        />
+      );
     }
 
     if (item.type === 'category-picker') {
       return (
         <CategoryPicker
           categories={item.categories}
+          canCreate={cefrLevel !== null}
+          onCreate={() => setCreatorOpen(true)}
           onSelect={(category) => search.setCategory(category)}
         />
       );
