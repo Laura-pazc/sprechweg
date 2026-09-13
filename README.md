@@ -5,6 +5,8 @@
 Gather combines carefully crafted missions with CEFR language proficiency levels to make language learning immersive, practical, and fun. Every mission adapts to your skill level and teaches you how to speak naturally in different contexts.
 
 [![Built with Bilt](https://img.shields.io/endpoint?url=https%3A%2F%2Fapp.bilt.me%2Fapi%2Fbadge)](https://bilt.me)
+<img width="1400" height="657" alt="app-screenshots-row" src="https://github.com/user-attachments/assets/00da3bca-2c4d-427c-8aae-2baa9653f76d" />
+
 
 ---
 
