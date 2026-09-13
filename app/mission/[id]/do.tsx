@@ -26,6 +26,7 @@ function DoMission({ mission }: { mission: Mission }) {
   const studied = storedStudied ?? [];
   const selectedPhrases = mission.vocab.filter((item) => studied.includes(item.id));
   const pocketPhrases = (selectedPhrases.length > 0 ? selectedPhrases : mission.vocab).slice(0, 3);
+  const steps = mission.timeToExplore?.checklist ?? mission.realLifeSteps;
 
   return (
     <Screen>
@@ -48,7 +49,12 @@ function DoMission({ mission }: { mission: Mission }) {
 
         <View className="gap-3">
           <Text className="text-ink font-display text-[19px]">{t('doMission.stepsTitle')}</Text>
-          {mission.realLifeSteps.map((step, index) => (
+          {mission.timeToExplore ? (
+            <Text className="text-muted font-body text-[13px] leading-[19px]">
+              {mission.timeToExplore.intro}
+            </Text>
+          ) : null}
+          {steps.map((step, index) => (
             <View key={step} className="flex-row items-start gap-3">
               <View className="border-ink bg-sunny h-7 w-7 items-center justify-center rounded-full border-2">
                 <Text className="text-ink font-display text-[13px]">{index + 1}</Text>

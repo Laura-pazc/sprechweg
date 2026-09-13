@@ -14,6 +14,8 @@ export default function MissionsScreen() {
   const missions = useAppStore((state) => state.missions);
   const statuses = useAppStore((state) => state.statuses);
   const level = useAppStore((state) => state.level);
+  const cefrLevel = useAppStore((state) => state.cefrLevel);
+  const addMission = useAppStore((state) => state.addMission);
 
   return (
     <Screen>
@@ -31,7 +33,12 @@ export default function MissionsScreen() {
         missions={missions}
         statuses={statuses}
         userLevel={level}
+        cefrLevel={cefrLevel}
         onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
+        onMissionCreated={(mission) => {
+          addMission(mission);
+          router.push(routes.missionPrep(mission.id));
+        }}
         highlightedMissionIds={AUTUMN_MISSIONS.map((mission) => mission.id)}
       />
     </Screen>

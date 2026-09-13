@@ -24,7 +24,12 @@ export function MissionMetaBadges({ mission, includeLevel = true }: MissionMetaB
         className="bg-white/75 px-2.5 py-1"
       />
       {includeLevel ? (
-        <ChunkyChip label={LEVEL_LABEL[mission.level]} tone="lime" meta className="px-2 py-0.5" />
+        <ChunkyChip
+          label={mission.cefrLevel ?? LEVEL_LABEL[mission.level]}
+          tone="lime"
+          meta
+          className="px-2 py-0.5"
+        />
       ) : null}
     </View>
   );

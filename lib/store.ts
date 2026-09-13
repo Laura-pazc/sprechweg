@@ -4,7 +4,8 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { data } from '@/lib/data';
 import type { AppLocale } from '@/lib/i18n';
-import type { JournalEntry, Level, Mission, MissionStatus } from '@/lib/types';
+import { cefrFromScore } from '@/lib/levelChat';
+import type { CefrLevel, JournalEntry, Level, Mission, MissionStatus } from '@/lib/types';
 import { dayKey, yesterdayKey } from '@/lib/utils';
 
 interface AppState {
@@ -14,6 +15,8 @@ interface AppState {
   missions: Mission[];
   name: string;
   level: Level | null;
+  /** Exact CEFR ceiling used by smart mission generation. */
+  cefrLevel: CefrLevel | null;
   /** Raw score from the onboarding chat, kept so the result screen can explain itself. */
   levelScore: number;
   /** Missing key means 'not_started'; readers use `statuses[id] ?? 'not_started'`. */
@@ -30,6 +33,7 @@ interface AppState {
   conversationAiPreviewViewed: boolean;
 
   completeOnboarding: (name: string, level: Level, levelScore: number) => void;
+  addMission: (mission: Mission) => void;
   setStatus: (missionId: string, status: MissionStatus) => void;
   toggleVocabStudied: (missionId: string, vocabId: string) => void;
   markPracticeDone: (missionId: string) => void;
@@ -39,6 +43,7 @@ interface AppState {
     answers: string[];
     quizScore: number;
     quizTotal: number;
+    recallAnswers?: string[];
   }) => void;
   toggleCheer: (quoteId: string) => void;
   setLocale: (locale: AppLocale) => void;
@@ -54,6 +59,7 @@ export const useAppStore = create<AppState>()(
       missions: [],
       name: '',
       level: null,
+      cefrLevel: null,
       levelScore: 0,
       statuses: {},
       studied: {},
@@ -66,7 +72,16 @@ export const useAppStore = create<AppState>()(
       conversationAiPreviewViewed: false,
 
       completeOnboarding: (name, level, levelScore) =>
-        set({ name: name.trim(), level, levelScore }),
+        set({ name: name.trim(), level, levelScore, cefrLevel: cefrFromScore(levelScore) }),
+
+      addMission: (mission) => {
+        set((state) => ({
+          missions: state.missions.some((item) => item.id === mission.id)
+            ? state.missions
+            : [mission, ...state.missions],
+        }));
+        void data.addMission(mission);
+      },
 
       setStatus: (missionId, status) =>
         set((state) => ({ statuses: { ...state.statuses, [missionId]: status } })),
@@ -83,7 +98,7 @@ export const useAppStore = create<AppState>()(
       markPracticeDone: (missionId) =>
         set((state) => ({ practiceDone: { ...state.practiceDone, [missionId]: true } })),
 
-      addJournalEntry: ({ missionId, prompts, answers, quizScore, quizTotal }) => {
+      addJournalEntry: ({ missionId, prompts, answers, quizScore, quizTotal, recallAnswers }) => {
         const today = dayKey();
         const { lastJournalDay, streakCount } = get();
 
@@ -105,6 +120,7 @@ export const useAppStore = create<AppState>()(
           answers,
           quizScore,
           quizTotal,
+          recallAnswers,
         };
 
         // Update the cache first so the screen can show the saved state at once;
@@ -135,6 +151,7 @@ export const useAppStore = create<AppState>()(
         set({
           name: '',
           level: null,
+          cefrLevel: null,
           levelScore: 0,
           statuses: {},
           studied: {},
@@ -173,6 +190,10 @@ const persistedStateReady = new Promise<void>((resolve) => {
 // the journal are all in. Screens gate on it to avoid a flash of empty content.
 void Promise.all([persistedStateReady, data.listMissions(), data.listJournalEntries()]).then(
   ([, missions, entries]) => {
-    useAppStore.setState({ missions, entries, hydrated: true });
+    const current = useAppStore.getState();
+    // Existing installs predate cefrLevel. Their interview score is already
+    // persisted, so derive the new value without asking them again.
+    const cefrLevel = current.cefrLevel ?? (current.level ? cefrFromScore(current.levelScore) : null);
+    useAppStore.setState({ missions, entries, cefrLevel, hydrated: true });
   },
 );

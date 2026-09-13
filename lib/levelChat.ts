@@ -1,4 +1,4 @@
-import type { Level } from '@/lib/types';
+import type { CefrLevel, Level } from '@/lib/types';
 
 export interface ChatChoice {
   id: string;
@@ -155,6 +155,19 @@ export function levelFromScore(score: number): Level {
   if (score <= 4) return 'beginner';
   if (score <= 8) return 'intermediate';
   return 'advanced';
+}
+
+/**
+ * The onboarding chat has four scored language questions. This keeps the
+ * existing broad tiers while giving the mission generator a concrete ceiling.
+ * Scores above B2 stay unsupported until the C1 mission schema is designed.
+ */
+export function cefrFromScore(score: number): CefrLevel | null {
+  if (score <= 2) return 'A1';
+  if (score <= 4) return 'A2';
+  if (score <= 6) return 'B1';
+  if (score <= 8) return 'B2';
+  return null;
 }
 
 export interface LevelSummary {

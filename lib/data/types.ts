@@ -12,6 +12,7 @@ import type { JournalEntry, Mission } from '@/lib/types';
 export interface DataSource {
   listMissions(): Promise<Mission[]>;
   getMission(id: string): Promise<Mission | undefined>;
+  addMission(mission: Mission): Promise<void>;
   listJournalEntries(): Promise<JournalEntry[]>;
   addJournalEntry(entry: JournalEntry): Promise<void>;
   clearJournal(): Promise<void>;

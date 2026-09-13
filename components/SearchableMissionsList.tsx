@@ -18,17 +18,19 @@ import { ChunkyCard, ChunkyPressableCard, type CardTone } from '@/components/Chu
 import { ChunkyInput } from '@/components/ChunkyInput';
 import { MissionCard } from '@/components/MissionCard';
 import { SectionHeading } from '@/components/SectionHeading';
+import { SmartMissionCreator } from '@/components/SmartMissionCreator';
 import {
   useMissionSearch,
   type MissionMatchField,
   type MissionSearchResult,
 } from '@/lib/missionSearch';
 import { palette } from '@/lib/theme';
-import type { Level, Mission, MissionStatus } from '@/lib/types';
+import type { CefrLevel, Level, Mission, MissionStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 const LEVELS: Array<Level | null> = [null, 'beginner', 'intermediate', 'advanced'];
 type MissionListItem =
+  | { type: 'creator' }
   | { type: 'category-picker'; categories: string[] }
   | { type: 'mission'; result: MissionSearchResult };
 
@@ -307,7 +309,9 @@ export interface SearchableMissionsListProps {
   missions: Mission[];
   statuses: Record<string, MissionStatus>;
   userLevel: Level | null;
+  cefrLevel: CefrLevel | null;
   onMissionPress: (mission: Mission) => void;
+  onMissionCreated: (mission: Mission) => void;
   highlightedMissionIds?: string[];
 }
 
@@ -315,7 +319,9 @@ export function SearchableMissionsList({
   missions,
   statuses,
   userLevel,
+  cefrLevel,
   onMissionPress,
+  onMissionCreated,
   highlightedMissionIds = [],
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
@@ -325,11 +331,16 @@ export function SearchableMissionsList({
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
   const highlightedIds = new Set(highlightedMissionIds);
   const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
+  const creatorItem: MissionListItem[] = cefrLevel ? [{ type: 'creator' }] : [];
   const items: MissionListItem[] = showCategoryPicker
-    ? [{ type: 'category-picker', categories: search.categories }]
-    : search.results.map((result) => ({ type: 'mission', result }));
+    ? [...creatorItem, { type: 'category-picker', categories: search.categories }]
+    : [...creatorItem, ...search.results.map((result) => ({ type: 'mission' as const, result }))];
 
   const renderItem = ({ item }: { item: MissionListItem }) => {
+    if (item.type === 'creator') {
+      return <SmartMissionCreator cefrLevel={cefrLevel} onMissionCreated={onMissionCreated} />;
+    }
+
     if (item.type === 'category-picker') {
       return (
         <CategoryPicker
@@ -358,7 +369,11 @@ export function SearchableMissionsList({
       <FlatList<MissionListItem>
         data={items}
         keyExtractor={(item) =>
-          item.type === 'category-picker' ? 'category-picker' : item.result.mission.id
+          item.type === 'creator'
+            ? 'smart-mission-creator'
+            : item.type === 'category-picker'
+              ? 'category-picker'
+              : item.result.mission.id
         }
         renderItem={renderItem}
         stickyHeaderIndices={[0]}

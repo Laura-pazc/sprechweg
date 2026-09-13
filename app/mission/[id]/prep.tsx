@@ -20,7 +20,7 @@ import { goBackOrReplace, routes } from '@/lib/navigation';
 import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 
-const LEARNING_STEP_VALUES = ['vocab', 'conversation', 'practice'] as const;
+const LEARNING_STEP_VALUES = ['vocab', 'conversation', 'go-deeper', 'practice'] as const;
 type LearningStep = (typeof LEARNING_STEP_VALUES)[number];
 type PrepStep = 'overview' | LearningStep;
 
@@ -59,6 +59,7 @@ export default function MissionPrepScreen() {
   const learningSteps: StepPagerItem<LearningStep>[] = [
     { value: 'vocab', label: t('prep.vocabStep') },
     { value: 'conversation', label: t('prep.conversationStep') },
+    ...(mission.goDeeper ? [{ value: 'go-deeper' as const, label: t('prep.goDeeperStep') }] : []),
     { value: 'practice', label: t('prep.practiceStep') },
   ];
 
@@ -187,6 +188,36 @@ export default function MissionPrepScreen() {
               />
               <ChunkyButton
                 className="mt-5"
+                fullWidth
+                label={t('prep.continuePractice')}
+                onPress={() => changeStep(mission.goDeeper ? 'go-deeper' : 'practice')}
+                trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
+              />
+            </View>
+          ) : null}
+
+          {step === 'go-deeper' && mission.goDeeper ? (
+            <View className="gap-4">
+              <Text className="text-ink font-display text-[19px] leading-6">
+                {t('prep.goDeeperTitle')}
+              </Text>
+              <ChunkyCard tone="sky" offset={3} className="gap-1.5 px-4 py-4">
+                <Text className="text-muted font-display text-[10px] tracking-widest">
+                  {t('prep.reinforcementTitle')}
+                </Text>
+                <Text className="text-ink font-body text-[14px] leading-[20px]">
+                  {mission.goDeeper.reinforcement}
+                </Text>
+              </ChunkyCard>
+              <ChunkyCard tone="sunny" offset={3} className="gap-1.5 px-4 py-4">
+                <Text className="text-muted font-display text-[10px] tracking-widest">
+                  {t('prep.missionSpecificTitle')}
+                </Text>
+                <Text className="text-ink font-body text-[14px] leading-[20px]">
+                  {mission.goDeeper.missionSpecific}
+                </Text>
+              </ChunkyCard>
+              <ChunkyButton
                 fullWidth
                 label={t('prep.continuePractice')}
                 onPress={() => changeStep('practice')}

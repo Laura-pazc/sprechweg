@@ -1,5 +1,10 @@
 export type Level = 'beginner' | 'intermediate' | 'advanced';
 
+/** Exact CEFR bands currently supported by smart mission generation. */
+export type CefrLevel = 'A1' | 'A2' | 'B1' | 'B2';
+
+export type MissionRegister = 'practical' | 'bureaucratic' | 'friendly' | 'formal';
+
 export type MissionStatus = 'not_started' | 'in_progress' | 'done';
 
 export type MissionAccent = 'sky' | 'coral' | 'magenta';
@@ -13,6 +18,9 @@ export interface VocabItem {
   de: string;
   en: string;
   note: string;
+  /** The full sentence that gives the item useful context. */
+  exampleDe?: string;
+  exampleEn?: string;
 }
 
 export interface ConversationLine {
@@ -58,6 +66,28 @@ export interface MissionBadge {
   description: string;
 }
 
+export interface GoDeeper {
+  /** A search prompt for trusted, human-made German learning material. */
+  reinforcement: string;
+  /** One practical detail that helps the learner carry out this specific errand. */
+  missionSpecific: string;
+}
+
+export interface TimeToExplore {
+  intro: string;
+  checklist: string[];
+}
+
+export interface MissionRecallCheck {
+  intro: string;
+  multipleChoice: MultipleChoiceQuestion;
+  fillBlank: FillBlankQuestion;
+  fromRealLife: {
+    id: string;
+    prompt: string;
+  };
+}
+
 export interface Mission {
   id: string;
   title: string;
@@ -78,6 +108,17 @@ export interface Mission {
   badge: MissionBadge;
   /** Feeds the reflection prompt generator. */
   reflectionFocus: string;
+  /** Present on missions created with the full mission schema. */
+  cefrLevel?: CefrLevel;
+  register?: MissionRegister;
+  goDeeper?: GoDeeper;
+  timeToExplore?: TimeToExplore;
+  /** Exactly two prompts about the learner's real experience. */
+  journalPrompts?: [string, string];
+  /** A light post-mission check: choice, fill-in, then real-life recall. */
+  recallCheck?: MissionRecallCheck;
+  /** The next concrete grammar or pragmatic step for this same situation. */
+  levelUp?: string;
 }
 
 export interface JournalEntry {
@@ -91,6 +132,8 @@ export interface JournalEntry {
   answers: string[];
   quizScore: number;
   quizTotal: number;
+  /** Optional answers from the full-schema recall check. */
+  recallAnswers?: string[];
 }
 
 export interface RecallQuestion {

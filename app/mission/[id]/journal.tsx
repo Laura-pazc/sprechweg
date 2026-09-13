@@ -7,10 +7,19 @@ import { ChunkyButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
 import { ChunkyInput } from '@/components/ChunkyInput';
 import { MissionMissing } from '@/components/mission/MissionMissing';
+import {
+  MissionRecallCheck,
+  type FullRecallAnswers,
+} from '@/components/mission/MissionRecallCheck';
 import { RecallQuiz } from '@/components/mission/RecallQuiz';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
-import { buildRecallQuiz, buildReflectionPrompts, reflectionHint } from '@/lib/content';
+import {
+  buildRecallQuiz,
+  buildReflectionPrompts,
+  isFillBlankCorrect,
+  reflectionHint,
+} from '@/lib/content';
 import { routes } from '@/lib/navigation';
 import { useAppStore, useMission } from '@/lib/store';
 import type { Mission } from '@/lib/types';
@@ -31,19 +40,28 @@ function MissionJournal({ mission }: { mission: Mission }) {
   const studiedIds = useMemo(() => studied[mission.id] ?? [], [studied, mission.id]);
   const prompts = useMemo(
     () =>
+      mission.journalPrompts ??
       buildReflectionPrompts(mission, tier, name, {
         sessionNumber: entries.filter((entry) => entry.missionId === mission.id).length,
         includeCarryForward: studiedIds.length > 0 || practiceDone,
       }),
     [mission, tier, name, entries, studiedIds.length, practiceDone],
   );
-  const questions = useMemo(() => buildRecallQuiz(mission, studiedIds), [mission, studiedIds]);
+  const questions = useMemo(
+    () => (mission.recallCheck ? [] : buildRecallQuiz(mission, studiedIds)),
+    [mission, studiedIds],
+  );
 
   const [answers, setAnswers] = useState<string[]>(() => prompts.map(() => ''));
   const [selections, setSelections] = useState<(number | null)[]>(() => questions.map(() => null));
   const [stage, setStage] = useState<JournalStage>('reflection');
   const [reflectionIndex, setReflectionIndex] = useState(0);
   const [recallIndex, setRecallIndex] = useState(0);
+  const [fullRecallAnswers, setFullRecallAnswers] = useState<FullRecallAnswers>({
+    multipleChoice: null,
+    fillBlank: '',
+    fromRealLife: '',
+  });
   const [saved, setSaved] = useState(false);
   const [savedScore, setSavedScore] = useState(0);
 
@@ -51,6 +69,8 @@ function MissionJournal({ mission }: { mission: Mission }) {
   const currentSelection = selections[recallIndex] ?? null;
   const isLastPrompt = reflectionIndex === prompts.length - 1;
   const isLastRecall = recallIndex === questions.length - 1;
+  const fullRecall = mission.recallCheck;
+  const recallTotal = fullRecall ? 2 : questions.length;
 
   const continueReflection = () => {
     if (isLastPrompt) setStage('recall');
@@ -58,16 +78,28 @@ function MissionJournal({ mission }: { mission: Mission }) {
   };
 
   const save = () => {
-    const score = questions.reduce(
-      (total, question, index) => total + (selections[index] === question.answerIndex ? 1 : 0),
-      0,
-    );
+    const score = fullRecall
+      ? Number(fullRecallAnswers.multipleChoice === fullRecall.multipleChoice.answerIndex) +
+        Number(isFillBlankCorrect(fullRecall.fillBlank, fullRecallAnswers.fillBlank))
+      : questions.reduce(
+          (total, question, index) => total + (selections[index] === question.answerIndex ? 1 : 0),
+          0,
+        );
     addJournalEntry({
       missionId: mission.id,
       prompts,
       answers,
       quizScore: score,
-      quizTotal: questions.length,
+      quizTotal: recallTotal,
+      recallAnswers: fullRecall
+        ? [
+            fullRecallAnswers.multipleChoice === null
+              ? ''
+              : fullRecall.multipleChoice.options[fullRecallAnswers.multipleChoice],
+            fullRecallAnswers.fillBlank,
+            fullRecallAnswers.fromRealLife,
+          ]
+        : undefined,
     });
     setSavedScore(score);
     setSaved(true);
@@ -109,10 +141,21 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   {t('missionJournal.entrySaved', {
                     title: mission.title,
                     score: savedScore,
-                    total: questions.length,
+                    total: recallTotal,
                   })}
                 </Text>
               </ChunkyCard>
+
+              {mission.levelUp ? (
+                <ChunkyCard tone="sky" className="gap-1.5 px-4 py-4">
+                  <Text className="text-muted font-display text-[11px] tracking-widest">
+                    {t('missionJournal.levelUp')}
+                  </Text>
+                  <Text className="text-ink font-body text-[14px] leading-[21px]">
+                    {mission.levelUp}
+                  </Text>
+                </ChunkyCard>
+              ) : null}
 
               <ChunkyCard tone="sunny" className="flex-row items-center gap-3 px-4 py-4">
                 <View className="border-ink h-14 w-14 items-center justify-center rounded-full border-2 bg-white">
@@ -225,25 +268,48 @@ function MissionJournal({ mission }: { mission: Mission }) {
                   {t('missionJournal.quickRecallBody')}
                 </Text>
               </View>
-              <RecallQuiz
-                questions={questions}
-                selections={selections}
-                currentIndex={recallIndex}
-                onSelect={(questionIndex, optionIndex) =>
-                  setSelections((current) =>
-                    current.map((value, position) =>
-                      position === questionIndex ? optionIndex : value,
-                    ),
-                  )
-                }
-                revealed={false}
-              />
-              <ChunkyButton
-                label={isLastRecall ? t('missionJournal.saveEntry') : t('missionJournal.nextWord')}
-                fullWidth
-                disabled={currentSelection === null}
-                onPress={isLastRecall ? save : () => setRecallIndex((index) => index + 1)}
-              />
+              {fullRecall ? (
+                <>
+                  <MissionRecallCheck
+                    check={fullRecall}
+                    answers={fullRecallAnswers}
+                    onChange={setFullRecallAnswers}
+                  />
+                  <ChunkyButton
+                    label={t('missionJournal.saveEntry')}
+                    fullWidth
+                    disabled={
+                      fullRecallAnswers.multipleChoice === null ||
+                      fullRecallAnswers.fillBlank.trim().length === 0
+                    }
+                    onPress={save}
+                  />
+                </>
+              ) : (
+                <>
+                  <RecallQuiz
+                    questions={questions}
+                    selections={selections}
+                    currentIndex={recallIndex}
+                    onSelect={(questionIndex, optionIndex) =>
+                      setSelections((current) =>
+                        current.map((value, position) =>
+                          position === questionIndex ? optionIndex : value,
+                        ),
+                      )
+                    }
+                    revealed={false}
+                  />
+                  <ChunkyButton
+                    label={
+                      isLastRecall ? t('missionJournal.saveEntry') : t('missionJournal.nextWord')
+                    }
+                    fullWidth
+                    disabled={currentSelection === null}
+                    onPress={isLastRecall ? save : () => setRecallIndex((index) => index + 1)}
+                  />
+                </>
+              )}
             </View>
           )}
         </ScrollView>

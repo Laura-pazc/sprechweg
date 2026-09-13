@@ -61,7 +61,7 @@ export function VocabList({ items, selected, onToggle }: VocabListProps) {
                   {item.en}
                 </Text>
                 <Text className="text-ink/70 font-body mt-1 text-[11px] leading-4">
-                  {item.note}
+                  {item.exampleDe ? `${item.exampleDe} (${item.exampleEn})` : item.note}
                 </Text>
               </View>
               <View
