@@ -27,6 +27,7 @@ interface AppState {
   lastJournalDay: string | null;
   cheered: string[];
   locale: AppLocale;
+  conversationAiPreviewViewed: boolean;
 
   completeOnboarding: (name: string, level: Level, levelScore: number) => void;
   setStatus: (missionId: string, status: MissionStatus) => void;
@@ -41,6 +42,7 @@ interface AppState {
   }) => void;
   toggleCheer: (quoteId: string) => void;
   setLocale: (locale: AppLocale) => void;
+  markConversationAiPreviewViewed: () => void;
   updateProfile: (profile: { name: string; level: Level; locale: AppLocale }) => void;
   resetProgress: () => void;
 }
@@ -61,6 +63,7 @@ export const useAppStore = create<AppState>()(
       lastJournalDay: null,
       cheered: [],
       locale: 'en',
+      conversationAiPreviewViewed: false,
 
       completeOnboarding: (name, level, levelScore) =>
         set({ name: name.trim(), level, levelScore }),
@@ -123,6 +126,8 @@ export const useAppStore = create<AppState>()(
         })),
 
       setLocale: (locale) => set({ locale }),
+
+      markConversationAiPreviewViewed: () => set({ conversationAiPreviewViewed: true }),
 
       updateProfile: ({ name, level, locale }) => set({ name: name.trim(), level, locale }),
 

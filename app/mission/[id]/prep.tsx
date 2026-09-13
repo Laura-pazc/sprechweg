@@ -6,7 +6,8 @@ import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
 import { ChunkyCard } from '@/components/ChunkyCard';
-import { MissionMetaBadges, MissionStatusBadge } from '@/components/MissionBadges';
+import { MissionStatusBadge } from '@/components/MissionBadges';
+import { ConversationAiPreview } from '@/components/mission/ConversationAiPreview';
 import { ConversationSim } from '@/components/mission/ConversationSim';
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
@@ -33,6 +34,10 @@ export default function MissionPrepScreen() {
   const studied = useAppStore((state) => (id ? state.studied[id] : undefined));
   const practiceComplete = useAppStore((state) => (id ? state.practiceDone[id] : false));
   const learnerLevel = useAppStore((state) => state.level);
+  const conversationAiPreviewViewed = useAppStore((state) => state.conversationAiPreviewViewed);
+  const markConversationAiPreviewViewed = useAppStore(
+    (state) => state.markConversationAiPreviewViewed,
+  );
   const toggleVocabStudied = useAppStore((state) => state.toggleVocabStudied);
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
   const setStatus = useAppStore((state) => state.setStatus);
@@ -96,12 +101,11 @@ export default function MissionPrepScreen() {
               {mission.tagline}
             </Text>
 
-            <View className="mt-3 flex-row flex-wrap items-center gap-2">
-              <MissionMetaBadges mission={mission} />
-              {missionStatus !== 'not_started' ? (
+            {missionStatus === 'in_progress' ? (
+              <View className="mt-3 flex-row flex-wrap items-center gap-2">
                 <MissionStatusBadge status={missionStatus} />
-              ) : null}
-            </View>
+              </View>
+            ) : null}
 
             <View className="border-ink mt-3 flex-row items-start gap-2 rounded-2xl border-2 bg-white/75 px-3 py-2">
               <MapPin color={palette.ink} size={15} strokeWidth={2.5} />
@@ -113,10 +117,11 @@ export default function MissionPrepScreen() {
         ) : (
           <View className="px-2">
             <Text className="text-ink font-display text-[21px] leading-6">{mission.title}</Text>
-            <View className="mt-2 flex-row flex-wrap items-center gap-2">
-              <MissionMetaBadges mission={mission} />
-              <MissionStatusBadge status={missionStatus} />
-            </View>
+            {missionStatus === 'in_progress' ? (
+              <View className="mt-2 flex-row flex-wrap items-center gap-2">
+                <MissionStatusBadge status={missionStatus} />
+              </View>
+            ) : null}
           </View>
         )}
 
@@ -172,6 +177,10 @@ export default function MissionPrepScreen() {
               <Text className="text-ink font-display mb-3 text-[19px] leading-6">
                 {t('prep.conversationTitle')}
               </Text>
+              <ConversationAiPreview
+                hasViewed={conversationAiPreviewViewed}
+                onViewed={markConversationAiPreviewViewed}
+              />
               <ConversationSim
                 lines={mission.conversationSimulation}
                 initialShowEnglish={learnerLevel !== 'advanced'}
