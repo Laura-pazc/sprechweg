@@ -1,5 +1,5 @@
 import { ArrowLeft } from 'lucide-react-native';
-import { Text, View } from 'react-native';
+import { Modal, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import type { PracticeSuggestion } from '@/lib/types';
 import MapView from '@/components/MapView';
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
@@ -14,9 +14,12 @@ export function PracticeSuggestionMapModal({
   suggestion,
   onClose,
 }: PracticeSuggestionMapModalProps) {
+  const { width, height } = useWindowDimensions();
+
   if (!suggestion.location) return null;
 
   const { latitude, longitude, address, walkingDistanceMeters } = suggestion.location;
+  const mapHeight = Math.max(220, Math.min(width - 32, height * 0.42, 360));
 
   const marker = {
     id: suggestion.id,
@@ -27,67 +30,77 @@ export function PracticeSuggestionMapModal({
   };
 
   return (
-    <>
-      <View className="absolute inset-0 bg-black/40" />
-
-      <View className="rounded-t-24 bg-paper absolute right-0 bottom-0 left-0 flex-1">
-        {/* Header */}
-        <View className="border-canvas flex-row items-center gap-3 border-b px-5 py-4">
+    <Modal animationType="slide" onRequestClose={onClose} presentationStyle="fullScreen" visible>
+      <View className="bg-paper pt-safe flex-1">
+        <View className="border-canvas flex-row items-center gap-3 border-b px-4 py-3">
           <ChunkyIconButton
             onPress={onClose}
-            size={30}
+            size={36}
             tone="canvas"
             accessibilityLabel="Close map"
           >
-            <ArrowLeft color={palette.ink} size={18} />
+            <ArrowLeft color={palette.ink} size={20} />
           </ChunkyIconButton>
-          <Text className="font-display text-ink flex-1 text-[18px] font-semibold">
+          <Text
+            className="font-display text-ink min-w-0 flex-1 text-[18px] font-semibold"
+            numberOfLines={2}
+          >
             {suggestion.title}
           </Text>
         </View>
 
-        {/* Map */}
-        <MapView
-          initialRegion={{
-            latitude,
-            longitude,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-          markers={[marker]}
-          showsUserLocation
-          className="h-64"
-        />
-
-        {/* Info card */}
-        <View className="gap-3 px-5 py-4">
-          <View>
-            <Text className="font-display text-ink text-[16px] font-bold">{suggestion.title}</Text>
-            <Text className="font-body text-muted text-[13px]">{address}</Text>
+        <ScrollView
+          className="flex-1"
+          contentContainerStyle={{ paddingBottom: 24 }}
+          showsVerticalScrollIndicator
+        >
+          <View className="px-4 pt-4">
+            <View className="rounded-16 border-ink overflow-hidden border-2">
+              <MapView
+                initialRegion={{
+                  latitude,
+                  longitude,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+                }}
+                markers={[marker]}
+                showsUserLocation
+                style={{ height: mapHeight, width: '100%' }}
+              />
+            </View>
           </View>
 
-          {suggestion.tips.length > 0 && (
+          <View className="gap-3 px-5 py-4">
             <View>
-              <Text className="font-display text-muted text-[12px] font-semibold">
-                Practice tips:
+              <Text className="font-display text-ink text-[16px] font-bold">
+                {suggestion.title}
               </Text>
-              {suggestion.tips.map((tip) => (
-                <Text key={tip} className="font-body text-ink text-[13px]">
-                  • {tip}
-                </Text>
-              ))}
+              <Text className="font-body text-muted text-[13px]">{address}</Text>
             </View>
-          )}
 
-          {walkingDistanceMeters && (
-            <Text className="font-body text-muted text-[13px]">
-              ~{Math.round(walkingDistanceMeters / 100) * 100}m walk away
-            </Text>
-          )}
+            {suggestion.tips.length > 0 ? (
+              <View>
+                <Text className="font-display text-muted text-[12px] font-semibold">
+                  Practice tips:
+                </Text>
+                {suggestion.tips.map((tip) => (
+                  <Text key={tip} className="font-body text-ink text-[13px]">
+                    • {tip}
+                  </Text>
+                ))}
+              </View>
+            ) : null}
 
-          <ChunkyButton label="Close Map" variant="paper" onPress={onClose} />
-        </View>
+            {walkingDistanceMeters ? (
+              <Text className="font-body text-muted text-[13px]">
+                ~{Math.round(walkingDistanceMeters / 100) * 100}m walk away
+              </Text>
+            ) : null}
+
+            <ChunkyButton label="Close Map" variant="paper" onPress={onClose} fullWidth />
+          </View>
+        </ScrollView>
       </View>
-    </>
+    </Modal>
   );
 }
