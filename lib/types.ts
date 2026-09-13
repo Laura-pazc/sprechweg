@@ -99,3 +99,21 @@ export interface RecallQuestion {
   options: string[];
   answerIndex: number;
 }
+
+export interface Location {
+  latitude: number;
+  longitude: number;
+  address: string;
+  walkingDistanceMeters?: number;
+}
+
+export interface PracticeSuggestion {
+  id: string;
+  title: string;
+  category: string;
+  vocabConnection: string[];
+  description: string;
+  tips: string[];
+  difficulty: Level;
+  location?: Location;
+}

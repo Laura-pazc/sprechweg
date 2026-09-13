@@ -41,6 +41,7 @@ interface AppState {
   }) => void;
   toggleCheer: (quoteId: string) => void;
   setLocale: (locale: AppLocale) => void;
+  updateProfile: (profile: { name: string; level: Level; locale: AppLocale }) => void;
   resetProgress: () => void;
 }
 
@@ -122,6 +123,8 @@ export const useAppStore = create<AppState>()(
         })),
 
       setLocale: (locale) => set({ locale }),
+
+      updateProfile: ({ name, level, locale }) => set({ name: name.trim(), level, locale }),
 
       resetProgress: () => {
         set({

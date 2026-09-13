@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
 import { Lock } from 'lucide-react-native';
-import { useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
@@ -38,9 +37,6 @@ export default function ProfileScreen() {
   const entries = useAppStore((state) => state.entries);
   const streakCount = useAppStore((state) => state.streakCount);
   const lastJournalDay = useAppStore((state) => state.lastJournalDay);
-  const resetProgress = useAppStore((state) => state.resetProgress);
-
-  const [confirmReset, setConfirmReset] = useState(false);
 
   const doneMissions = missions.filter((mission) => statuses[mission.id] === 'done');
   const studiedWords = Object.values(studied).reduce((total, ids) => total + ids.length, 0);
@@ -157,35 +153,10 @@ export default function ProfileScreen() {
 
         <View className="gap-3">
           <SectionHeading title={t('common.settings')} />
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => router.push(routes.howItWorks)}
-            className="self-start py-1"
-          >
-            <Text className="text-ink font-strong border-ink border-b-2 text-[14px]">
-              {t('progress.howItWorks')}
-            </Text>
-          </Pressable>
-          <Pressable
-            accessibilityRole="button"
-            onPress={() => router.push(routes.levelResult)}
-            className="self-start py-1"
-          >
-            <Text className="text-ink font-strong border-ink border-b-2 text-[14px]">
-              {t('progress.reviewLevel')}
-            </Text>
-          </Pressable>
           <ChunkyButton
-            label={confirmReset ? t('progress.confirmReset') : t('progress.reset')}
-            variant={confirmReset ? 'ink' : 'quiet'}
-            onPress={() => {
-              if (!confirmReset) {
-                setConfirmReset(true);
-                return;
-              }
-              resetProgress();
-              router.replace(routes.onboarding);
-            }}
+            label={t('progress.openSettings')}
+            variant="paper"
+            onPress={() => router.push(routes.settings)}
           />
         </View>
       </ScrollView>

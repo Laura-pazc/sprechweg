@@ -12,9 +12,16 @@ interface MissionCardProps {
   status: MissionStatus;
   onPress: () => void;
   featured?: boolean;
+  seasonal?: boolean;
 }
 
-export function MissionCard({ mission, status, onPress, featured = false }: MissionCardProps) {
+export function MissionCard({
+  mission,
+  status,
+  onPress,
+  featured = false,
+  seasonal = false,
+}: MissionCardProps) {
   return (
     <ChunkyPressableCard
       tone={mission.season === 'autumn' ? 'autumn' : featured ? mission.accent : 'paper'}
@@ -22,7 +29,7 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
       radius={featured ? 22 : 18}
       onPress={onPress}
       accessibilityLabel={`${mission.title}. ${mission.tagline}`}
-      className={featured ? 'gap-3 px-4 py-4' : 'gap-2.5 px-4 py-3.5'}
+      className={`${featured ? 'gap-3 px-4 py-4' : 'gap-2.5 px-4 py-3.5'} ${seasonal ? 'bg-autumn-glow' : ''}`}
     >
       <View className="flex-row items-start justify-between gap-3">
         <View className="flex-1 gap-1">
@@ -41,7 +48,13 @@ export function MissionCard({ mission, status, onPress, featured = false }: Miss
           </Text>
         </View>
         <View className="h-9 w-9 items-center justify-center rounded-full bg-white/70">
-          <MissionIcon name={mission.icon} size={18} />
+          {seasonal ? (
+            <Text accessibilityElementsHidden className="text-[19px]">
+              🍂
+            </Text>
+          ) : (
+            <MissionIcon name={mission.icon} size={18} />
+          )}
         </View>
       </View>
 

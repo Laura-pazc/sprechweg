@@ -72,8 +72,7 @@ export default function JournalScreen() {
 
   const completedMissionWithoutFieldNotes = missions.find(
     (mission) =>
-      statuses[mission.id] === 'done' &&
-      !entries.some((entry) => entry.missionId === mission.id),
+      statuses[mission.id] === 'done' && !entries.some((entry) => entry.missionId === mission.id),
   );
 
   return (
@@ -109,7 +108,9 @@ export default function JournalScreen() {
                   label={t('journal.write')}
                   variant="ink"
                   leading={<NotebookPen color={palette.cream} size={16} strokeWidth={2.5} />}
-                  onPress={() => router.push(routes.missionJournal(completedMissionWithoutFieldNotes.id))}
+                  onPress={() =>
+                    router.push(routes.missionJournal(completedMissionWithoutFieldNotes.id))
+                  }
                 />
               </ChunkyCard>
             ) : (

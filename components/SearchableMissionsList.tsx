@@ -308,6 +308,7 @@ export interface SearchableMissionsListProps {
   statuses: Record<string, MissionStatus>;
   userLevel: Level | null;
   onMissionPress: (mission: Mission) => void;
+  highlightedMissionIds?: string[];
 }
 
 export function SearchableMissionsList({
@@ -315,12 +316,14 @@ export function SearchableMissionsList({
   statuses,
   userLevel,
   onMissionPress,
+  highlightedMissionIds = [],
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
   const search = useMissionSearch(missions, userLevel);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const activeFilterCount =
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
+  const highlightedIds = new Set(highlightedMissionIds);
   const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
   const items: MissionListItem[] = showCategoryPicker
     ? [{ type: 'category-picker', categories: search.categories }]
@@ -343,6 +346,7 @@ export function SearchableMissionsList({
         <MissionCard
           mission={mission}
           status={statuses[mission.id] ?? 'not_started'}
+          seasonal={highlightedIds.has(mission.id)}
           onPress={() => onMissionPress(mission)}
         />
       </View>

@@ -1,3 +1,4 @@
+import { AUTUMN_MISSIONS, AUTUMN_MISSION_IDS } from '@/lib/autumnMissions';
 import { SCENARIO_MISSIONS } from '@/lib/scenarioMissions';
 import type { Mission } from '@/lib/types';
 
@@ -512,7 +513,8 @@ export const MISSIONS: Mission[] = [
       description: 'Started a conversation with someone new and suggested a plan.',
     },
   },
-  ...SCENARIO_MISSIONS,
+  ...AUTUMN_MISSIONS,
+  ...SCENARIO_MISSIONS.filter((mission) => !AUTUMN_MISSION_IDS.has(mission.id)),
 ];
 
 export function getMission(id: string | undefined): Mission | undefined {

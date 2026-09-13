@@ -17,6 +17,11 @@ export const palette = {
   magenta: '#E44B7C',
   sunny: '#F9C242',
   sky: '#C8E5FA',
+  autumn: '#C65F0A',
+  autumnDark: '#71320A',
+  autumnGold: '#F2BC35',
+  autumnSoft: '#FFF0CF',
+  autumnGlow: '#F6C7A2',
 } as const;
 
 export type PaletteColor = keyof typeof palette;

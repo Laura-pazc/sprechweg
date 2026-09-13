@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SearchableMissionsList } from '@/components/SearchableMissionsList';
+import { AUTUMN_MISSIONS } from '@/lib/autumnMissions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
 
@@ -31,6 +32,7 @@ export default function MissionsScreen() {
         statuses={statuses}
         userLevel={level}
         onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
+        highlightedMissionIds={AUTUMN_MISSIONS.map((mission) => mission.id)}
       />
     </Screen>
   );

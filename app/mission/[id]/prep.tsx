@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ArrowLeft, MapPin } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
@@ -11,8 +11,10 @@ import { ConversationSim } from '@/components/mission/ConversationSim';
 import { MissionMissing } from '@/components/mission/MissionMissing';
 import { PracticeQuiz } from '@/components/mission/PracticeQuiz';
 import { VocabList } from '@/components/mission/VocabList';
+import { PracticeSuggestionsSheet } from '@/components/practice/PracticeSuggestionsSheet';
 import { Screen } from '@/components/Screen';
 import { StepPager, type StepPagerItem } from '@/components/StepPager';
+import { getPracticeSuggestions } from '@/lib/practiceSuggestions';
 import { goBackOrReplace, routes } from '@/lib/navigation';
 import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
@@ -34,6 +36,11 @@ export default function MissionPrepScreen() {
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
   const setStatus = useAppStore((state) => state.setStatus);
   const [step, setStep] = useState<PrepStep>('intro');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const suggestions = useMemo(
+    () => (mission && id ? getPracticeSuggestions(id) : []),
+    [mission, id],
+  );
 
   if (!hydrated) {
     return <Screen />;
@@ -55,7 +62,11 @@ export default function MissionPrepScreen() {
 
   const changeStep = (nextStep: PrepStep) => {
     if (nextStep !== 'intro') setStatus(mission.id, 'in_progress');
-    setStep(nextStep);
+    if (nextStep === 'conversation' && suggestions.length > 0) {
+      setShowSuggestions(true);
+    } else {
+      setStep(nextStep);
+    }
   };
 
   const beginMission = () => {
@@ -191,6 +202,16 @@ export default function MissionPrepScreen() {
           ) : null}
         </ScrollView>
       </View>
+
+      <PracticeSuggestionsSheet
+        isOpen={showSuggestions}
+        suggestions={suggestions}
+        onClose={() => setShowSuggestions(false)}
+        onStartMission={() => {
+          setShowSuggestions(false);
+          setStep('conversation');
+        }}
+      />
     </Screen>
   );
 }

@@ -171,6 +171,7 @@ export default function RootLayout() {
           <Stack.Screen name="mission/[id]/journal" />
           <Stack.Screen name="journal/new" />
           <Stack.Screen name="how-it-works" options={{ presentation: 'modal' }} />
+          <Stack.Screen name="settings" />
         </Stack>
         <InstallPrompt />
       </HeroUINativeProvider>

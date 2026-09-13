@@ -154,6 +154,11 @@
   --color-sunny: oklch(0.845 0.145 82);
   --color-sky: oklch(0.9 0.045 235);
   --color-royal: oklch(0.52 0.22 264);
+  --color-autumn: oklch(0.57 0.16 52);
+  --color-autumn-dark: oklch(0.34 0.09 52);
+  --color-autumn-gold: oklch(0.84 0.16 82);
+  --color-autumn-soft: oklch(0.95 0.045 78);
+  --color-autumn-glow: oklch(0.89 0.075 55);
 
   --font-body: 'Inter_400Regular';
   --font-ui: 'Inter_500Medium';
