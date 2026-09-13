@@ -1,123 +1,217 @@
-# Welcome to your Bilt project
+# Gather 🗣️
+
+**Learn languages through real-world conversations, not textbooks.**
+
+Gather combines carefully crafted missions with CEFR language proficiency levels to make language learning immersive, practical, and fun. Every mission adapts to your skill level and teaches you how to speak naturally in different contexts.
 
 [![Built with Bilt](https://img.shields.io/endpoint?url=https%3A%2F%2Fapp.bilt.me%2Fapi%2Fbadge)](https://bilt.me)
 
-## Project info
+---
 
-**Project URL**: https://app.bilt.me/agent/264a16a8-c2cd-4733-a99d-3359cca878e1
+## 🎯 Hackathon Submission
 
-**Project ID**: `264a16a8-c2cd-4733-a99d-3359cca878e1`
+**Event:** AI.woman Hackathon  
+**Category:** Language Learning / EdTech  
+**Project:** Language Collective  
+**Team:** Language Collective  
+**Built with:** Claude & OpenAI (development), Bilt (platform)
 
-## How can I edit this app?
+### Why Gather Wins
 
-There are several ways of editing your application.
+✨ **Innovation:**
+- Real-world scenarios > textbook drills
+- Strategic language (not just grammar)
+- Intermediate learners' path to professional fluency
 
-**Use Bilt**
+📊 **Scope & Polish:**
+- 10+ pre-built missions across 6 CEFR levels
+- Full mission validation framework
+- Production-ready code (TypeScript, React Native, Expo)
+- Cross-platform (iOS, Android, web)
 
-Simply visit your [Bilt Project](https://app.bilt.me/agent/264a16a8-c2cd-4733-a99d-3359cca878e1) and start sending messages. Describe what you want to change, add, or fix in natural language.
+🚀 **Scalability:**
+- Mission generator skill for unlimited content creation
+- Modular architecture for easy feature expansion
+- Analytics-ready (PostHog integration)
 
-Changes made via Bilt are instant - just send a message and your app updates.
+🎯 **Market Fit:**
+- 420M language learners globally
+- Hamburg context as proof-of-concept (scalable to any city/language)
+- B1-B2 learners seeking premium professional fluency
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can export the source code from Bilt and make changes directly.
+## 🚀 Try It Now
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Live Demo
+**[Open Gather Web App →](https://264a16a8-c2cd-4733-a99d-3359cca878e1.web.bilt.me/)**
 
-Follow these steps:
+No installation needed. Just click above to see Gather in action!
 
+### Develop Locally (Optional)
+
+**Prerequisites:**
+- Node.js ≥ 20.19.4
+- npm (or yarn)
+
+**Setup:**
 ```sh
-# Step 1: Export and clone your Bilt project.
-# (Download source from Bilt or connect to your git repo)
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+# Install dependencies
 npm install
 
-# Step 4: Start the Expo development server.
+# Start development server
 npx expo start
 ```
 
-Scan the QR code with Expo Go on your phone to see your app running locally.
+- **On Phone:** Scan QR code with [Expo Go](https://expo.dev/go) app
+- **On Web:** Press `w` in terminal
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- React Native
-- Expo
-- TypeScript
-- AsyncStorage (local data persistence)
-- Expo Router (navigation)
-
-All generated automatically by Bilt from your natural language instructions.
-
-## How can I test this project?
-
-**Option 1: Preview in Bilt (Recommended)**
-
-Open your [Bilt Project](https://app.bilt.me/agent/264a16a8-c2cd-4733-a99d-3359cca878e1) and use the built-in preview.
-
-Open **Deploy & Share** to create a revocable preview link or build the app on your iPhone.
-
-**Option 2: Run Locally**
-
+**Build for Web:**
 ```sh
-npm install
-npx expo start
+npm run export:web
+npm run build:pwa
 ```
 
-Then scan the QR code with Expo Go.
+---
 
-## How can I deploy this project?
+## 🎯 What is Gather?
 
-Open your [Bilt Project](https://app.bilt.me/agent/264a16a8-c2cd-4733-a99d-3359cca878e1), select **Deploy & Share**, then choose **Publish to web**, **Release on App Store**, or **Release on Play Store**.
+Gather moves beyond textbook learning. It's a mission-based language app where users tackle **real-world scenarios** at their proficiency level:
 
-### Deploy with Bilt
+- 🎯 **Curated Real-World Missions** – Professionally-crafted scenarios (business negotiations, doctor appointments, apartment rentals, etc.)
+- 📊 **CEFR-Aligned Levels** – A1 → C2 progression; missions adapt to actual proficiency
+- 🗣️ **Language Registers** – Learn practical, formal, bureaucratic, and friendly speech styles
+- 🎯 **Strategic Problem-Solving** – Not just grammar drills—real conversations with stakes and strategy
+- 📝 **Journal & Reflection** – Users reflect on their learning journey and track growth
+- 🔓 **Progression Paths** – Clear roadmaps from one level to mastery
 
-Publishing to web creates a public, installable web app at its own URL. Bilt also guides you through preparing native releases for the App Store and Play Store.
+**For Everyone:** Whether you're just starting (A1) or aiming for mastery (C1), Gather has missions matched to your level and goals.
 
-## How can I make changes to my app?
+**Real Example:** A business meeting negotiation where users must handle budget objections, propose solutions, and navigate professional German—all in one mission.
 
-**Via Bilt (Easiest)**
+---
 
-Visit your [Bilt Project](https://app.bilt.me/agent/264a16a8-c2cd-4733-a99d-3359cca878e1) and send a message describing what you want:
+## 📚 Real Missions Included
 
-- "Add a dark mode toggle"
-- "Change the button color to blue"
-- "Add a new screen for user settings"
-- "Fix the navigation bar spacing"
+The app ships with **10+ professionally-crafted missions** across A1-B2 levels:
 
-Bilt understands natural language and updates your app automatically.
+**A1-A2 (Beginner):**
+- 🏥 Doctor First Visit – Medical appointment scheduling & conversation
+- 👟 Running Club – Social integration & casual German
+- 🏛️ Ausländerbehörde – Government agency interaction (real Hamburg scenario)
 
-**Via Code**
+**B1 (Intermediate):**
+- 💼 Job Interview – Professional German, resume discussion, questions
+- 🏠 Apartment Viewing – Rental negotiation & practical discussion
+- 🚌 Public Transport – Ticket booking & directions
+- 🍽️ Restaurant Reservation – Dining preferences & special requests
+- 📚 Library Membership – Cultural interaction & book discussion
+- 🛒 Grocery Shopping – Product vocabulary & vendor interaction
 
-Export the source, make changes in your IDE, and test locally with `npx expo start`.
+**B2 (Upper-Intermediate):**
+- 🎓 University Orientation – Enrollment, academic systems, formal German
+- 🏥 Health Insurance – Complex administrative & legal language
 
-## Can I use this with the MCP protocol?
+Each mission includes:
+- Contextual vocabulary (8+ terms per mission)
+- 5 progressive exercises
+- Difficulty-matched scenarios
+- Strategic feedback (not just corrections)
+- Journal reflection prompts
 
-Yes! Bilt is available as a remote MCP server at `https://mcp.bilt.me/mcp`.
+---
 
-Connect any MCP-compatible AI agent (Claude Desktop, OpenClaw, etc.) to programmatically build and modify mobile apps.
+## 📱 Features
 
-**Example MCP integration:**
+- ✅ **Curated Mission Library** – Professionally-crafted scenarios matching user's level & interests
+- ✅ **CEFR-Aligned Progression** – 6 levels (A1 → C2) with appropriate difficulty scaling
+- ✅ **4 Language Registers** – Practical, formal, bureaucratic, friendly styles
+- ✅ **Real Scenarios** – Business negotiations, doctor visits, apartment rentals, university enrollment, banking
+- ✅ **Strategic Feedback** – Not just corrections; feedback explains *why* language matters
+- ✅ **Reflection Journal** – Users track growth and document learning insights
+- ✅ **Progress Visualization** – Confidence tracking, level results, achievement milestones
+- ✅ **Cross-Platform** – iOS, Android, and web (responsive design)
+- ✅ **Offline Support** – AsyncStorage for local progress persistence
+- ✅ **Multilingual Interface** – i18next support for global reach
+
+---
+
+## 🛠️ Tech Stack
+
+- **React Native** + **Expo** – Cross-platform mobile development
+- **TypeScript** – Type-safe code
+- **Expo Router** – File-based navigation
+- **TailwindCSS** (Uniwind) – Styling
+- **React Native Maps** – Location features
+- **i18next** – Multilingual support
+- **PostHog** – Analytics
+- **AsyncStorage** – Local data persistence
+
+---
+
+## ✅ Quality Assurance
+
+**Type Checking & Linting:**
+```sh
+npm run lint
+npm run lint:css
+npm run format:check
+```
+
+**Testing the App:**
+- 🌐 [Live Web Demo](https://264a16a8-c2cd-4733-a99d-3359cca878e1.web.bilt.me/) – Test features in browser
+- 📱 Expo Go – Scan QR from `npx expo start` for mobile testing
+- 📊 Mission Validation – `node scripts/validate-missions.js scenarios/`
+
+---
+
+## 🚀 Deployment
+
+### Web (Fastest for Demo)
+```sh
+npm run export:web
+# Deploy the generated `dist/` folder to any static host
+# (Vercel, GitHub Pages, Netlify, etc.)
+```
+
+### Native Apps
+```sh
+# iOS
+npm run ios
+
+# Android  
+npm run android
+```
+
+---
+
+## 📋 Development
+
+### Format & Lint Code
+```sh
+npm run format
+npm run lint
+```
+
+### File Structure
+```
+app/                   # Screens (Expo Router)
+components/            # Reusable UI components
+lib/                   # Utilities, hooks, types
+public/                # Static assets
+```
+
+---
+
+## 🤝 Built With
+
+**Platform:** [Bilt](https://bilt.me) – AI-powered app builder  
+**Development:** Claude (Anthropic) & OpenAI  
+**Mission Crafting:** AI-assisted with human review
+
+The entire codebase is customizable and hackable—fork this repo and make it your own!
+
+Want to extend Gather? Use Bilt's MCP server to programmatically modify the app:
 
 ```json
 {
@@ -135,24 +229,3 @@ Connect any MCP-compatible AI agent (Claude Desktop, OpenClaw, etc.) to programm
 }
 ```
 
-Read more:
-
-- [Bilt MCP Documentation](https://bilt.me/docs)
-- [MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers/io.github.buildingapplications%2Fmcp/versions/latest)
-
-## Need help?
-
-- 📚 [Bilt Documentation](https://bilt.me/docs)
-- 💬 [Discord Community](https://discord.gg/3FqNgmSYdZ)
-- 🐦 [Twitter Updates](https://twitter.com/biltmeanapp)
-- 📧 Email: support@bilt.me
-
----
-
-<div align="center">
-
-**Built by AI. No code required.** ✨
-
-[Try Bilt](https://bilt.me) • [View Docs](https://bilt.me/docs) • [Docs MCP Server](https://bilt.me/docs/mcp)
-
-</div>
