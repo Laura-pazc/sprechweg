@@ -13,6 +13,7 @@ export type CardTone =
   | 'paper'
   | 'cream'
   | 'canvas'
+  | 'autumn'
   | 'sky'
   | 'coral'
   | 'magenta'
@@ -25,6 +26,7 @@ export const TONE_BG: Record<CardTone, string> = {
   paper: 'bg-white',
   cream: 'bg-cream',
   canvas: 'bg-canvas',
+  autumn: 'bg-autumn',
   sky: 'bg-sky',
   coral: 'bg-coral',
   magenta: 'bg-magenta',
@@ -39,6 +41,7 @@ export const TONE_TEXT: Record<CardTone, string> = {
   paper: 'text-ink',
   cream: 'text-ink',
   canvas: 'text-ink',
+  autumn: 'text-ink',
   sky: 'text-ink',
   coral: 'text-ink',
   magenta: 'text-ink',
