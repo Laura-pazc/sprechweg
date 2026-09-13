@@ -1,4 +1,4 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
@@ -255,9 +255,11 @@ function MissionJournal({ mission }: { mission: Mission }) {
 export default function MissionJournalScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
   const hydrated = useAppStore((state) => state.hydrated);
+  const statuses = useAppStore((state) => state.statuses);
   const mission = useMission(id);
 
   if (!hydrated) return <Screen />;
   if (!mission) return <MissionMissing />;
+  if (statuses[mission.id] !== 'done') return <Redirect href={routes.dailyJournal} />;
   return <MissionJournal mission={mission} />;
 }

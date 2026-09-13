@@ -1,8 +1,7 @@
 import { router } from 'expo-router';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { ChunkyCard } from '@/components/ChunkyCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SearchableMissionsList } from '@/components/SearchableMissionsList';
@@ -32,16 +31,6 @@ export default function MissionsScreen() {
         statuses={statuses}
         userLevel={level}
         onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
-        footer={
-          <ChunkyCard tone="canvas" offset={4} className="mt-1 gap-1.5 px-4 py-3.5">
-            <Text className="text-muted font-display text-[11px] tracking-widest">
-              {t('missions.fixed')}
-            </Text>
-            <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-              {t('missions.fixedBody')}
-            </Text>
-          </ChunkyCard>
-        }
       />
     </Screen>
   );

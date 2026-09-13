@@ -70,9 +70,9 @@ export default function JournalScreen() {
   const streakCount = useAppStore((state) => state.streakCount);
   const lastJournalDay = useAppStore((state) => state.lastJournalDay);
 
-  const pending = missions.find(
+  const completedMissionWithoutFieldNotes = missions.find(
     (mission) =>
-      (statuses[mission.id] ?? 'not_started') !== 'not_started' &&
+      statuses[mission.id] === 'done' &&
       !entries.some((entry) => entry.missionId === mission.id),
   );
 
@@ -97,10 +97,10 @@ export default function JournalScreen() {
               entryCount={entries.length}
               journaledToday={lastJournalDay === dayKey()}
             />
-            {pending ? (
+            {completedMissionWithoutFieldNotes ? (
               <ChunkyCard tone="sunny" className="gap-2.5 px-4 py-4">
                 <Text className="text-ink font-display text-[17px] leading-[22px]">
-                  {t('journal.waiting', { title: pending.title })}
+                  {t('journal.waiting', { title: completedMissionWithoutFieldNotes.title })}
                 </Text>
                 <Text className="text-ink font-body text-[13.5px] leading-[20px]">
                   {t('journal.fresh')}
@@ -109,7 +109,7 @@ export default function JournalScreen() {
                   label={t('journal.write')}
                   variant="ink"
                   leading={<NotebookPen color={palette.cream} size={16} strokeWidth={2.5} />}
-                  onPress={() => router.push(routes.missionJournal(pending.id))}
+                  onPress={() => router.push(routes.missionJournal(completedMissionWithoutFieldNotes.id))}
                 />
               </ChunkyCard>
             ) : (

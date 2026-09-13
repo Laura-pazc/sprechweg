@@ -33,10 +33,10 @@ const resources = {
       streak: {
         days_one: '{{count}} day',
         days_other: '{{count}} days',
-        headline: 'Streak — one journal entry per day keeps it alive',
-        logged_one: 'Today is logged. {{count}} entry so far.',
-        logged_other: 'Today is logged. {{count}} entries so far.',
-        notLogged: 'Nothing logged today yet. Journal a mission before midnight to keep it.',
+        headline: 'Streak: one field note a day keeps it going',
+        logged_one: 'Today is logged. {{count}} field note so far.',
+        logged_other: 'Today is logged. {{count}} field notes so far.',
+        notLogged: 'No field notes today. Add notes about a mission before midnight to keep it.',
       },
       language: {
         buttonLabel: 'Interface language: {{language}}',
@@ -44,7 +44,7 @@ const resources = {
         subtitle: 'The app interface changes immediately. German practice phrases stay in German.',
         selected: 'Selected',
       },
-      tabs: { today: 'Today', missions: 'Missions', journal: 'Journal', progress: 'Progress' },
+      tabs: { today: 'Today', missions: 'Missions', journal: 'Field Notes', progress: 'Progress' },
       levels: { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' },
       levelHeadlines: {
         beginner: 'Short sentences, real streets',
@@ -96,11 +96,11 @@ const resources = {
         hideReference: 'Tap to hide the quick reference',
         noVerifying: 'NO VERIFYING',
         noVerifyingBody:
-          'The app cannot hear you and does not try. You mark this done yourself — then the journal turns it into something you keep.',
+          'The app cannot hear you and does not try. You mark this done yourself, then add Field Notes about what happened.',
         headingOut: "I'm heading out now",
         didIt: 'I did it',
         pause: 'Not today — pause this',
-        writeJournal: 'Write my journal',
+        writeJournal: 'Add Field Notes',
         backToday: 'Back to today',
       },
       today: {
@@ -161,30 +161,29 @@ const resources = {
         noResults: 'No missions found',
         noResultsBody: 'No missions match your search. Try different keywords or clear filters.',
         noResultsCompact: 'No missions match. Try different keywords or clear filters.',
-        fixed: 'FIXED CONTENT',
-        fixedBody:
-          'Every mission is authored, not generated. What changes per learner is the prep inside it: which phrases lead, how much English shows, and the questions you get afterwards.',
+        browseByCategory: 'Browse by category',
+        openCategory: 'Show {{category}} missions',
       },
       journal: {
-        kicker: 'Journal',
+        kicker: 'Field Notes',
         title: 'What actually happened',
-        subtitle: 'A lighter record of what happened, one thought at a time.',
+        subtitle: 'Notes from your mission, one thought at a time.',
         recall: 'Recall {{score}}/{{total}}',
-        waiting: '“{{title}}” is waiting for a write-up',
+        waiting: 'Add Field Notes for “{{title}}”',
         fresh: 'Add a note while the details are still fresh.',
-        write: 'Write it up',
-        empty: 'No entries yet',
+        write: 'Add Field Notes',
+        empty: 'No Field Notes yet',
         emptyBody:
-          'Pick a mission, go out and try it, then come back and tell your Sidekick how it went.',
+          'Complete a mission, then add a few notes about what happened.',
         browse: 'Browse missions',
-        dailyTitle: 'Your thoughts today',
-        dailyBody: 'No mission to reflect on? Capture whatever is on your mind.',
-        dailyPrompt: 'What are your thoughts today?',
-        dailyPlaceholder: 'Write a thought, feeling, question, or small win…',
-        dailyWrite: 'Write today’s thought',
-        dailySave: 'Save today’s thought',
-        dailyEntry: 'Daily reflection',
-        saved: 'Your thought is saved.',
+        dailyTitle: 'Notes from today',
+        dailyBody: 'No mission today? Add a few Field Notes about your day.',
+        dailyPrompt: 'What’s on your mind today?',
+        dailyPlaceholder: 'Write about something that happened, a thought, question, or small win…',
+        dailyWrite: 'Add today’s Field Note',
+        dailySave: 'Save Field Note',
+        dailyEntry: 'Daily Field Note',
+        saved: 'Field Note saved.',
       },
       progress: {
         kicker: 'Your progress',
@@ -194,7 +193,7 @@ const resources = {
         tier: '{{tier}} tier — {{headline}}.',
         missionsDone: 'Missions done',
         wordsMarked: 'Words marked',
-        entries: 'Journal entries',
+        entries: 'Field Notes',
         badges: 'Badges',
         locked: 'Locked — finish “{{title}}”',
         completed: 'Completed missions',
@@ -228,80 +227,42 @@ const resources = {
         retakeChat: 'Not quite right? Retake the chat',
       },
       missionJournal: {
-        title: 'One thought at a time',
+        title: 'Add Field Notes',
         savedTitle: 'Saved.',
         streak_one: '{{count}} day in a row',
         streak_other: '{{count}} days in a row',
         entrySaved:
-          'Entry saved and “{{title}}” is marked done. Recall quiz: {{score}} of {{total}}.',
+          'Field Notes saved and “{{title}}” is marked done. Recall quiz: {{score}} of {{total}}.',
         badgeEarned: 'BADGE EARNED',
         seeProgress: 'See my progress',
-        thoughtCount: 'Thought {{current}} of {{total}}',
+        thoughtCount: 'Field Note {{current}} of {{total}}',
         yourPrompt: 'YOUR PROMPT',
         firstThoughtPlaceholder: 'Take a moment. What did you notice, feel, or do?',
-        nextThoughtPlaceholder: 'Add another thought, if you’d like…',
+        nextThoughtPlaceholder: 'Add another Field Note, if you’d like…',
         continueToRecall: 'Continue to recall',
-        nextThought: 'Next thought',
-        skipThisOne: 'Skip this one',
+        nextThought: 'Next Field Note',
+        skipThisOne: 'Skip this note',
         quickRecall: 'A quick recall',
         quickRecallBody: 'One word at a time. No score is shown while you answer.',
-        saveEntry: 'Save entry',
+        saveEntry: 'Save Field Notes',
         nextWord: 'Next word',
       },
       howItWorks: {
         title: 'Practice outside, not in a streak menu.',
-        subtitle:
-          'City Sidekick prepares one small real-life exchange at a time, then asks you what happened.',
-        nothingVerifies: 'Nothing here verifies you',
-        nothingVerifiesBody:
-          'The app cannot hear your conversation and does not try. You mark the mission done yourself — the honesty is the point, and the journal is where the learning lands.',
-        generatedForYou: 'Generated for you',
-        saidPlainly: 'Said plainly',
-        saidPlainlyBody:
-          'In this version those four run as scripted on-device rules keyed to your tier, your mission, and the words you ticked — deterministic and offline. They are the exact seams a language model would take over later. No AI service is called today.',
-        fixedForEveryone: 'Fixed for everyone',
-        perLearner: {
-          '0': {
-            title: 'Your level estimate',
-            detail:
-              'Built from the five answers you gave in the onboarding chat. Three tiers only — beginner, intermediate, advanced.',
-          },
-          '1': {
-            title: 'Prep vocab and the conversation sim',
-            detail:
-              'Which phrases lead, how much English you see, and whether the exchange stays scripted or goes off-script depends on your tier.',
-          },
-          '2': {
-            title: 'Reflection prompts',
-            detail:
-              'The two journal questions are written against the mission you just did and your tier — a beginner gets asked about missing words, an advanced learner about what they could not prepare.',
-          },
-          '3': {
-            title: 'The recall quiz',
-            detail:
-              'Pulled from the vocab you personally ticked off in prep, with distractors drawn from the rest of that mission.',
-          },
+        makeItYours: {
+          title: 'Make it yours',
+          detail:
+            'Choose a ready-made mission, or use AI to create one around your own life. Make it personal, memorable, and useful.',
         },
-        fixed: {
-          '0': {
-            title: 'The mission library',
-            detail:
-              'Every mission has authored vocabulary, conversation text, practice, and a real-world action. The same source content is available to everyone.',
-          },
-          '1': {
-            title: 'Streak math',
-            detail:
-              'One journal entry per calendar day. Journal yesterday and today and it grows; skip a day and it restarts at one.',
-          },
-          '2': {
-            title: 'Badges',
-            detail: 'One badge per mission completed, with no hidden criteria.',
-          },
-          '3': {
-            title: 'The confidence number',
-            detail:
-              'Fixed weights: marking vocab and finishing practice count a little, actually going outside counts most.',
-          },
+        reflectAndGrow: {
+          title: 'Reflect on it',
+          detail:
+            'Use Field Notes to reflect on what happened and what you learned. Prompts are shaped by educational psychology to help learning stick.',
+        },
+        keepItHuman: {
+          title: 'Keep it human',
+          detail:
+            'Join local events, meet people, and use new words in real conversations. Language learning happens in the world around you.',
         },
       },
       notFound: {
@@ -351,10 +312,10 @@ const resources = {
       streak: {
         days_one: '{{count}} Tag',
         days_other: '{{count}} Tage',
-        headline: 'Serie — ein Journal-Eintrag pro Tag hält sie am Leben',
-        logged_one: 'Heute ist eingetragen. Bisher {{count}} Eintrag.',
-        logged_other: 'Heute ist eingetragen. Bisher {{count}} Einträge.',
-        notLogged: 'Heute noch nichts eingetragen. Schreibe vor Mitternacht über eine Mission.',
+        headline: 'Serie: Eine Feldnotiz am Tag hält sie am Laufen',
+        logged_one: 'Heute ist eingetragen. Bisher {{count}} Feldnotiz.',
+        logged_other: 'Heute ist eingetragen. Bisher {{count}} Feldnotizen.',
+        notLogged: 'Heute noch keine Feldnotizen. Schreibe vor Mitternacht etwas über eine Mission.',
       },
       language: {
         buttonLabel: 'Oberflächensprache: {{language}}',
@@ -363,7 +324,7 @@ const resources = {
           'Die App-Oberfläche ändert sich sofort. Deutsche Übungssätze bleiben auf Deutsch.',
         selected: 'Ausgewählt',
       },
-      tabs: { today: 'Heute', missions: 'Missionen', journal: 'Journal', progress: 'Fortschritt' },
+      tabs: { today: 'Heute', missions: 'Missionen', journal: 'Feldnotizen', progress: 'Fortschritt' },
       levels: { beginner: 'Anfänger', intermediate: 'Mittelstufe', advanced: 'Fortgeschritten' },
       levelHeadlines: {
         beginner: 'Kurze Sätze, echte Straßen',
@@ -415,11 +376,11 @@ const resources = {
         hideReference: 'Tippe, um die Schnellübersicht auszublenden',
         noVerifying: 'KEINE ÜBERPRÜFUNG',
         noVerifyingBody:
-          'Die App hört nicht mit und versucht es auch nicht. Du markierst die Mission selbst als erledigt — danach hältst du sie im Journal fest.',
+          'Die App hört nicht mit und versucht es auch nicht. Du markierst die Mission selbst als erledigt und notierst danach, was passiert ist.',
         headingOut: 'Ich gehe jetzt los',
         didIt: 'Ich habe es geschafft',
         pause: 'Heute nicht — pausieren',
-        writeJournal: 'Journal schreiben',
+        writeJournal: 'Feldnotizen schreiben',
         backToday: 'Zurück zu Heute',
       },
       today: {
@@ -481,31 +442,30 @@ const resources = {
         noResultsBody:
           'Keine Mission passt zu deiner Suche. Probiere andere Wörter oder lösche die Filter.',
         noResultsCompact: 'Keine Mission passt. Probiere andere Wörter oder lösche die Filter.',
-        fixed: 'FESTE INHALTE',
-        fixedBody:
-          'Jede Mission wurde redaktionell erstellt, nicht generiert. Je nach Person ändert sich die Vorbereitung: welche Sätze zuerst kommen, wie viel Englisch angezeigt wird und welche Fragen danach folgen.',
+        browseByCategory: 'Nach Kategorie entdecken',
+        openCategory: 'Missionen in {{category}} anzeigen',
       },
       journal: {
-        kicker: 'Journal',
+        kicker: 'Feldnotizen',
         title: 'Was wirklich passiert ist',
-        subtitle: 'Halte leicht und in einzelnen Gedanken fest, was passiert ist.',
+        subtitle: 'Notizen zu deiner Mission, ein Gedanke nach dem anderen.',
         recall: 'Erinnerung {{score}}/{{total}}',
-        waiting: '„{{title}}“ wartet auf deinen Eintrag',
+        waiting: 'Schreibe Feldnotizen zu „{{title}}“',
         fresh: 'Notiere etwas, solange die Details noch frisch sind.',
-        write: 'Eintrag schreiben',
-        empty: 'Noch keine Einträge',
+        write: 'Feldnotizen schreiben',
+        empty: 'Noch keine Feldnotizen',
         emptyBody:
-          'Wähle eine Mission, probiere sie aus und erzähle deinem Sidekick danach, wie es lief.',
+          'Schließe eine Mission ab und notiere danach, was passiert ist.',
         browse: 'Missionen ansehen',
-        dailyTitle: 'Deine Gedanken heute',
-        dailyBody: 'Keine Mission zum Reflektieren? Halte fest, was dich gerade beschäftigt.',
-        dailyPrompt: 'Was sind heute deine Gedanken?',
+        dailyTitle: 'Notizen von heute',
+        dailyBody: 'Keine Mission heute? Schreibe ein paar Feldnotizen über deinen Tag.',
+        dailyPrompt: 'Was beschäftigt dich heute?',
         dailyPlaceholder:
-          'Schreibe einen Gedanken, ein Gefühl, eine Frage oder einen kleinen Erfolg auf …',
-        dailyWrite: 'Heutigen Gedanken schreiben',
-        dailySave: 'Heutigen Gedanken speichern',
-        dailyEntry: 'Tagesreflexion',
-        saved: 'Dein Gedanke wurde gespeichert.',
+          'Schreibe über etwas, das passiert ist, einen Gedanken, eine Frage oder einen kleinen Erfolg …',
+        dailyWrite: 'Heutige Feldnotiz schreiben',
+        dailySave: 'Feldnotiz speichern',
+        dailyEntry: 'Feldnotiz des Tages',
+        saved: 'Feldnotiz gespeichert.',
       },
       progress: {
         kicker: 'Dein Fortschritt',
@@ -515,7 +475,7 @@ const resources = {
         tier: 'Stufe {{tier}} — {{headline}}.',
         missionsDone: 'Missionen erledigt',
         wordsMarked: 'Wörter markiert',
-        entries: 'Journal-Einträge',
+        entries: 'Feldnotizen',
         badges: 'Abzeichen',
         locked: 'Gesperrt — schließe „{{title}}“ ab',
         completed: 'Abgeschlossene Missionen',
@@ -549,80 +509,42 @@ const resources = {
         retakeChat: 'Not quite right? Retake the chat',
       },
       missionJournal: {
-        title: 'One thought at a time',
+        title: 'Feldnotizen schreiben',
         savedTitle: 'Saved.',
         streak_one: '{{count}} day in a row',
         streak_other: '{{count}} days in a row',
         entrySaved:
-          'Entry saved and “{{title}}” is marked done. Recall quiz: {{score}} of {{total}}.',
+          'Feldnotizen gespeichert und „{{title}}“ ist erledigt. Erinnerungsquiz: {{score}} von {{total}}.',
         badgeEarned: 'BADGE EARNED',
         seeProgress: 'See my progress',
-        thoughtCount: 'Thought {{current}} of {{total}}',
+        thoughtCount: 'Feldnotiz {{current}} von {{total}}',
         yourPrompt: 'YOUR PROMPT',
         firstThoughtPlaceholder: 'Take a moment. What did you notice, feel, or do?',
-        nextThoughtPlaceholder: 'Add another thought, if you’d like…',
+        nextThoughtPlaceholder: 'Füge eine weitere Feldnotiz hinzu, wenn du möchtest …',
         continueToRecall: 'Continue to recall',
-        nextThought: 'Next thought',
-        skipThisOne: 'Skip this one',
+        nextThought: 'Nächste Feldnotiz',
+        skipThisOne: 'Diese Notiz überspringen',
         quickRecall: 'A quick recall',
         quickRecallBody: 'One word at a time. No score is shown while you answer.',
-        saveEntry: 'Save entry',
+        saveEntry: 'Feldnotizen speichern',
         nextWord: 'Next word',
       },
       howItWorks: {
         title: 'Practice outside, not in a streak menu.',
-        subtitle:
-          'City Sidekick prepares one small real-life exchange at a time, then asks you what happened.',
-        nothingVerifies: 'Nothing here verifies you',
-        nothingVerifiesBody:
-          'The app cannot hear your conversation and does not try. You mark the mission done yourself — the honesty is the point, and the journal is where the learning lands.',
-        generatedForYou: 'Generated for you',
-        saidPlainly: 'Said plainly',
-        saidPlainlyBody:
-          'In this version those four run as scripted on-device rules keyed to your tier, your mission, and the words you ticked — deterministic and offline. They are the exact seams a language model would take over later. No AI service is called today.',
-        fixedForEveryone: 'Fixed for everyone',
-        perLearner: {
-          '0': {
-            title: 'Your level estimate',
-            detail:
-              'Built from the five answers you gave in the onboarding chat. Three tiers only — beginner, intermediate, advanced.',
-          },
-          '1': {
-            title: 'Prep vocab and the conversation sim',
-            detail:
-              'Which phrases lead, how much English you see, and whether the exchange stays scripted or goes off-script depends on your tier.',
-          },
-          '2': {
-            title: 'Reflection prompts',
-            detail:
-              'The two journal questions are written against the mission you just did and your tier — a beginner gets asked about missing words, an advanced learner about what they could not prepare.',
-          },
-          '3': {
-            title: 'The recall quiz',
-            detail:
-              'Pulled from the vocab you personally ticked off in prep, with distractors drawn from the rest of that mission.',
-          },
+        makeItYours: {
+          title: 'Make it yours',
+          detail:
+            'Wähle eine fertige Mission oder erstelle mit KI eine für deinen Alltag. Mach sie persönlich, einprägsam und nützlich.',
         },
-        fixed: {
-          '0': {
-            title: 'The mission library',
-            detail:
-              'Every mission has authored vocabulary, conversation text, practice, and a real-world action. The same source content is available to everyone.',
-          },
-          '1': {
-            title: 'Streak math',
-            detail:
-              'One journal entry per calendar day. Journal yesterday and today and it grows; skip a day and it restarts at one.',
-          },
-          '2': {
-            title: 'Badges',
-            detail: 'One badge per mission completed, with no hidden criteria.',
-          },
-          '3': {
-            title: 'The confidence number',
-            detail:
-              'Fixed weights: marking vocab and finishing practice count a little, actually going outside counts most.',
-          },
+        reflectAndGrow: {
+          title: 'Reflect on it',
+          detail:
+            'Nutze Feldnotizen, um über das Erlebte und Gelernte nachzudenken. Die Fragen orientieren sich an der Lernpsychologie und helfen dir, das Gelernte zu behalten.',
+        },
+        keepItHuman: {
+          title: 'Keep it human',
+          detail:
+            'Join local events, meet people, and use new words in real conversations. Language learning happens in the world around you.',
         },
       },
       notFound: {
