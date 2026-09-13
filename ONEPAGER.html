@@ -1,0 +1,486 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sprechweg</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --ink:#10141A;
+    --cream:#FDF4E4;
+    --canvas:#F2F0E9;
+    --paper:#FFFFFF;
+    --muted:#5E6B78;
+    --royal:#2B55E9;
+    --lime:#C9EE5F;
+    --coral:#F4512B;
+    --magenta:#E44B7C;
+    --sunny:#F9C242;
+    --sky:#C8E5FA;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    padding:0 20px;
+  }
+
+  .page{
+    max-width:760px;
+    margin:0 auto;
+    padding-block:48px 64px;
+    display:flex;
+    flex-direction:column;
+    gap:36px;
+  }
+
+  .kicker{
+    font-weight:700;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  .kicker.on-dark{ color:rgba(253,244,228,0.75); }
+
+  h1{
+    font-weight:700;
+    font-size:clamp(30px,5vw,42px);
+    line-height:1.12;
+    margin:8px 0 0;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+
+  .lede{
+    font-size:17px;
+    line-height:1.55;
+    color:var(--muted);
+    max-width:56ch;
+    margin:0;
+  }
+
+  .hero{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .badge-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:6px;
+  }
+  .pill{
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:5px 12px;
+    font-size:12px;
+    font-weight:600;
+    background:var(--paper);
+  }
+  .pill.pill-soon{
+    background:var(--sunny);
+    border-style:dashed;
+  }
+
+  .card{
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:20px;
+    padding:24px;
+    box-shadow:5px 5px 0 0 var(--ink);
+  }
+
+  .card h2{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    margin:0 0 12px;
+  }
+
+  .card p{
+    font-size:15px;
+    line-height:1.6;
+    margin:0;
+    color:var(--ink);
+  }
+  .card p + p{ margin-top:10px; }
+
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:620px){
+    .split{ grid-template-columns:1fr; }
+  }
+
+  .accent-coral{ background:var(--coral); color:var(--cream); }
+  .accent-coral h2{ color:var(--cream); }
+  .accent-royal{ background:var(--royal); color:var(--cream); }
+  .accent-royal h2{ color:var(--cream); }
+  .accent-royal p{ color:var(--cream); }
+  .accent-coral p{ color:var(--cream); }
+
+  .section-heading{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin:0;
+  }
+  .section-heading h2{
+    font-size:20px;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.005em;
+  }
+  .section-heading .kicker{ margin:0; }
+
+  .flow{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .step{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:16px;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:18px;
+    padding:18px 20px;
+    box-shadow:4px 4px 0 0 var(--ink);
+    position:relative;
+  }
+  @media (max-width:520px){
+    .step{ grid-template-columns:44px 1fr; padding:16px; }
+  }
+
+  .step-num{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    border:2px solid var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Inter',sans-serif;
+    font-weight:700;
+    font-size:19px;
+    color:var(--ink);
+  }
+  @media (max-width:520px){
+    .step-num{ width:44px; height:44px; font-size:15px; }
+  }
+
+  .step-sky .step-num{ background:var(--sky); }
+  .step-coral .step-num{ background:var(--coral); color:var(--cream); }
+  .step-magenta .step-num{ background:var(--magenta); color:var(--cream); }
+  .step-lime .step-num{ background:var(--lime); }
+
+  .step-title{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 4px;
+  }
+  .step h3{
+    font-size:17px;
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .step p{
+    font-size:14.5px;
+    line-height:1.55;
+    color:var(--ink);
+    margin:0;
+  }
+  .step .note{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid rgba(16,20,26,0.15);
+    font-size:13.5px;
+    color:var(--muted);
+  }
+  .step .examples{
+    margin-top:8px;
+    font-size:13px;
+    color:var(--muted);
+  }
+  .step .examples b{ color:var(--ink); font-weight:600; }
+
+  .soon{
+    background:var(--paper);
+    border:2px dashed var(--ink);
+    border-radius:20px;
+    padding:24px;
+  }
+  .soon-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .soon-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--sunny);
+    border:2px solid var(--ink);
+    flex-shrink:0;
+  }
+  .soon .kicker{ margin:0; color:var(--ink); }
+  .soon h2{
+    font-size:19px;
+    font-weight:700;
+    margin:14px 0 8px;
+  }
+  .soon p{
+    font-size:15px;
+    line-height:1.6;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .soon p:last-child{ margin-bottom:0; }
+  .soon .tag{
+    display:inline-block;
+    background:var(--sunny);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:3px 10px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-right:6px;
+  }
+
+  .twin{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:14px;
+  }
+  @media (max-width:560px){
+    .twin{ grid-template-columns:1fr; }
+  }
+  .twin-item{
+    background:var(--canvas);
+    border:2px solid var(--ink);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .twin-item h4{
+    font-size:13px;
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .twin-item p{
+    font-size:13.5px;
+    line-height:1.5;
+    margin:0;
+    color:var(--muted);
+  }
+
+  footer{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    justify-content:space-between;
+    align-items:center;
+    border-top:2px solid var(--ink);
+    padding-top:18px;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  footer .fact{ display:flex; align-items:center; gap:6px; }
+  footer .fact::before{
+    content:'';
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--muted);
+    display:inline-block;
+  }
+  footer .facts{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 16px;
+  }
+</style>
+
+<div class="page">
+
+  <div class="hero">
+    <span class="kicker">Sprechweg &middot; one-pager</span>
+    <h1>German you actually need, learned where you'll use it.</h1>
+    <p class="lede">
+      A Hamburg pilot that replaces flashcard streaks with real errands: prep a
+      little, go do the thing in German, then come back and prove it happened.
+    </p>
+    <div class="badge-row">
+      <span class="pill">Level chat</span>
+      <span class="pill">Missions</span>
+      <span class="pill">Field Notes</span>
+      <span class="pill">Streak &amp; badges</span>
+      <span class="pill pill-soon">Smart Missions (AI) &middot; soon</span>
+    </div>
+  </div>
+
+  <div class="split">
+    <div class="card accent-coral">
+      <h2>The problem</h2>
+      <p>
+        Most language apps are a solo screen habit: swipe a card, keep a
+        streak, never leave the couch. The actual skill gap shows up
+        somewhere else entirely: at the Ausl&auml;nderbehörde counter, at
+        the doctor's reception, mid-sentence with a running club stranger.
+      </p>
+      <p>
+        Language sticks when it's used with other people, outside, for a
+        reason that matters that day, not rehearsed alone against a deck of
+        cards.
+      </p>
+    </div>
+    <div class="card accent-royal">
+      <h2>What it's for</h2>
+      <p>
+        Get a German learner in Hamburg through one real errand in German,
+        and leave them with proof it happened: what they said, what they
+        still need to review, a reason to do the next one.
+      </p>
+      <p>
+        A mission isn't a lesson. It's a situated task: placement, prep,
+        the real thing outside, then reflection that turns into review.
+      </p>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="section-heading">
+      <h2>How it works</h2>
+      <span class="kicker">the mission loop</span>
+    </div>
+
+    <div class="step step-sky">
+      <div class="step-num">01</div>
+      <div>
+        <p class="step-title">Evaluate</p>
+        <h3>The level chat</h3>
+        <p>
+          A short chat, five answers, places the learner as beginner,
+          intermediate, or advanced. The tier doesn't change the missions
+          themselves, which stay fixed and authored. It just decides which
+          one shows up first, and how much English scaffolding stays on
+          screen.
+        </p>
+      </div>
+    </div>
+
+    <div class="step step-coral">
+      <div class="step-num">02</div>
+      <div>
+        <p class="step-title">Prepare</p>
+        <h3>Missions</h3>
+        <p>
+          Vocabulary in context, a conversation simulation, then a practice
+          quiz (multiple-choice, fill-in-the-blank, write-your-own-sentence)
+          before anyone leaves the house.
+        </p>
+        <div class="examples">
+          <b>Live missions:</b> doctor's appointment &middot; Ausl&auml;nderbehörde
+          &middot; bank errand &middot; running club &middot; yoga class &middot;
+          plus a seasonal set (mushroom foraging, farmers' market, apple
+          cider tasting).
+        </div>
+        <div class="note">
+          After the vocab step, the app also points to real nearby places to
+          use those same words that day: a café, a U-Bahn stop, a park,
+          shown on a map instead of just a word list.
+        </div>
+      </div>
+    </div>
+
+    <div class="step step-magenta">
+      <div class="step-num">03</div>
+      <div>
+        <p class="step-title">Go outside</p>
+        <h3>Do the errand</h3>
+        <p>
+          The actual appointment, counter, or class, in German, with a real
+          person. The app's job here is to get out of the way, on purpose.
+        </p>
+      </div>
+    </div>
+
+    <div class="step step-lime">
+      <div class="step-num">04</div>
+      <div>
+        <p class="step-title">Reflect</p>
+        <h3>Field Notes</h3>
+        <p>
+          A short write-up of what happened, a recall check on the
+          vocabulary, a streak, and a badge for the mission. (Called
+          "Journal" internally; renamed to make clear it's evidence the
+          errand got done, not a diary.)
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="soon">
+    <div class="soon-top">
+      <span class="soon-dot"></span>
+      <span class="kicker">Coming soon &middot; not built this round</span>
+    </div>
+    <h2>Smart Missions: generated from the learner's own Field Notes, not hand-authored</h2>
+    <p>
+      Every mission today is hand-authored and identical for every learner.
+      The planned step replaces that with missions the AI writes on the fly,
+      per learner, out of what that learner actually got wrong &mdash; so the
+      library stops being one fixed set and starts being user-generated.
+    </p>
+    <div class="twin">
+      <div class="twin-item">
+        <h4><span class="tag">Read</span>The Field Note</h4>
+        <p>
+          The AI reads what a learner actually wrote after their errand and
+          flags the real mistakes this particular person keeps making, not a
+          generic grammar check.
+        </p>
+      </div>
+      <div class="twin-item">
+        <h4><span class="tag">Generate</span>A Smart Mission</h4>
+        <p>
+          Turns those mistakes into a brand-new mission or classic exercise,
+          authored by AI and shaped around this person's errors, this week,
+          in Hamburg &mdash; not picked from a fixed catalog.
+        </p>
+      </div>
+    </div>
+    <p style="margin-top:14px;">
+      Missions and Field Notes already run through the same data layer for
+      exactly this reason: it's the seam a backend can plug into later
+      without touching either screen.
+    </p>
+  </div>
+
+  <footer>
+    <div class="facts">
+      <span class="fact">Expo &amp; React Native</span>
+      <span class="fact">Runs fully offline today, no backend yet</span>
+      <span class="fact">Hamburg pilot, UI in English</span>
+    </div>
+    <span>sprechweg</span>
+  </footer>
+
+</div>
+
+</body></html>
