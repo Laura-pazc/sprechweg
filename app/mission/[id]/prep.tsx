@@ -19,8 +19,9 @@ import { goBackOrReplace, routes } from '@/lib/navigation';
 import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 
-const STEP_VALUES = ['intro', 'vocab', 'conversation', 'practice'] as const;
-type PrepStep = (typeof STEP_VALUES)[number];
+const LEARNING_STEP_VALUES = ['vocab', 'conversation', 'practice'] as const;
+type LearningStep = (typeof LEARNING_STEP_VALUES)[number];
+type PrepStep = 'overview' | LearningStep;
 
 export default function MissionPrepScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -35,7 +36,7 @@ export default function MissionPrepScreen() {
   const toggleVocabStudied = useAppStore((state) => state.toggleVocabStudied);
   const markPracticeDone = useAppStore((state) => state.markPracticeDone);
   const setStatus = useAppStore((state) => state.setStatus);
-  const [step, setStep] = useState<PrepStep>('intro');
+  const [step, setStep] = useState<PrepStep>('overview');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const suggestions = useMemo(
     () => (mission && id ? getPracticeSuggestions(id) : []),
@@ -50,8 +51,7 @@ export default function MissionPrepScreen() {
     return <MissionMissing />;
   }
 
-  const steps: StepPagerItem<PrepStep>[] = [
-    { value: 'intro', label: t('prep.introStep') },
+  const learningSteps: StepPagerItem<LearningStep>[] = [
     { value: 'vocab', label: t('prep.vocabStep') },
     { value: 'conversation', label: t('prep.conversationStep') },
     { value: 'practice', label: t('prep.practiceStep') },
@@ -60,8 +60,8 @@ export default function MissionPrepScreen() {
   const selectedVocab = studied ?? [];
   const missionStatus = statuses[mission.id] ?? 'not_started';
 
-  const changeStep = (nextStep: PrepStep) => {
-    if (nextStep !== 'intro') setStatus(mission.id, 'in_progress');
+  const changeStep = (nextStep: LearningStep) => {
+    setStatus(mission.id, 'in_progress');
     if (nextStep === 'conversation' && suggestions.length > 0) {
       setShowSuggestions(true);
     } else {
@@ -89,7 +89,7 @@ export default function MissionPrepScreen() {
           </ChunkyIconButton>
         </View>
 
-        {step === 'intro' ? (
+        {step === 'overview' ? (
           <ChunkyCard tone={mission.accent} offset={5} radius={20} className="p-4">
             <Text className="text-ink font-display text-[24px] leading-7">{mission.title}</Text>
             <Text className="text-ink/80 font-body mt-1.5 text-[14px] leading-5">
@@ -120,9 +120,9 @@ export default function MissionPrepScreen() {
           </View>
         )}
 
-        {step !== 'practice' ? (
+        {step !== 'overview' ? (
           <View className="mt-3 mb-2">
-            <StepPager items={steps} value={step} onChange={changeStep} />
+            <StepPager items={learningSteps} value={step} onChange={changeStep} />
           </View>
         ) : null}
 
@@ -132,7 +132,7 @@ export default function MissionPrepScreen() {
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          {step === 'intro' ? (
+          {step === 'overview' ? (
             <View className="pt-2">
               <Text className="text-muted font-body text-center text-[13px] leading-[18px]">
                 {t('prep.introHint')}
@@ -175,6 +175,13 @@ export default function MissionPrepScreen() {
               <ConversationSim
                 lines={mission.conversationSimulation}
                 initialShowEnglish={learnerLevel !== 'advanced'}
+              />
+              <ChunkyButton
+                className="mt-5"
+                fullWidth
+                label={t('prep.continuePractice')}
+                onPress={() => changeStep('practice')}
+                trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
               />
             </View>
           ) : null}

@@ -111,6 +111,7 @@ interface ChunkyIconButtonProps {
   accessibilityLabel: string;
   tone?: CardTone;
   size?: number;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -120,20 +121,28 @@ export function ChunkyIconButton({
   accessibilityLabel,
   tone = 'paper',
   size = 44,
+  disabled = false,
   className,
 }: ChunkyIconButtonProps) {
   const offset = 3;
 
   return (
-    <View style={{ marginRight: offset, marginBottom: offset }} className={className}>
-      <View
-        pointerEvents="none"
-        className="bg-ink absolute rounded-full"
-        style={{ left: offset, top: offset, right: -offset, bottom: -offset }}
-      />
+    <View
+      style={{ marginRight: offset, marginBottom: offset, opacity: disabled ? 0.38 : 1 }}
+      className={className}
+    >
+      {!disabled ? (
+        <View
+          pointerEvents="none"
+          className="bg-ink absolute rounded-full"
+          style={{ left: offset, top: offset, right: -offset, bottom: -offset }}
+        />
+      ) : null}
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ disabled }}
+        disabled={disabled}
         onPress={onPress}
         className={cn(
           'border-ink items-center justify-center rounded-full border-2',

@@ -71,8 +71,8 @@ export function PracticeSuggestionMapModal({
               <Text className="font-display text-muted text-[12px] font-semibold">
                 Practice tips:
               </Text>
-              {suggestion.tips.map((tip, idx) => (
-                <Text key={idx} className="font-body text-ink text-[13px]">
+              {suggestion.tips.map((tip) => (
+                <Text key={tip} className="font-body text-ink text-[13px]">
                   • {tip}
                 </Text>
               ))}
