@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
@@ -45,6 +46,7 @@ function Bubble({ message }: { message: ChatMessage }) {
 }
 
 export default function OnboardingScreen() {
+  const { t } = useTranslation();
   const completeOnboarding = useAppStore((state) => state.completeOnboarding);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -75,7 +77,7 @@ export default function OnboardingScreen() {
         {
           id: 'closing',
           from: 'sidekick',
-          text: `That's everything I need, ${nameValue}. Here is where I would start you.`,
+          text: t('onboarding.closingMessage', { name: nameValue }),
         },
       ]);
       setFinished(true);
@@ -117,9 +119,12 @@ export default function OnboardingScreen() {
       >
         <ScreenHeader
           showBack={false}
-          kicker={`Step ${stepNumber} of ${LEVEL_CHAT_STEPS.length} · Hamburg`}
-          title="Let's find your level"
-          subtitle="A short chat, not a CEFR test. It only decides where you start."
+          kicker={t('onboarding.stepKicker', {
+            current: stepNumber,
+            total: LEVEL_CHAT_STEPS.length,
+          })}
+          title={t('onboarding.title')}
+          subtitle={t('onboarding.subtitle')}
         />
 
         <ScrollView
@@ -137,7 +142,7 @@ export default function OnboardingScreen() {
         <View className="border-ink bg-cream pb-safe-offset-4 border-t-2 px-5 pt-4">
           {finished ? (
             <ChunkyButton
-              label="See my level"
+              label={t('onboarding.seeLevel')}
               size="lg"
               fullWidth
               trailing={<Text className="text-cream font-display text-[17px]">→</Text>}
@@ -157,7 +162,7 @@ export default function OnboardingScreen() {
                 onSubmitEditing={submitName}
               />
               <ChunkyButton
-                label="Send"
+                label={t('onboarding.send')}
                 fullWidth
                 disabled={draft.trim().length === 0}
                 onPress={submitName}

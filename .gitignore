@@ -50,5 +50,16 @@ notes.txt
 bun.lock
 bun.lockb
 
+# Playwright MCP drops snapshots here while a session drives the browser
+.playwright-mcp/
+
 _openrouter_comms.jsonl
 _project_metadata.jsonl
+# Arbeitsmaterial (Jonah), gehört nicht ins geteilte Repo
+ADMIN.md
+backlog.md
+commit.md
+docs/
+memory/
+STARTER-PROMPT.md
+CLAUDE.md

@@ -1,18 +1,16 @@
 import { router } from 'expo-router';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import { ChunkyCard } from '@/components/ChunkyCard';
 import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SearchableMissionsList } from '@/components/SearchableMissionsList';
-import { AUTUMN_MISSIONS } from '@/lib/autumnMissions';
-import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { useAppStore } from '@/lib/store';
 
 export default function MissionsScreen() {
   const { t } = useTranslation();
+  const missions = useAppStore((state) => state.missions);
   const statuses = useAppStore((state) => state.statuses);
   const level = useAppStore((state) => state.level);
 
@@ -29,21 +27,10 @@ export default function MissionsScreen() {
       </View>
 
       <SearchableMissionsList
-        missions={MISSIONS}
+        missions={missions}
         statuses={statuses}
         userLevel={level}
         onMissionPress={(mission) => router.push(routes.missionPrep(mission.id))}
-        highlightedMissionIds={AUTUMN_MISSIONS.map((mission) => mission.id)}
-        footer={
-          <ChunkyCard tone="canvas" offset={4} className="mt-1 gap-1.5 px-4 py-3.5">
-            <Text className="text-muted font-display text-[11px] tracking-widest">
-              {t('missions.fixed')}
-            </Text>
-            <Text className="text-ink font-body text-[13.5px] leading-[20px]">
-              {t('missions.fixedBody')}
-            </Text>
-          </ChunkyCard>
-        }
       />
     </Screen>
   );

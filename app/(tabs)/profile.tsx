@@ -11,7 +11,6 @@ import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SectionHeading } from '@/components/SectionHeading';
 import { StreakCard } from '@/components/StreakCard';
-import { MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
 import { confidencePercent } from '@/lib/progress';
 import { useAppStore } from '@/lib/store';
@@ -29,6 +28,7 @@ function StatTile({ value, label }: { value: string; label: string }) {
 
 export default function ProfileScreen() {
   const { t } = useTranslation();
+  const missions = useAppStore((state) => state.missions);
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
@@ -38,9 +38,10 @@ export default function ProfileScreen() {
   const streakCount = useAppStore((state) => state.streakCount);
   const lastJournalDay = useAppStore((state) => state.lastJournalDay);
 
-  const doneMissions = MISSIONS.filter((mission) => statuses[mission.id] === 'done');
+  const doneMissions = missions.filter((mission) => statuses[mission.id] === 'done');
   const studiedWords = Object.values(studied).reduce((total, ids) => total + ids.length, 0);
   const confidence = confidencePercent({
+    missions,
     level,
     statuses,
     practiceDone,
@@ -76,7 +77,7 @@ export default function ProfileScreen() {
 
         <View className="flex-row gap-3">
           <StatTile
-            value={`${doneMissions.length}/${MISSIONS.length}`}
+            value={`${doneMissions.length}/${missions.length}`}
             label={t('progress.missionsDone')}
           />
           <StatTile value={String(studiedWords)} label={t('progress.wordsMarked')} />
@@ -85,7 +86,7 @@ export default function ProfileScreen() {
 
         <View className="gap-3">
           <SectionHeading title={t('progress.badges')} />
-          {MISSIONS.map((mission) => {
+          {missions.map((mission) => {
             const earned = statuses[mission.id] === 'done';
             return (
               <ChunkyCard

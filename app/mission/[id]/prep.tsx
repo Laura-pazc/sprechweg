@@ -1,7 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { ArrowLeft, MapPin } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 import { ChunkyButton, ChunkyIconButton } from '@/components/ChunkyButton';
@@ -14,10 +14,8 @@ import { VocabList } from '@/components/mission/VocabList';
 import { PracticeSuggestionsSheet } from '@/components/practice/PracticeSuggestionsSheet';
 import { Screen } from '@/components/Screen';
 import { StepPager, type StepPagerItem } from '@/components/StepPager';
-import { getMission } from '@/lib/missions';
-import { getPracticeSuggestions } from '@/lib/practiceSuggestions';
 import { goBackOrReplace, routes } from '@/lib/navigation';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 
 const STEP_VALUES = ['intro', 'vocab', 'conversation', 'practice'] as const;
@@ -27,7 +25,8 @@ export default function MissionPrepScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const { t } = useTranslation();
-  const mission = useMemo(() => getMission(id), [id]);
+  const hydrated = useAppStore((state) => state.hydrated);
+  const mission = useMission(id);
   const statuses = useAppStore((state) => state.statuses);
   const studied = useAppStore((state) => (id ? state.studied[id] : undefined));
   const practiceComplete = useAppStore((state) => (id ? state.practiceDone[id] : false));
@@ -37,10 +36,10 @@ export default function MissionPrepScreen() {
   const setStatus = useAppStore((state) => state.setStatus);
   const [step, setStep] = useState<PrepStep>('intro');
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const suggestions = useMemo(
-    () => (mission && id ? getPracticeSuggestions(id) : []),
-    [mission, id],
-  );
+
+  if (!hydrated) {
+    return <Screen />;
+  }
 
   if (!mission) {
     return <MissionMissing />;
@@ -58,11 +57,7 @@ export default function MissionPrepScreen() {
 
   const changeStep = (nextStep: PrepStep) => {
     if (nextStep !== 'intro') setStatus(mission.id, 'in_progress');
-    if (nextStep === 'conversation' && suggestions.length > 0) {
-      setShowSuggestions(true);
-    } else {
-      setStep(nextStep);
-    }
+    setStep(nextStep);
   };
 
   const beginMission = () => {

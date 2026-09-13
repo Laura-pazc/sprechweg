@@ -146,6 +146,7 @@
   --color-ink: oklch(0.2 0.015 265);
   --color-cream: oklch(0.968 0.022 85);
   --color-canvas: oklch(0.951 0.01 95);
+  --color-autumn: oklch(0.92 0.07 60);
   --color-lime: oklch(0.91 0.18 120);
   --color-coral: oklch(0.64 0.2 36);
   /* Lightened from the mock so ink-on-magenta body copy clears AA contrast. */

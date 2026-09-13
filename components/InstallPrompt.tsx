@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Platform, Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -54,6 +55,7 @@ function isIosSafari(): boolean {
 const TAB_BAR_HEIGHT = 49;
 
 export function InstallPrompt() {
+  const { t } = useTranslation();
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null);
   const [showIosHint, setShowIosHint] = useState(false);
   const insets = useSafeAreaInsets();
@@ -118,10 +120,10 @@ export function InstallPrompt() {
       >
         <View className="flex-1">
           <Text.Paragraph type="body-sm" weight="semibold">
-            Add to home screen
+            {t('install.addToHomeScreen')}
           </Text.Paragraph>
           <Text.Paragraph type="body-xs" color="muted">
-            Install this app for a full-screen experience
+            {t('install.installBody')}
           </Text.Paragraph>
         </View>
         <Pressable
@@ -130,7 +132,7 @@ export function InstallPrompt() {
           onPress={() => setInstallEvent(null)}
         >
           <Text.Paragraph type="body-sm" weight="semibold" color="muted">
-            Not now
+            {t('install.notNow')}
           </Text.Paragraph>
         </Pressable>
         <Pressable
@@ -139,7 +141,7 @@ export function InstallPrompt() {
           onPress={handleInstall}
         >
           <Text.Paragraph type="body-sm" weight="semibold" className="text-primary-foreground">
-            Install
+            {t('install.install')}
           </Text.Paragraph>
         </Pressable>
       </View>
@@ -154,10 +156,10 @@ export function InstallPrompt() {
       >
         <View className="flex-1">
           <Text.Paragraph type="body-sm" weight="semibold">
-            Add to home screen
+            {t('install.addToHomeScreen')}
           </Text.Paragraph>
           <Text.Paragraph type="body-xs" color="muted">
-            Tap Share, then “Add to Home Screen” to install this app
+            {t('install.iosHintBody')}
           </Text.Paragraph>
         </View>
         <Pressable
@@ -166,7 +168,7 @@ export function InstallPrompt() {
           onPress={dismissIosHint}
         >
           <Text.Paragraph type="body-sm" weight="semibold" color="muted">
-            Got it
+            {t('prep.gotIt')}
           </Text.Paragraph>
         </Pressable>
       </View>

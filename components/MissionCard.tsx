@@ -24,7 +24,7 @@ export function MissionCard({
 }: MissionCardProps) {
   return (
     <ChunkyPressableCard
-      tone={featured ? mission.accent : 'paper'}
+      tone={mission.season === 'autumn' ? 'autumn' : featured ? mission.accent : 'paper'}
       offset={featured ? 6 : 3}
       radius={featured ? 22 : 18}
       onPress={onPress}

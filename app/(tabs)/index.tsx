@@ -19,7 +19,7 @@ import { MissionCard } from '@/components/MissionCard';
 import { ProgressBar } from '@/components/ProgressBar';
 import { Screen } from '@/components/Screen';
 import { SectionHeading } from '@/components/SectionHeading';
-import { COMMUNITY_QUOTES, MISSIONS } from '@/lib/missions';
+import { COMMUNITY_QUOTES } from '@/lib/content/communityQuotes';
 import { routes } from '@/lib/navigation';
 import { confidencePercent, nextMission } from '@/lib/progress';
 import { useAppStore } from '@/lib/store';
@@ -31,6 +31,7 @@ const HAMBURG_EVENTS_URL = 'https://www.hamburg-travel.com/see-explore/events/ev
 export default function TodayScreen() {
   const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
+  const missions = useAppStore((state) => state.missions);
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
   const statuses = useAppStore((state) => state.statuses);
@@ -41,14 +42,15 @@ export default function TodayScreen() {
   const toggleCheer = useAppStore((state) => state.toggleCheer);
 
   const confidence = confidencePercent({
+    missions,
     level,
     statuses,
     practiceDone,
     studied,
     journalCount: entries.length,
   });
-  const upNext = nextMission(level, statuses);
-  const otherMissions = MISSIONS.filter((mission) => mission.id !== upNext.id);
+  const upNext = nextMission(missions, level, statuses);
+  const otherMissions = missions.filter((mission) => mission.id !== upNext.id);
   const completedCount = Object.values(statuses).filter((status) => status === 'done').length;
   const quote = COMMUNITY_QUOTES[hashString(dayKey()) % COMMUNITY_QUOTES.length];
   const hasCheered = cheered.includes(quote.id);

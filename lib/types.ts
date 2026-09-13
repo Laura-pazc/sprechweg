@@ -4,7 +4,9 @@ export type MissionStatus = 'not_started' | 'in_progress' | 'done';
 
 export type MissionAccent = 'sky' | 'coral' | 'magenta';
 
-export type MissionIcon = 'compass' | 'utensils' | 'users';
+export type MissionIcon = 'compass' | 'utensils' | 'users' | 'leaf';
+
+export type MissionSeason = 'autumn';
 
 export interface VocabItem {
   id: string;
@@ -62,6 +64,8 @@ export interface Mission {
   tagline: string;
   category: string;
   icon: MissionIcon;
+  /** Optional seasonal presentation used by the shared mission card. */
+  season?: MissionSeason;
   level: Level;
   minutes: number;
   accent: MissionAccent;

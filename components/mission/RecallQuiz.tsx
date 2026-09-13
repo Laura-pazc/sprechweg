@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
 
 import { ChunkyCard } from '@/components/ChunkyCard';
@@ -19,6 +20,7 @@ export function RecallQuiz({
   revealed,
   currentIndex,
 }: RecallQuizProps) {
+  const { t } = useTranslation();
   const visibleQuestions =
     currentIndex === undefined ? questions.map((question, index) => ({ question, index })) : [];
   if (currentIndex !== undefined && questions[currentIndex]) {
@@ -33,7 +35,7 @@ export function RecallQuiz({
           <ChunkyCard key={question.id} tone="paper" offset={3} className="gap-3 px-4 py-4">
             <View className="gap-1">
               <Text className="text-muted font-display text-[10px] tracking-widest">
-                WORD {questionIndex + 1} OF {questions.length}
+                {t('recall.wordCount', { current: questionIndex + 1, total: questions.length })}
               </Text>
               <Text className="text-ink font-display text-[19px] leading-[24px]">
                 {question.de}

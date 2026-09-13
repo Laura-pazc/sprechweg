@@ -10,9 +10,8 @@ import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { StreakCard } from '@/components/StreakCard';
 import { DATE_LOCALES } from '@/lib/i18n';
-import { getMission, MISSIONS } from '@/lib/missions';
 import { routes } from '@/lib/navigation';
-import { useAppStore } from '@/lib/store';
+import { useAppStore, useMission } from '@/lib/store';
 import { palette } from '@/lib/theme';
 import type { JournalEntry } from '@/lib/types';
 import { dayKey } from '@/lib/utils';
@@ -28,7 +27,7 @@ function formatDay(iso: string, locale: string): string {
 function EntryCard({ entry }: { entry: JournalEntry }) {
   const { i18n, t } = useTranslation();
   const locale = i18n.resolvedLanguage === 'de' ? DATE_LOCALES.de : DATE_LOCALES.en;
-  const mission = getMission(entry.missionId ?? undefined);
+  const mission = useMission(entry.missionId ?? undefined);
 
   return (
     <ChunkyCard tone="paper" className="gap-3 px-4 py-4">
@@ -65,14 +64,15 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
 
 export default function JournalScreen() {
   const { t } = useTranslation();
+  const missions = useAppStore((state) => state.missions);
   const entries = useAppStore((state) => state.entries);
   const statuses = useAppStore((state) => state.statuses);
   const streakCount = useAppStore((state) => state.streakCount);
   const lastJournalDay = useAppStore((state) => state.lastJournalDay);
 
-  const pending = MISSIONS.find(
+  const completedMissionWithoutFieldNotes = missions.find(
     (mission) =>
-      (statuses[mission.id] ?? 'not_started') !== 'not_started' &&
+      statuses[mission.id] === 'done' &&
       !entries.some((entry) => entry.missionId === mission.id),
   );
 
@@ -97,10 +97,10 @@ export default function JournalScreen() {
               entryCount={entries.length}
               journaledToday={lastJournalDay === dayKey()}
             />
-            {pending ? (
+            {completedMissionWithoutFieldNotes ? (
               <ChunkyCard tone="sunny" className="gap-2.5 px-4 py-4">
                 <Text className="text-ink font-display text-[17px] leading-[22px]">
-                  {t('journal.waiting', { title: pending.title })}
+                  {t('journal.waiting', { title: completedMissionWithoutFieldNotes.title })}
                 </Text>
                 <Text className="text-ink font-body text-[13.5px] leading-[20px]">
                   {t('journal.fresh')}
@@ -109,7 +109,7 @@ export default function JournalScreen() {
                   label={t('journal.write')}
                   variant="ink"
                   leading={<NotebookPen color={palette.cream} size={16} strokeWidth={2.5} />}
-                  onPress={() => router.push(routes.missionJournal(pending.id))}
+                  onPress={() => router.push(routes.missionJournal(completedMissionWithoutFieldNotes.id))}
                 />
               </ChunkyCard>
             ) : (

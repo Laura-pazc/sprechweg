@@ -1,14 +1,23 @@
-import { ChevronDown, SlidersHorizontal, Search, X } from 'lucide-react-native';
-import type { ReactNode } from 'react';
+import {
+  ChevronDown,
+  GraduationCap,
+  MapPinned,
+  Search,
+  ShoppingBag,
+  SlidersHorizontal,
+  UsersRound,
+  X,
+} from 'lucide-react-native';
 import { useState } from 'react';
 import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BottomSheet } from 'heroui-native';
 
 import { ChunkyButton } from '@/components/ChunkyButton';
-import { ChunkyCard } from '@/components/ChunkyCard';
+import { ChunkyCard, ChunkyPressableCard, type CardTone } from '@/components/ChunkyCard';
 import { ChunkyInput } from '@/components/ChunkyInput';
 import { MissionCard } from '@/components/MissionCard';
+import { SectionHeading } from '@/components/SectionHeading';
 import {
   useMissionSearch,
   type MissionMatchField,
@@ -19,6 +28,83 @@ import type { Level, Mission, MissionStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 const LEVELS: Array<Level | null> = [null, 'beginner', 'intermediate', 'advanced'];
+type MissionListItem =
+  | { type: 'category-picker'; categories: string[] }
+  | { type: 'mission'; result: MissionSearchResult };
+
+function categoryTone(category: string): CardTone {
+  switch (category) {
+    case 'Everyday errands':
+      return 'sunny';
+    case 'Getting around':
+      return 'sky';
+    case 'Making friends':
+      return 'coral';
+    case 'Work and study':
+      return 'lime';
+    default:
+      return 'paper';
+  }
+}
+
+function CategoryIcon({ category }: { category: string }) {
+  const props = { color: palette.ink, size: 25, strokeWidth: 2.3 };
+
+  switch (category) {
+    case 'Everyday errands':
+      return <ShoppingBag {...props} />;
+    case 'Getting around':
+      return <MapPinned {...props} />;
+    case 'Making friends':
+      return <UsersRound {...props} />;
+    case 'Work and study':
+      return <GraduationCap {...props} />;
+    default:
+      return <MapPinned {...props} />;
+  }
+}
+
+function CategoryPicker({
+  categories,
+  onSelect,
+}: {
+  categories: string[];
+  onSelect: (category: string) => void;
+}) {
+  const { t } = useTranslation();
+  const rows = Array.from({ length: Math.ceil(categories.length / 2) }, (_, index) =>
+    categories.slice(index * 2, index * 2 + 2),
+  );
+
+  return (
+    <View className="gap-3 pt-2">
+      <SectionHeading title={t('missions.browseByCategory')} />
+      {rows.map((row) => (
+        <View key={row[0]} className="flex-row gap-3">
+          {row.map((category) => (
+            <ChunkyPressableCard
+              key={category}
+              tone={categoryTone(category)}
+              offset={3}
+              radius={18}
+              className="flex-1 items-center justify-center gap-2 px-3 py-4"
+              accessibilityLabel={t('missions.openCategory', { category })}
+              onPress={() => onSelect(category)}
+            >
+              <View className="h-11 w-11 items-center justify-center rounded-full bg-white/70">
+                <CategoryIcon category={category} />
+              </View>
+              <Text className="text-ink font-display text-center text-[15px] leading-[19px]">
+                {category}
+              </Text>
+            </ChunkyPressableCard>
+          ))}
+          {row.length === 1 ? <View className="flex-1" /> : null}
+        </View>
+      ))}
+    </View>
+  );
+}
 
 interface FilterChoiceProps {
   label: string;
@@ -222,29 +308,23 @@ export interface SearchableMissionsListProps {
   statuses: Record<string, MissionStatus>;
   userLevel: Level | null;
   onMissionPress: (mission: Mission) => void;
-  highlightedMissionIds?: string[];
-  footer?: ReactNode;
 }
-
-type MissionListRow =
-  | { kind: 'controls' }
-  | { kind: 'mission'; result: MissionSearchResult }
-  | { kind: 'empty' };
 
 export function SearchableMissionsList({
   missions,
   statuses,
   userLevel,
   onMissionPress,
-  highlightedMissionIds = [],
-  footer,
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
   const search = useMissionSearch(missions, userLevel);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const activeFilterCount =
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
-  const highlightedIds = new Set(highlightedMissionIds);
+  const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
+  const items: MissionListItem[] = showCategoryPicker
+    ? [{ type: 'category-picker', categories: search.categories }]
+    : search.results.map((result) => ({ type: 'mission', result }));
 
   const rows: MissionListRow[] = [{ kind: 'controls' }];
   if (search.results.length > 0) {
@@ -327,6 +407,31 @@ export function SearchableMissionsList({
           status={statuses[item.result.mission.id] ?? 'not_started'}
           seasonal={highlightedIds.has(item.result.mission.id)}
           onPress={() => onMissionPress(item.result.mission)}
+=======
+  const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
+  const items: MissionListItem[] = showCategoryPicker
+    ? [{ type: 'category-picker', categories: search.categories }]
+    : search.results.map((result) => ({ type: 'mission', result }));
+
+  const renderItem = ({ item }: { item: MissionListItem }) => {
+    if (item.type === 'category-picker') {
+      return (
+        <CategoryPicker
+          categories={item.categories}
+          onSelect={(category) => search.setCategory(category)}
+        />
+      );
+    }
+
+    const { mission, matchedFields } = item.result;
+    return (
+      <View className="gap-2">
+        <MatchIndicators fields={matchedFields} />
+        <MissionCard
+          mission={mission}
+          status={statuses[mission.id] ?? 'not_started'}
+          onPress={() => onMissionPress(mission)}
+>>>>>>> refactored
         />
       </View>
     );
@@ -334,17 +439,75 @@ export function SearchableMissionsList({
 
   return (
     <>
-      <FlatList
-        data={rows}
-        keyExtractor={(item, index) =>
-          item.kind === 'mission' ? `mission-${item.result.mission.id}` : `${item.kind}-${index}`
+      <FlatList<MissionListItem>
+        data={items}
+        keyExtractor={(item) =>
+          item.type === 'category-picker' ? 'category-picker' : item.result.mission.id
         }
         renderItem={renderItem}
         stickyHeaderIndices={[0]}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         contentContainerClassName="gap-4 px-5 pb-8"
-        ListFooterComponent={footer ? <View className="pt-1">{footer}</View> : null}
+        ListHeaderComponent={
+          <View className="bg-cream flex-row gap-2 pt-1 pb-3">
+            <View className="relative flex-1 justify-center">
+              <Search
+                pointerEvents="none"
+                color={palette.muted}
+                size={18}
+                strokeWidth={2.5}
+                style={{ position: 'absolute', left: 15, zIndex: 1 }}
+              />
+              <ChunkyInput
+                value={search.query}
+                onChangeText={search.setQuery}
+                placeholder={t('missions.searchPlaceholder')}
+                accessibilityLabel={t('missions.searchLabel')}
+                returnKeyType="search"
+                autoCapitalize="none"
+                autoCorrect={false}
+                className="pr-11 pl-11"
+              />
+              {search.query.length > 0 ? (
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={t('missions.clearSearch')}
+                  onPress={search.clearSearch}
+                  hitSlop={10}
+                  className="absolute right-2 h-8 w-8 items-center justify-center rounded-full"
+                >
+                  <X color={palette.ink} size={18} strokeWidth={2.6} />
+                </Pressable>
+              ) : null}
+            </View>
+
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={t('missions.openFilters')}
+              accessibilityState={{ expanded: filtersOpen }}
+              onPress={() => setFiltersOpen(true)}
+              className={cn(
+                'border-ink min-h-12 flex-row items-center gap-1.5 rounded-[14px] border-2 px-3',
+                activeFilterCount > 0 ? 'bg-lime' : 'bg-white',
+              )}
+            >
+              <SlidersHorizontal color={palette.ink} size={17} strokeWidth={2.5} />
+              <Text className="text-ink font-strong text-[13px]">
+                {activeFilterCount > 0
+                  ? t('missions.filtersCount', { count: activeFilterCount })
+                  : t('missions.filters')}
+              </Text>
+            </Pressable>
+          </View>
+        }
+        ListEmptyComponent={
+          <ChunkyCard tone="canvas" offset={4} className="px-4 py-5">
+            <Text className="text-ink font-body text-[14px] leading-[20px]">
+              {t('missions.noResultsCompact')}
+            </Text>
+          </ChunkyCard>
+        }
       />
 
       <FiltersSheet
