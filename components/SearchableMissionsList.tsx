@@ -10,7 +10,7 @@ import {
   X,
 } from 'lucide-react-native';
 import { useState } from 'react';
-import { FlatList, Pressable, ScrollView, Text, View } from 'react-native';
+import { FlatList, Pressable, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { BottomSheet } from 'heroui-native';
 
@@ -31,7 +31,7 @@ import { cn } from '@/lib/utils';
 
 const LEVELS: Array<Level | null> = [null, 'beginner', 'intermediate', 'advanced'];
 type MissionListItem =
-  | { type: 'creator' }
+  | { type: 'creator'; cefrLevel: CefrLevel }
   | { type: 'category-picker'; categories: string[] }
   | { type: 'mission'; result: MissionSearchResult };
 
@@ -69,18 +69,16 @@ function CategoryIcon({ category }: { category: string }) {
 
 function CategoryPicker({
   categories,
-  canCreate,
   onCreate,
   onSelect,
 }: {
   categories: string[];
-  canCreate: boolean;
   onCreate: () => void;
   onSelect: (category: string) => void;
 }) {
   const { t } = useTranslation();
   const items = [
-    ...(canCreate ? [{ type: 'create' as const, key: 'create-your-own' }] : []),
+    { type: 'create' as const, key: 'create-your-own' },
     ...categories.map((category) => ({ type: 'category' as const, key: category, category })),
   ];
   const rows = Array.from({ length: Math.ceil(items.length / 2) }, (_, index) =>
@@ -350,6 +348,8 @@ export function SearchableMissionsList({
   highlightedMissionIds = [],
 }: SearchableMissionsListProps) {
   const { t } = useTranslation();
+  const { width } = useWindowDimensions();
+  const contentWidth = Math.max(0, Math.min(width - 40, 672));
   const search = useMissionSearch(missions, userLevel);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [creatorOpen, setCreatorOpen] = useState(false);
@@ -357,37 +357,43 @@ export function SearchableMissionsList({
     Number(search.filters.level !== null) + Number(search.filters.category !== null);
   const highlightedIds = new Set(highlightedMissionIds);
   const showCategoryPicker = search.query.trim().length === 0 && !search.hasActiveFilters;
-  const creatorItem: MissionListItem[] = creatorOpen && cefrLevel ? [{ type: 'creator' }] : [];
+  const creatorItem: MissionListItem[] = creatorOpen
+    ? [{ type: 'creator', cefrLevel: cefrLevel ?? 'A1' }]
+    : [];
   const items: MissionListItem[] = showCategoryPicker
-    ? [{ type: 'category-picker', categories: search.categories }, ...creatorItem]
+    ? creatorOpen
+      ? [...creatorItem, { type: 'category-picker', categories: search.categories }]
+      : [{ type: 'category-picker', categories: search.categories }]
     : [...creatorItem, ...search.results.map((result) => ({ type: 'mission' as const, result }))];
 
   const renderItem = ({ item }: { item: MissionListItem }) => {
     if (item.type === 'creator') {
-      if (!cefrLevel) return null;
       return (
-        <SmartMissionCreator
-          cefrLevel={cefrLevel}
-          onMissionCreated={onMissionCreated}
-          onClose={() => setCreatorOpen(false)}
-        />
+        <View style={{ width: contentWidth }}>
+          <SmartMissionCreator
+            cefrLevel={item.cefrLevel}
+            onMissionCreated={onMissionCreated}
+            onClose={() => setCreatorOpen(false)}
+          />
+        </View>
       );
     }
 
     if (item.type === 'category-picker') {
       return (
-        <CategoryPicker
-          categories={item.categories}
-          canCreate={cefrLevel !== null}
-          onCreate={() => setCreatorOpen(true)}
-          onSelect={(category) => search.setCategory(category)}
-        />
+        <View style={{ width: contentWidth }}>
+          <CategoryPicker
+            categories={item.categories}
+            onCreate={() => setCreatorOpen(true)}
+            onSelect={(category) => search.setCategory(category)}
+          />
+        </View>
       );
     }
 
     const { mission, matchedFields } = item.result;
     return (
-      <View className="gap-2">
+      <View className="gap-2" style={{ width: contentWidth }}>
         <MatchIndicators fields={matchedFields} />
         <MissionCard
           mission={mission}
@@ -414,9 +420,10 @@ export function SearchableMissionsList({
         stickyHeaderIndices={[0]}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
-        contentContainerClassName="gap-4 px-5 pb-8"
+        contentContainerClassName="gap-4 pb-8"
+        contentContainerStyle={{ alignItems: 'center' }}
         ListHeaderComponent={
-          <View className="bg-cream flex-row gap-2 pt-1 pb-3">
+          <View className="bg-cream flex-row gap-2 pt-1 pb-3" style={{ width: contentWidth }}>
             <View className="relative flex-1 justify-center">
               <Search
                 pointerEvents="none"
@@ -468,7 +475,12 @@ export function SearchableMissionsList({
           </View>
         }
         ListEmptyComponent={
-          <ChunkyCard tone="canvas" offset={4} className="px-4 py-5">
+          <ChunkyCard
+            tone="canvas"
+            offset={4}
+            className="px-4 py-5"
+            style={{ width: contentWidth }}
+          >
             <Text className="text-ink font-body text-[14px] leading-[20px]">
               {t('missions.noResultsCompact')}
             </Text>
