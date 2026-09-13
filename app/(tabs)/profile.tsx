@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { Select } from 'heroui-native';
 import { Lock } from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
@@ -12,6 +13,7 @@ import { Screen } from '@/components/Screen';
 import { ScreenHeader } from '@/components/ScreenHeader';
 import { SectionHeading } from '@/components/SectionHeading';
 import { StreakCard } from '@/components/StreakCard';
+import { LANGUAGE_OPTIONS } from '@/lib/i18n';
 import { routes } from '@/lib/navigation';
 import { confidencePercent } from '@/lib/progress';
 import { useAppStore } from '@/lib/store';
@@ -32,6 +34,8 @@ export default function ProfileScreen() {
   const missions = useAppStore((state) => state.missions);
   const name = useAppStore((state) => state.name);
   const level = useAppStore((state) => state.level);
+  const locale = useAppStore((state) => state.locale);
+  const setLocale = useAppStore((state) => state.setLocale);
   const statuses = useAppStore((state) => state.statuses);
   const studied = useAppStore((state) => state.studied);
   const practiceDone = useAppStore((state) => state.practiceDone);
@@ -157,6 +161,39 @@ export default function ProfileScreen() {
 
         <View className="gap-3">
           <SectionHeading title={t('common.settings')} />
+          <View className="gap-1.5">
+            <Text className="text-ink font-strong text-[14px]">{t('language.title')}</Text>
+            <Select
+              value={LANGUAGE_OPTIONS.find((option) => option.value === locale)}
+              onValueChange={(option) => {
+                const selectedOption = option
+                  ? LANGUAGE_OPTIONS.find(({ value }) => value === option.value)
+                  : undefined;
+                if (selectedOption) setLocale(selectedOption.value);
+              }}
+            >
+              <Select.Trigger
+                accessibilityLabel={t('language.buttonLabel', {
+                  language: LANGUAGE_OPTIONS.find((option) => option.value === locale)?.label,
+                })}
+                className="border-ink min-h-12 rounded-[14px] border-2 bg-white px-4"
+              >
+                <Select.Value placeholder={t('language.title')} className="text-ink font-strong" />
+                <Select.TriggerIndicator />
+              </Select.Trigger>
+              <Select.Portal>
+                <Select.Overlay />
+                <Select.Content presentation="popover" width="trigger">
+                  {LANGUAGE_OPTIONS.map((option) => (
+                    <Select.Item key={option.value} value={option.value} label={option.label} />
+                  ))}
+                </Select.Content>
+              </Select.Portal>
+            </Select>
+            <Text className="text-muted font-body text-[12.5px] leading-[18px]">
+              {t('language.subtitle')}
+            </Text>
+          </View>
           <Pressable
             accessibilityRole="button"
             onPress={() => router.push(routes.howItWorks)}

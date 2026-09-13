@@ -173,8 +173,7 @@ const resources = {
         fresh: 'Add a note while the details are still fresh.',
         write: 'Add Field Notes',
         empty: 'No Field Notes yet',
-        emptyBody:
-          'Complete a mission, then add a few notes about what happened.',
+        emptyBody: 'Complete a mission, then add a few notes about what happened.',
         browse: 'Browse missions',
         dailyTitle: 'Notes from today',
         dailyBody: 'No mission today? Add a few Field Notes about your day.',
@@ -315,7 +314,8 @@ const resources = {
         headline: 'Serie: Eine Feldnotiz am Tag hält sie am Laufen',
         logged_one: 'Heute ist eingetragen. Bisher {{count}} Feldnotiz.',
         logged_other: 'Heute ist eingetragen. Bisher {{count}} Feldnotizen.',
-        notLogged: 'Heute noch keine Feldnotizen. Schreibe vor Mitternacht etwas über eine Mission.',
+        notLogged:
+          'Heute noch keine Feldnotizen. Schreibe vor Mitternacht etwas über eine Mission.',
       },
       language: {
         buttonLabel: 'Oberflächensprache: {{language}}',
@@ -324,7 +324,12 @@ const resources = {
           'Die App-Oberfläche ändert sich sofort. Deutsche Übungssätze bleiben auf Deutsch.',
         selected: 'Ausgewählt',
       },
-      tabs: { today: 'Heute', missions: 'Missionen', journal: 'Feldnotizen', progress: 'Fortschritt' },
+      tabs: {
+        today: 'Heute',
+        missions: 'Missionen',
+        journal: 'Feldnotizen',
+        progress: 'Fortschritt',
+      },
       levels: { beginner: 'Anfänger', intermediate: 'Mittelstufe', advanced: 'Fortgeschritten' },
       levelHeadlines: {
         beginner: 'Kurze Sätze, echte Straßen',
@@ -454,8 +459,7 @@ const resources = {
         fresh: 'Notiere etwas, solange die Details noch frisch sind.',
         write: 'Feldnotizen schreiben',
         empty: 'Noch keine Feldnotizen',
-        emptyBody:
-          'Schließe eine Mission ab und notiere danach, was passiert ist.',
+        emptyBody: 'Schließe eine Mission ab und notiere danach, was passiert ist.',
         browse: 'Missionen ansehen',
         dailyTitle: 'Notizen von heute',
         dailyBody: 'Keine Mission heute? Schreibe ein paar Feldnotizen über deinen Tag.',
